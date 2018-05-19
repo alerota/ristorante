@@ -145,7 +145,13 @@ if ($connessione->connect_errno) {
                     </thead>
                     <tbody>
                     <?php
-                    $query = "SELECT * FROM prenotazioni";
+
+                    if(isset($_GET['date'])) {
+                        $data = $_GET['date'];
+                        $query = "SELECT * FROM prenotazioni WHERE giorno='$data'";
+                    }
+                    else
+                        $query = "SELECT * FROM prenotazioni";
 
                     $result = $connessione->query($query);
                     $numrows = $result->num_rows;
@@ -158,7 +164,8 @@ if ($connessione->connect_errno) {
                                 echo "<td>" . $row['cliente'] . "</td>";
                                 echo "<td>" . $row['tel'] . "</td>";
                                 echo "<td>" . $row['num_partecipanti'] . "</td>";
-                                echo "<td>" . $row['giorno'] . "</td>";
+                                $date = new DateTime($row['giorno']);
+                                echo "<td>" . $date->format('d-m-Y') . "</td>";
                                 echo "<td>" . $row['orario'] . "</td>";
 
                                 $query1 = "SELECT * FROM sale WHERE id_sala=" . $row['id_sala'];
