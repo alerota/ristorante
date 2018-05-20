@@ -59,14 +59,14 @@ class Calendar {
         $this->currentMonth=$month;
         $this->daysInMonth=$this->_daysInMonth($month,$year);  
          
-        $content='<div id="calendar">'.
-                '<div class="box">'.
+        $content='<div id="calendar" class="row">'.
+                '<div class="box col-xs-12 seven-cols">'.
                 $this->_createNavi().
                 '</div>'.
-                '<div class="box-content">'.
-                '<ul class="label">'.$this->_createLabels().'</ul>';   
+                '<div class="box-content col-xs-12">'.
+                '<div class="label row seven-cols">'.$this->_createLabels().'</div>';   
         $content.='<div class="clear"></div>';     
-        $content.='<ul class="dates">';    
+        $content.='<div class="dates cols-xs-12">';    
 
         $weeksInMonth = $this->_weeksInMonth($month,$year);
         // Create weeks in a month
@@ -74,7 +74,7 @@ class Calendar {
               for($j=1;$j<=7;$j++)
                 $content.=$this->_showDay($i*7+$j);
 
-        $content.='</ul>';
+        $content.='</div>';
         $content.='<div class="clear"></div>'; 
         $content.='</div>';
         $content.='</div>';
@@ -108,24 +108,30 @@ class Calendar {
             $cellContent=null;
         }
         
+		if($cellNumber%7==1)
+			$string = "<div class='row seven-cols'>";
+		else
+			$string = "";
+		
         if($this->currentDate == null)
-        	$string = '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
-                ($cellContent==null?'mask':'').'" style="background-color: white; ">'.$cellContent.'</li>';
+        	$string .= '<div id="li-" class="col-xs-1 text-center" style="background-color: white; ">'.$cellContent.'</div>';
         else
 		{
         	if($this->currentDate <= Date('Y-m-d', time()))
-				$string = '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
-                ($cellContent==null?'mask':'').'" style="background-color: #AAAAAA; ">'.$cellContent.'</li>';
+				$string .= '<div id="li-'.$this->currentDate.'" class="col-xs-1 text-center" style="background-color: #AAAAAA; ">'.$cellContent.'</div>';
 			else
 			{
-				$string = '<a href="index.php?date='.$this->currentDate.'"><li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' '));
+				$string .= '<a href="index.php?date='.$this->currentDate.'"><div id="li-'.$this->currentDate.'" class="';
 				
 				if($this->giornoSelezionato == $this->currentDate)
-					$string .= ($cellContent==null?'mask':'').' selezionato">'.$cellContent.'</li></a>';
+					$string .= ' selezionato col-xs-1 text-center">'.$cellContent.'</div></a>';
 				else
-					$string .= ($cellContent==null?'mask':'').'">'.$cellContent.'</li></a>';
+					$string .= ' col-xs-1 text-center">'.$cellContent.'</div></a>';
 			}
 		}
+		if($cellNumber%7==0)
+			$string .= "</div>";
+		
         return $string;
     }
      
@@ -145,10 +151,10 @@ class Calendar {
 		else
 			$sostegno = $this->naviHref . "?date=" . $this->giornoSelezionato . "&";
         return
-            '<div class="header">'.
-                '<a class="prev" href="'.$sostegno.'month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Prev</a>'.
-                    '<span class="title">'.date('Y F',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
-                '<a class="next" href="'.$sostegno.'month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Next</a>'.
+            '<div class="header row">'.
+                '<a class="prev col-xs-2 text-center" href="'.$sostegno.'month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Prev</a>'.
+                    '<span class="title col-xs-8 text-center">'.date('Y F',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
+                '<a class="next col-xs-2 text-center" href="'.$sostegno.'month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Next</a>'.
             '</div>';
 			
 		
@@ -164,13 +170,11 @@ class Calendar {
          
         foreach($this->dayLabels as $index=>$label)
         {
-            $content.='<li class="'.($label==6?'end title':'start title').' title">'.$label.'</li>';
+            $content.='<div class="'.($label==6?'end title':'start title').' title col-xs-1">'.$label.'</div>';
         }
          
         return $content;
     }
-     
-     
      
     /**
     * calculate number of weeks in a particular month
