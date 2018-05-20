@@ -38,10 +38,8 @@ include 'menu.php';
                         </div>
                         <?php
                     }
-
                     if(isset($_GET['msg'])) {
                         ?>
-
                         <h1 class="card-title text-center">Modifica utente n° <?php echo $_GET['msg']; ?></h1>
                         <?php
                     }
@@ -55,7 +53,7 @@ include 'menu.php';
                     }
                     else {
                     ?>
-                        <h1 class="card-title text-center">Lista utenti <a href="codici\insertUtente.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
+                        <h1 class="card-title text-center">Lista utenti <a href="AggiuntaNuovoUtente.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
 
                         <br><br>
                         <table id="table">
