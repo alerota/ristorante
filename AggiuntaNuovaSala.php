@@ -54,10 +54,10 @@
 		
 		<div class="container">
 		<hr>
-			<form method="POST" action="codici/insertSala.php" id="insertSL">
+
 				<div class="row">
 					<div class="col-md-3">
-						<form method="POST" id="insertSL" action="codici/insertNuovaSala.php">
+						<form method="POST" id="insertSL" action="<?php if($_GET != null) echo "codici/modificaSala.php?id=" .$idImportante; else echo "/codici/insertSala.php"; ?>" >
 							<fieldset>
 								<legend>Dettagli nuova sala</legend>
 								<div class="form-group">
@@ -112,7 +112,6 @@
 						<hr>
 					</div>
 				</div>
-			</form>
 			<hr>
 		</div>
 	</body>
