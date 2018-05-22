@@ -40,12 +40,15 @@ font-size:18px;
 .box-content{
 border-top:none;
 }
+.box-content .labelNew{
+background-color: white;
+}
 
-div.label{
+div.labelNew{
 margin-top:5px;
 }
 
-div.label div{
+div.labelNew div{
 height:40px;
 line-height:40px;
 color:#000;
@@ -61,7 +64,7 @@ margin-top:5px;
 line-height:60px;
 height:60px;
 font-size:19px;
-background-color:lightgray;
+background-color:#DFDFDF;
 color:#000;
 transition-duration: 0.4s;
 }
