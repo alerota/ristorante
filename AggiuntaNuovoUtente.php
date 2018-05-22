@@ -5,26 +5,28 @@ $user = "root";
 $pass = "";
 $dbname = "ristorante";
 
-$connessione = new mysqli($host, $user, $pass, $dbname);
+$connessione = mysqli_connect($host, $user, $pass);
+$db_selected = mysqli_select_db($connessione, $dbname);
 
 if ($connessione->connect_errno) {
     echo "Errore in connessione al DBMS: " . $connessione->error;
 }
 
-if(isset($_POST['submit'])) {
+if($_POST != null) {
     $user = $_POST['username'];
     $password = $_POST['password'];
     $query = "SELECT * FROM utenti WHERE username='$user'";
     $result = $connessione->query($query);
+	
     if($result->num_rows == 1)
-        header("Location: AggiuntaNuovoUtente.php?alert=Username gia' esistente");
+        echo "<script> window.location.href= 'AggiuntaNuovoUtente.php?alert=Username gia' esistente';</script>";
     else {
-        $query2 = "INSERT INTO utenti(username, password) VALUES ('$username', '$password')";
-        $result = $connessione->query($query);
-        if($result != null)
-            header("Location: utenti.php?messaggio=Utente inserito con successo!");
+        $query2 = "INSERT INTO utenti(username, password) VALUES ('$user', '$password')";
+        $result = $connessione->query($query2);
+        if($result)
+			echo "<script> window.location.href= 'utenti.php?messaggio=Utente inserito con successo!';</script>";
         else
-            header("Location: utenti.php?alert=Errore nell'inserimento!");
+			echo "<script> window.location.href= 'utenti.php?alert=Errore nell'inserimento!';</script>";
     }
 }
 else {
@@ -33,42 +35,45 @@ include 'menu.php';
 <body id="body">
 <div class="container py-5">
     <div class="card">
+		
         <?php
         if(isset($_GET['alert'])) {
             ?>
-            <div class="alert alert-warning">
+            <br><div class="alert alert-warning">
                 <strong>Warning! </strong> <?php echo $_GET['alert']; ?>
             </div>
             <?php
         }
         ?>
         <div class="card-body">
-            <h1 class="card-title text-center">Inserisci nuovo utente</h1>
             <div class="container">
-                <form class="form-horizontal" role="form" id="form" action="" method="post">
-                    <div class="col-lg-10 col-lg-offset-0">
-                        <div class="form-group">
-                            <label for="firstName" class="col-sm-3 control-label">Username</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="username" placeholder="Username"
-                                       class="form-control" autofocus>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="col-sm-3 control-label">Password</label>
-                            <div class="col-sm-9">
-                                <input type="password" name="password" placeholder="Password"
-                                       class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-9 col-sm-offset-3">
-                                <input type="submit" value="Inserisci">
-                            </div>
-                        </div>
-                    </div>
-                </form>
+				<div class="row">
+					<div class="col-md-3"><br></div>
+					<div class="col-md-6">
+						<h1 class="card-title text-center">Inserisci nuovo utente</h1>
+						<hr>
+						<form class="form-horizontal" role="form" id="formAddUtente" method="post">
+							<div class="col-lg-10 col-lg-offset-0">
+								<div class="form-group">
+									<label for="firstName" class="col-sm-3 control-label">Username</label>
+									<div class="col-sm-9">
+										<input type="text" name="username" placeholder="Username" class="form-control" autofocus>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="password" class="col-sm-3 control-label">Password</label>
+									<div class="col-sm-9">
+										<input type="password" name="password" placeholder="Password" class="form-control">
+									</div>
+								</div>
+								<hr>
+								<button onclick="document.getElementById('formAddUtente').submit();" class="btn btn-primary center-block" type="button" style="width: 50%; ">
+								<?php if(isset($idImportante)) echo "Aggiorna"; else echo "Aggiungi"; ?>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
             </div>
         </div>
     </div>
