@@ -18,21 +18,14 @@ if($_POST != null) {
     $result = $connessione->query($query);
 	
     if($result->num_rows == 1)
-        echo "<script> window.location.href= 'AggiuntaNuovoUtente.php?alert=Username gia' esistente';</script>";
+        echo "<script> window.location.href= 'AggiuntaNuovoUtente.php?alert=Username gia esistente';</script>";
     else {
-<<<<<<< HEAD
-        $query2 = "INSERT INTO utenti(username, password) VALUES ('". $username ."', '" . $password ."')";
-        $result = $connessione->query($query);
-        if($result != null)
-            header("Location: utenti.php?messaggio=Utente inserito con successo!");
-=======
         $query2 = "INSERT INTO utenti(username, password) VALUES ('$user', '$password')";
         $result = $connessione->query($query2);
         if($result)
 			echo "<script> window.location.href= 'utenti.php?messaggio=Utente inserito con successo!';</script>";
->>>>>>> 5cd3488194591105dea1f53e84bc62cdad06cf40
         else
-			echo "<script> window.location.href= 'utenti.php?alert=Errore nell'inserimento!';</script>";
+			echo "<script> window.location.href= 'utenti.php?alert=Errore nel inserimento!';</script>";
     }
 }
 
@@ -40,42 +33,6 @@ include 'menu.php';
 ?>
 <html>
 <body id="body">
-<<<<<<< HEAD
-    <div class="container py-5">
-        <div class="card">
-            <?php
-            if(isset($_GET['alert'])) {
-                ?>
-                <div class="alert alert-warning">
-                    <strong>Warning! </strong> <?php echo $_GET['alert']; ?>
-                </div>
-                <?php
-            }
-            ?>
-            <h1 class="card-title text-center">Inserisci nuovo utente</h1>
-            <form action="AggiuntaNuovoUtente.php" method="POST" class="form-horizontal">
-                <div class="col-lg-10 col-lg-offset-0">
-                    <div class="form-group">
-                        <label for="username" class="col-sm-3 control-label">Username</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="username">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="col-sm-3 control-label">Password</label>
-                        <div class="col-sm-9">
-                            <input type="password" class="form-control" name="password">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-9 col-sm-offset-3">
-                            <input id="submit" name="submit" type="submit" value="Inserisci" class="btn btn-primary" >
-                        </div>
-                    </div>
-                </div>
-            </form>
-=======
 <div class="container py-5">
     <div class="card">
 		
@@ -111,15 +68,15 @@ include 'menu.php';
 								</div>
 								<hr>
 								<button onclick="document.getElementById('formAddUtente').submit();" class="btn btn-primary center-block" type="button" style="width: 50%; ">
-								<?php if(isset($idImportante)) echo "Aggiorna"; else echo "Aggiungi"; ?>
+								Aggiungi
 								</button>
 							</div>
 						</form>
 					</div>
 				</div>
             </div>
->>>>>>> 5cd3488194591105dea1f53e84bc62cdad06cf40
         </div>
     </div>
+</div>
 </body>
 </html>

@@ -17,10 +17,10 @@
 	$sql = "INSERT INTO sale (Nome_sala, Numero_posti_prenotabili)
 	VALUES ('" . $nome . "', '" . $n . "');";
 
-	if (mysqli_query($connessione, $sql))
-		echo "La sala è stata inserita correttamente<br>";
-	else
-		echo "Errore: " . $sql . "<br>" . mysqli_error($connessione);
+    if (mysqli_query($connessione, $sql))
+        header("Location: ../sale.php?messaggio=La sala è stata inserita correttamente");
+    else
+        header("Location: ../sale.php?alert=Errore nel inserimento");
 
 	mysqli_close($connessione);
 

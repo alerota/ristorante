@@ -57,7 +57,7 @@
 						<?php
 						if(isset($_COOKIE['login']))
 							echo '<li>
-								<a href="/">Sale</a>
+								<a href="sale.php">Sale</a>
 							</li>
 							<li>
 								<a href="prenotazioni.php">Prenotazioni</a>
