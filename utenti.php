@@ -33,7 +33,7 @@ include 'menu.php';
 
                     if(isset($_GET['messaggio'])) {
                         ?>
-                        <div class="alert alert-success">
+                        <br><div class="alert alert-success">
                             <strong>Success! </strong> <?php echo $_GET['messaggio']; ?>
                         </div>
                         <?php

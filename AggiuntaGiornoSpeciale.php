@@ -11,6 +11,61 @@
 		$connessione = mysqli_connect($host, $user, $pass);
 		$db_selected=mysqli_select_db($connessione, $dbname);
 
+		
+		if($_GET != null)
+		{
+			$idImportante = $_GET["id"];
+			$sql = "select * from stagioni where id_stagione = " . $idImportante . ";";
+
+			$result = mysqli_query($connessione, $sql);
+			
+			$num_result = mysqli_num_rows($result);
+			
+			if($num_result == 1)
+			{
+				$row = mysqli_fetch_array($result);
+				
+				if($row["giorno_inizio"] == $row["giorno_fine"])
+				{
+					$name = $row["nome_stagione"];
+					$start = $row["giorno_inizio"];
+					$realDate = date("Y") . substr($start, strpos($start, "-"));
+					$priority = $row["priorita"];
+					
+					$sql = "select * from stagioni_sale where id_stagione = " . $idImportante . ";";
+					
+					$result = mysqli_query($connessione, $sql);
+					
+					$num_result = mysqli_num_rows($result);
+					
+					$salePredisposte = array();
+					for($i=0; $i < $num_result; $i++)
+					{
+						$row = mysqli_fetch_array($result);
+						array_push($salePredisposte, $row["id_sala"]);
+					}
+					
+					$sql = "select * from stagioni_orari where id_stagione = " . $idImportante . ";";
+					
+					$result = mysqli_query($connessione, $sql);
+					
+					$num_result = mysqli_num_rows($result);
+					
+					if($num_result == 7)
+					{
+						$row = mysqli_fetch_array($result);
+						$orariScelti = $row["id_fascia"];
+					}
+					else
+						echo "<script>alert('Fase 3: Problemi durante il caricamento della giornata, chiedere assistenza...');</script>";
+				}
+				else
+					echo "<script>alert('Fase 2: Problemi durante il caricamento della giornata, chiedere assistenza...');</script>";
+				
+			}
+			else
+				echo "<script>alert('Fase 1: Problemi durante il caricamento della giornata, chiedere assistenza...');</script>";
+		}
 	?>
 	<head>   
         <!-- Bootstrap CSS --><!-- Latest compiled and minified CSS -->
@@ -59,15 +114,25 @@
 								}
 								$select .= '</select></div>';
 								echo $select;
+								if(isset($orariScelti))
+									echo "<script> document.getElementById('sel0').value = " . $orariScelti . ";</script>";
 							?>
 							<div class="checkbox">
 								<label>
-									<input type="radio" name="ripetizioneGiorno" value="1" checked>Ripeti ogni anno
+									<input type="radio" name="ripetizioneGiorno" value="1"
+									<?php if($_GET == null || (isset($start) && (strpos($start, "x") == 0)))
+										echo "checked";
+									?>
+									>Ripeti ogni anno
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
-									<input type="radio" name="ripetizioneGiorno" value="0">Non ripetere ogni anno
+									<input type="radio" name="ripetizioneGiorno" value="0"
+									<?php if($_GET != null && (isset($start) && (strpos($start, "x") === false)))
+										echo "checked";
+									?>
+									>Non ripetere ogni anno
 								</label>
 							</div>
 									
@@ -121,7 +186,9 @@
 							Le sale che non saranno selezionate saranno considerate chiuse in questa
 							stagione.
 						</div>
-						<button onclick="document.getElementById('insertGS').submit();" class="btn btn-primary center-block" type="button" style="width: 50%; ">Salva</button>
+						<button onclick="document.getElementById('insertGS').submit();" class="btn btn-primary center-block" type="button" style="width: 50%; ">
+						<?php if($_GET != null) echo "Aggiorna"; else echo "Aggiungi"; ?>
+						</button>
 						
 					</div>
 					<div class="col-md-3">
@@ -132,11 +199,15 @@
 									<label>Nome identificativo</label>
 								</a>
 								<label></label>
-								<input type="text" name="nomeGiorno" class="form-control" placeholder="Nome">
+								<input type="text" name="nomeGiorno" class="form-control"
+								<?php if(isset($name)) echo "value='" . $name . "'"; ?>
+								placeholder="Nome">
 								<span class="help-block"></span>
 								
 								<label>Data</label>
-								<input type="date" name="giornata" class="form-control">
+								<input type="date" name="giornata" class="form-control"
+								<?php if(isset($realDate)) echo "value='" . $realDate . "'"; ?>>
+								
 								<span class="help-block"></span>
 							</div>
 						</fieldset>
@@ -154,7 +225,11 @@
 								for($i=0; $i < $num_result; $i++)
 								{
 									$row = mysqli_fetch_array($result);
-									echo '<div class="checkbox"><label><input type="checkbox" name="sala[]" class="sceltaSale" value="' . $row["id_sala"] . '">' . $row["Nome_sala"] . '</label></div>';
+									echo '<div class="checkbox"><label><input type="checkbox" name="sala[]" class="sceltaSale" value="' . $row["id_sala"] . '" ';
+									
+									if(!isset($salePredisposte) || in_array($row["id_sala"], $salePredisposte))
+										echo 'checked';
+									echo '>' . $row["Nome_sala"] . '</label></div>';
 									// echo "<br>";
 								}
 							?>

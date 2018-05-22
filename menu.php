@@ -27,7 +27,7 @@
 	}
 	?>
 	<head>
-		<title>Bootstrap Example</title>
+		<title>Ristorante Al molo 13</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="vendor\bootstrap\css\bootstrap.min.css">
@@ -40,7 +40,7 @@
 	</head>
 	<body>
 
-		<nav class="navbar navbar-inverse" style="border-radius: 0px;">
+		<nav class="navbar navbar-inverse" style="border-radius: 0px; margin-bottom: 0px !important;">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

@@ -64,7 +64,9 @@ class Calendar {
                 $this->_createNavi().
                 '</div>'.
                 '<div class="box-content col-xs-12">'.
-                '<div class="label row seven-cols">'.$this->_createLabels().'</div>';   
+                '<div class="labelNew row">
+					<div class="seven-cols">'.$this->_createLabels().'</div>
+				</div>';   
         $content.='<div class="clear"></div>';     
         $content.='<div class="dates cols-xs-12">';    
 
@@ -114,7 +116,7 @@ class Calendar {
 			$string = "";
 		
         if($this->currentDate == null)
-        	$string .= '<div id="li-" class="col-xs-1 text-center" style="background-color: white; ">'.$cellContent.'</div>';
+        	$string .= '<div id="li-" class="col-xs-1 text-center" style="visibility:hidden;">'.$cellContent.'</div>';
         else
 		{
         	if($this->currentDate <= Date('Y-m-d', time()))
@@ -170,7 +172,7 @@ class Calendar {
          
         foreach($this->dayLabels as $index=>$label)
         {
-            $content.='<div class="'.($label==6?'end title':'start title').' title col-xs-1">'.$label.'</div>';
+            $content.='<div class="title col-xs-1">'.$label.'</div>';
         }
          
         return $content;

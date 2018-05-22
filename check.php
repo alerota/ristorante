@@ -1,100 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
-		<style>
-		body {
-			
-		}
-		.check { 
-			position: absolute; 
-			right: 0px; 
-			top: 0px; 
-			background-color: #BBBBBB; 
-			height: 100%; 
-			width: 450px; 
-			float: left; 
-		}
-		* { font-family: Arial; }
-		.form { width: 100%; height: 100%; }
-		input[type=text], input[type=number], input[type=date], select, textarea, input[type=submit], input[type=button] { width: 100%; height: 30px; line-height: 30px; font-size: 18px; margin-bottom: 10px; }
-		input[type=number], select, input[type=date], #A, #B { float: left; }
-		#B, select { width: 50%; }
-		select { width: 70%; }
-		#C { margin-right: 10px; width: calc(30% - 10px); }
-		input[type=number], input[type=date], #A { margin-right: 10px; width: calc(50% - 10px); }
-		textarea { height: 180px; font-size: 15px; line-height: 18px; resize: none; }
-		input[type=submit], input[type=button] { height: 40px; border-radius: 20px; }
-		.dettagli, .verifica { width: 100%; padding: 0px 10%; }
-		.verifica { background-color: #EEEEEE; }
-		</style>
-	</head>
-	<body>
-		<div class='check'>
-			<form method='POST' class='form'>
-				<div class='verifica'>
-					<br>
-					<fieldset>
-						<legend>Verifica disponibilità orario</legend>
-						<!-- <input type='date' id='F' name='F'/> -->
-						<input type='number' id='C' name='C' placeholder='Numero'/>
-						<select name='D' disabled>
-							<option value='a'>12.00</option>
-							<option value='b'>12.30</option>
-							<option value='c'>13.00</option>
-						</select>
-					</fieldset>
-					<br>
-					
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Verifica disponibilit&agrave
-						</button>
-					</div>
-					<br>
+<script>
+function fase2()
+{
+	document.getElementById('verify').style.display = 'none';
+	document.getElementById('details').style.display = 'block';
+}
+function fase1()
+{
+	document.getElementById('details').style.display = 'none';
+	document.getElementById('verify').style.display = 'block';
+}
+</script>
+<form method='POST' class='form' style='background-color: white; height: calc(100% - 52px); '>
+	<div class="form-group">
+		<br>
+		<!-- Fase 1 -->
+		<div class='verifica form-group' id='verify'>
+			<fieldset>
+				<div class="col-xs-12">
+					<legend>Verifica disponibilità orario</legend>
 				</div>
-				<div class='dettagli'>
-					<br>
-					<fieldset>
-						<legend>Dettagli</legend>
-						<input type='text' id='A' name='A' placeholder='Cognome'/>
-						<input type='text' id='B' name='B' placeholder='Telefono'/>
-						<textarea name='E' id='E' >Eventuali note</textarea>
-					</fieldset>
-					<br>
-					
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Prenota
-						</button>
-					</div>
+				<div class="col-xs-5">
+					<a data-toggle="tooltip" title="Definisci il numero di partecipanti">
+						<label>Numero</label>
+					</a>
+					<input type="number" name="num_persone" class="form-control" placeholder="Numero">
+					<span class="help-block"></span>
 				</div>
-			</form>
+				<div class="col-xs-7">
+					<label for="fase">Fase</label>
+					<select class="form-control" id="fase" name="fase">
+						<option value='a'>Mattino</option>
+						<option value='b'>Pranzo</option>
+						<option value='c'>Cena</option>
+					</select>
+				</div>
+			</fieldset>
+			<br>
+			<div class="col-xs-12">
+				<button onclick="fase2();" class="btn btn-primary" type="button">
+						Verifica disponibilit&agrave
+				</button>
+			</div>
+			<br>
+		</div>
+		
+		<!-- Fase 2 -->
+		<div class='choice form-group' id='choice'>
 		
 		</div>
-	</body>
-</html>
+		
+		<!-- Fase 3 -->
+		<div class='dettagli' id='details' style="display: none;">
+			<fieldset>
+				<div class="col-xs-12">
+					<legend>Dettagli</legend>
+				</div>
+				
+				<div class="col-xs-6">
+					<label>Cognome</label>
+					<input type="text" name="cognome" class="form-control" placeholder="Cognome">
+					<span class="help-block"></span>
+				</div>
+				
+				<div class="col-xs-6">
+					<label>Telefono</label>
+					<input type="text" name="tel" class="form-control" placeholder="Telefono">
+					<span class="help-block"></span>
+				</div>
+				
+				<div class="col-xs-12">
+					<label>Note</label>
+					<textarea class="form-control" name='note' id='note' style="height: 150px;" placeholder="Inserire qui eventuali note..."></textarea>
+				</div>
+			</fieldset>
+			<br>
+			
+			<div class="col-xs-12">
+				<button onclick="fase1();" class="btn btn-primary" type="button">
+					Invia prenotazione
+				</button>
+			</div>
+		</div>
+	</div>
+</form>
