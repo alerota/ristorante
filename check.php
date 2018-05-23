@@ -1,6 +1,9 @@
 <script>
-function fase3()
+function fase3(a, b)
 {
+	document.getElementById("orario").value = a;
+	document.getElementById("sala").value = b;
+	// alert("Hai scelto l'orario: " + a + "\nHai scelto la sala: " + b);
 	document.getElementById('verify').style.display = 'none';
 	document.getElementById('choice').style.display = 'none';
 	document.getElementById('details').style.display = 'block';
@@ -54,7 +57,7 @@ function getAjaxControl() {
 }
 function ricercaFasiDisponibili()
 {
-	loadDoc("codici/ricercaFasi.php?date=<?php echo $_GET["date"]; ?>","");
+	loadDoc("codici/ricercaFasi.php?date=" + document.getElementById("giornata").value,"");
     document.getElementById("selezioneFasi").innerHTML=req.responseText;
 }
 function ricercaSaleDisponibili()
@@ -76,7 +79,6 @@ function ricercaSaleDisponibili()
 </style>
 <form method='POST' class='form' style='background-color: white; height: calc(100% - 52px); '>
 	<div class="form-group">
-		<br>
 		<div class="text-center">
 			<ul class="pagination">
 				<li style="cursor: pointer;" class="active"><a onclick="fase1();">1</a></li>
@@ -84,7 +86,6 @@ function ricercaSaleDisponibili()
 				<li style="cursor: pointer;"><a onclick="fase3();">3</a></li>
 			</ul>
 		</div>
-		<br>
 		<!-- Fase 1 -->
 		<div class='verifica form-group' id='verify'>
 			<fieldset>
@@ -102,6 +103,7 @@ function ricercaSaleDisponibili()
 					<label for="fase">Fase</label>
 					<div id="selezioneFasi" onload="ricercaFasiDisponibili();"></div>
 				</div>
+				<input type="hidden" name="giornata" id="giornata" value="<?php echo $_GET["date"]; ?>" />
 			</fieldset>
 			<br>
 			<div class="col-xs-12">
@@ -119,6 +121,8 @@ function ricercaSaleDisponibili()
 					<legend>Scegli un orario e una sala</legend>
 				</div>
 				<div class="col-xs-12" id="selezioneSale"></div>
+				<input type="hidden" name="orario" value="" id="orario" />
+				<input type="hidden" name="sala" value="" id="sala" />
 			</fieldset>
 		</div>
 		

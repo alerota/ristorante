@@ -117,7 +117,7 @@
 				$resultOrariDisponibili = mysqli_query($connessione, $sql2);
 				$num_orariDisponibili = mysqli_num_rows($resultOrariDisponibili);
 				
-				$risultato = "<label>" . $nome . " [" . $fasiNomi[$fase] . "]</label><br>";
+				$risultato = "<label style='margin-top: 10px;'>" . $nome . " [" . $fasiNomi[$fase] . "]</label><br>";
 				if(!$resultOrariDisponibili)
 					$risultato .= "Non sono disponibili orari<hr>";
 				else
@@ -130,10 +130,10 @@
 							$posti = 0;
 						else
 							$posti = $row3["sum(aiuto.num_partecipanti)"];
-						$risultato .= '<button onclick="" class="btn btn-primary sceltaSala" type="button" >' . $row3["orario"] . '</button>';
+						$risultato .= '<button onclick="fase3(\'' . $row3["orario"] . '\', \'' . $nome . '\')" class="btn btn-primary sceltaSala" type="button" >' . $row3["orario"] . '</button>';
 						$postiTot += $posti;
 					}
-					$risultato .= "<hr>";
+					$risultato .= "<br>";
 				}
 				$finale .= $risultato . "";
 			}
