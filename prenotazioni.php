@@ -121,7 +121,7 @@ include 'menu.php';
 
                     $result = $connessione->query($query);
 
-                    header("Location: prenotazioni.php?messaggio=Cliente rimasto nella lista dei clienti");
+                    echo "<script> window.location.href= 'prenotazioni.php?messaggio=Cliente rimasto nella lista clienti!';</script>";
                 }
                 else {
                 ?>

@@ -67,6 +67,9 @@
 							</li>
 							<li>
 								<a href="clienti.php">Clienti/Storico</a>
+							</li>
+							<li>
+								<a href="revisionare.php">Revisionare</a>
 							</li>';
 							
 						?>
