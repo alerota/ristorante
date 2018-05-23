@@ -22,7 +22,8 @@
 	$anno = substr($data, 0, 4);
 	$data_supporto = "x" . substr($data, 4);
 	$n = $_GET["numeroPartecipanti"];
-
+	$faseScelta = $_GET["fase"];
+	
 	// echo $giornoSettimana;
 	
 	$sql = "SELECT * FROM Stagioni INNER JOIN
@@ -76,13 +77,16 @@
 			where sostegno.id_sala is null and " . $n . " <= sale.Numero_posti_prenotabili
 
 		) as tentativo on tentativo.id_sala = stagioni_sale.id_sala and id_stagione = " . $stagione . "
-
+		where fase = " . $faseScelta . "
 		ORDER BY stagioni_sale.`id_sala` ASC, `fase` ASC";
 		
 		
 		
 		$result = mysqli_query($connessione, $sql);
 		$saleLibereInGiornata = mysqli_num_rows($result);
+		
+		if($saleLibereInGiornata === false)
+			$saleLibereInGiornata = 0;
 		
 		if($saleLibereInGiornata == 0)
 			echo "Non sono disponibili sale nella data selezionata...";
@@ -126,14 +130,14 @@
 							$posti = 0;
 						else
 							$posti = $row3["sum(aiuto.num_partecipanti)"];
-						$risultato .= '<button onclick="" class="btn btn-primary" style="margin: 0px 0px 10px 10px;"type="button" >' . $row3["orario"] . '</button> Posti occupati: ' . $posti . '/' . $row3["Numero_posti_prenotabili"] . '<br>';
+						$risultato .= '<button onclick="" class="btn btn-primary sceltaSala" type="button" >' . $row3["orario"] . '</button>';
 						$postiTot += $posti;
 					}
-					$risultato .= "Posti occupati in totale: " . $postiTot . "/" . $row3["Numero_posti_prenotabili"] . "<hr>";
+					$risultato .= "<hr>";
 				}
 				$finale .= $risultato . "";
 			}
-			echo "<br>" . $finale;
+			echo $finale;
 		}
 	}
 

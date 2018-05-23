@@ -53,8 +53,7 @@ class Calendar {
 			$year = $_GET['year'];
 			$month = $_GET['month'];
 		}
-         
-         
+        
         $this->currentYear=$year;
         $this->currentMonth=$month;
         $this->daysInMonth=$this->_daysInMonth($month,$year);  

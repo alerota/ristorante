@@ -10,23 +10,26 @@
         <!-- Bootstrap CSS -->
 
 	</head>
-	<body style="background-position:center; background-size: cover; background-image: url('');">
+	<body style="background-position:center; background-size: cover; ">
 		<?php
         include 'menu.php';
 		
 		if($_COOKIE != null)
+		{
 			include "Homepage.php";
+		}
 		else
 		{
+			echo '<style>body { background-image: url("images/pikachu.gif"); }</style>';
 			echo '<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><br></div>
 				<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
 					<br>';
-					include 'calendar.php';
-					$calendar = new Calendar();
-					echo $calendar->show();
-				echo '</div>
+			include 'calendar.php';
+			$calendar = new Calendar();
+			echo $calendar->show();
+			echo '</div>
 				<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><br></div>
 				<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><br></div>
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">';

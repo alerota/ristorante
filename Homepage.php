@@ -1,63 +1,57 @@
 
+<style>
+
+.btn-fourth {
+	background-color: rgb(180, 180, 180);
+	color: white;
+}
+.btn-fourth:hover {
+	background-color: rgb(140, 140, 140);
+	color: white;
+}
+</style>
+
 <div class="container">
 	<hr>
 	<div class="pannelloGestionale row">
+		<div class="col-md-1"><br></div>
+		<div class="col-md-7">
+			<?php
+			include 'calendarAdmin.php';
+			$calendar = new CalendarAdmin();
+			echo $calendar->show();
+			?>
+		</div>
+		<div class="col-md-1"><br></div>
+		
 		<div class="col-md-3">
-			<button onclick="" class="btn btn-primary center-block" type="button" style="width: 100%; height: 120px; ">
-					<h3>Nuova prenotazione</h3>
+			<button onclick="window.location.href='index.php';" class="btn btn-primary center-block" type="button" style="width: 100%; ">
+					<h4>Nuova prenotazione</h4>
 			</button>
 			<br>
-			<button onclick="" class="btn btn-danger center-block" type="button" style="width: 100%; height: 50px; ">
+			<button onclick="window.location.href='index.php';" class="btn btn-danger center-block" type="button" style="width: 100%; ">
 					<h4>Prenotazione sicura</h4>
 			</button>
 			<br>
-		</div>
-		
-		<div class="col-md-6">
-			<button onclick="" class="btn btn-success center-block" type="button" style="width: 100%; height: 120px; ">
-					<h3>Elenca prenotati odierni</h3>
+			<button onclick="" class="btn btn-warning center-block" type="button" style="width: 100%; ">
+					<h4>Prenota festa</h4>
 			</button>
 			<br>
-			<button onclick="" class="btn btn-warning center-block" type="button" style="width: 100%; height: 50px; ">
-					<h4>Elenca prenotati</h4>
+			<button onclick="window.location.href='prenotazioni.php';" class="btn btn-success center-block" type="button" style="width: 100%; ">
+					<h4>Prenotati (oggi)</h4>
 			</button>
 			<br>
-			<button onclick="" class="btn btn-warning center-block" type="button" style="width: 100%; height: 50px; ">
-					<h4>Elenca prenotati da revisionare</h4>
+			<button onclick="window.location.href='prenotazioni.php';" class="btn btn-success center-block" type="button" style="width: 100%; ">
+					<h4>Prenotati</h4>
 			</button>
 			<br>
-		</div>
-		
-		<div class="col-md-3">
-			<button onclick="" class="btn btn-default center-block" type="button" style="width: 100%; height: 120px; ">
-					<h3>Gestionale</h3>
+			<button onclick="" class="btn btn-success center-block" type="button" style="width: 100%; ">
+					<h4>Prenotati da revisionare</h4>
 			</button>
 			<br>
-			<div class="row">
-				<div class="col-xs-6">
-					<button onclick="" class="btn btn-info center-block" type="button" style="width: 100%; height: 50px; ">
-							<h5>Sale</h5>
-					</button>
-				</div>
-				<div class="col-xs-6">
-					<button onclick="" class="btn btn-info center-block" type="button" style="width: 100%; height: 50px; ">
-							<h5>Stagioni</h5>
-					</button>
-				</div>
-			</div>
-			<br>
-			<div class="row">
-				<div class="col-xs-6">
-					<button onclick="" class="btn btn-info center-block" type="button" style="width: 100%; height: 50px; ">
-							<h5>Orari</h5>
-					</button>
-				</div>
-				<div class="col-xs-6">
-					<button onclick="" class="btn btn-info center-block" type="button" style="width: 100%; height: 50px; ">
-							<h5>Giorni speciali</h5>
-					</button>
-				</div>
-			</div>
+			<button onclick="window.location.href='gestionale.php';" class="btn btn-fourth center-block" type="button" style="width: 100%; ">
+					<h4>Gestionale</h4>
+			</button>
 		</div>
 	</div>
 	<hr>
