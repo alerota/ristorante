@@ -14,7 +14,7 @@
 		<?php
         include 'menu.php';
 		
-		if($_COOKIE != null)
+		if(isset($_COOKIE['login']))
 		{
 			include "Homepage.php";
 		}

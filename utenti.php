@@ -45,13 +45,8 @@ include 'menu.php';
                         </div>
                         <?php
                     }
-                    if(isset($_GET['msg'])) {
-                        ?>
-                        <h1 class="card-title text-center">Modifica utente n° <?php echo $_GET['msg']; ?></h1>
-                        <?php
-                    }
-                    else if(isset($_GET['msg1'])) {
-                        $id = $_GET['msg1'];
+                    else if(isset($_GET['msg'])) {
+                        $id = $_GET['msg'];
                         $query = "DELETE FROM utenti WHERE id='$id'";
 
                         $result = $connessione->query($query);
@@ -59,7 +54,7 @@ include 'menu.php';
                         if($result)
                             echo "<script> window.location.href= 'utenti.php?messaggio=Utente cancellato con successo!';</script>";
                         else
-                            echo "<script> window.location.href= 'utenti.php?alert=';</script>";
+                            echo "<script> window.location.href= 'utenti.php?alert=Errori nella cancellazione';</script>";
                     }
                     else {
                     ?>
@@ -93,12 +88,12 @@ include 'menu.php';
                                         if($_COOKIE['login'] != $row['username']) {
                                         ?>
                                         <td>
-                                            <a href="utenti.php?msg=<?php echo $row['id']; ?>">
+                                            <a href="AggiuntaNuovoUtente.php?msg=<?php echo $row['id']; ?>">
                                                 <span class="glyphicon glyphicon-edit"></span>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="utenti.php?msg1=<?php echo $row['id']; ?>">
+                                            <a href="utenti.php?msg=<?php echo $row['id']; ?>">
                                                 <span class="glyphicon glyphicon-trash"></span>
                                             </a>
                                         </td>

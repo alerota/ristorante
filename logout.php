@@ -6,8 +6,5 @@ if(isset($_COOKIE['login'])) {
 }
 else 
 	echo "errore";
-
-
-
 ?>
 

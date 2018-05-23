@@ -13,7 +13,7 @@ if ($connessione->connect_errno) {
 
 if($_POST != null) {
     $user = $_POST['username'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
     $query = "SELECT * FROM utenti WHERE username='$user'";
     $result = $connessione->query($query);
 
