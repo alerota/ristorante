@@ -203,7 +203,7 @@ class CalendarAdmin {
          
         foreach($this->dayLabels as $index=>$label)
         {
-            $content.='<div class="title col-xs-1">'.$label.'</div>';
+            $content.='<div class="title col-xs-1" style="text-align: center;">'.$label.'</div>';
         }
          
         return $content;
