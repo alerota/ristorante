@@ -182,7 +182,7 @@ include 'menu.php';
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="confirm" id="<?php echo $row['id_prenotazione']; ?>">
+                                    <a onclick="document.getElementById('idSupporto').value=<?php echo $row['id_prenotazione']; ?>;" class="confirm">
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </a>
                                 </td>
@@ -193,6 +193,7 @@ include 'menu.php';
                     ?>
                     </tbody>
                 </table>
+				<input type="hidden" value="" id="idSupporto"/>
                 <?php
             }
             ?>
@@ -207,10 +208,8 @@ include 'menu.php';
         buttons: {
             confirm: {
                 action: function () {
-
-                    var a = this.target.id;
-                    alert(a);
-                    //window.location.href = "revisionare.php?msg1=   ";
+					var a = document.getElementById("idSupporto").value;
+                    window.location.href = "revisionare.php?msg1=" + a;
                 },
                 text: 'Si',
                 btnClass: 'btn-danger',
@@ -218,7 +217,7 @@ include 'menu.php';
             cancel: {
                 action: function () {
                 },
-                text: 'No, torna indietro',
+                text: 'Annulla',
                 btnClass: 'btn-default',
             }
         }
