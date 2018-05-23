@@ -38,6 +38,13 @@ include 'menu.php';
                         </div>
                         <?php
                     }
+                    if(isset($_GET['alert'])) {
+                        ?>
+                        <br><div class="alert alert-warning">
+                            <strong>Warning! </strong> <?php echo $_GET['alert']; ?>
+                        </div>
+                        <?php
+                    }
                     if(isset($_GET['msg'])) {
                         ?>
                         <h1 class="card-title text-center">Modifica utente n° <?php echo $_GET['msg']; ?></h1>
@@ -49,7 +56,10 @@ include 'menu.php';
 
                         $result = $connessione->query($query);
 
-                        header("Location: utenti.php?messaggio=Utente cancellato con successo!");
+                        if($result)
+                            echo "<script> window.location.href= 'utenti.php?messaggio=Utente cancellato con successo!';</script>";
+                        else
+                            echo "<script> window.location.href= 'utenti.php?alert=';</script>";
                     }
                     else {
                     ?>
