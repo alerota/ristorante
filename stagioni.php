@@ -62,7 +62,7 @@ include 'menu.php';
             }
             else {*/
                 ?>
-                <h1 class="card-title text-center">Lista prenotazioni</h1>
+                <h1 class="card-title text-center">Lista stagioni</h1>
                 <br><br>
                 <table id="table">
                     <thead>
@@ -94,7 +94,8 @@ include 'menu.php';
                                 echo "<td>" . $row['priorita'] . "</td>";
                                 ?>
                                 <td>
-                                    <a href="#?msg=<?php echo $row['id_stagione'] ?>">
+
+                                    <a href="aggiuntaNuovaStagione.php?id=<?php echo $row['id_stagione'] ?>">
                                         <span class="glyphicon glyphicon-expand"></span>
                                     </a>
                                 </td>
