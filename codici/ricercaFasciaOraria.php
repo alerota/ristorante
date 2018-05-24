@@ -80,7 +80,7 @@
 		where fase = " . $faseScelta . "
 		ORDER BY stagioni_sale.`id_sala` ASC, `fase` ASC";
 		
-		
+		$ids = array();
 		
 		$result = mysqli_query($connessione, $sql);
 		$saleLibereInGiornata = mysqli_num_rows($result);
@@ -130,13 +130,39 @@
 							$posti = 0;
 						else
 							$posti = $row3["sum(aiuto.num_partecipanti)"];
-						$risultato .= '<button onclick="fase3(\'' . $row3["orario"] . '\', \'' . $idSala . '\')" class="btn btn-primary sceltaSala" type="button" >' . $row3["orario"] . '</button>';
+						$risultato .= '<button id="' . $row3["orario"] . $idSala . '" onclick="fase3(\'' . $row3["orario"] . '\', \'' . $idSala . '\')" class="btn btn-primary sceltaSala" type="button" >' . $row3["orario"] . '</button>';
 						$postiTot += $posti;
 					}
 					$risultato .= "<br>";
 				}
+				array_push($ids, $idSala);
+						
 				$finale .= $risultato;
 			}
+			
+			// Adesso filtro gli orari per non avere troppe persone nello stesso momento
+			
+			$sql = "select sum(num_partecipanti) as totale, orario from prenotazioni where giorno = '" . $data . "' and chiusura = 0
+			group by(orario) having totale > 30;";
+			
+			$result = mysqli_query($connessione, $sql);
+			$num_eccessi = mysqli_num_rows($result);
+			
+			// array ids contiene gli id delle sale
+			
+			$idsCount = sizeof($ids);
+			
+			for($i=0; $i < $num_eccessi; $i++)
+			{
+				$rowE = mysqli_fetch_array($result);
+				for($j=0; $j < $idsCount; $j++)
+				{
+					$sostegno = 'id="' . $rowE["orario"] . $ids[$j] . '"';
+					if(strpos($finale, $rowE["orario"] . $ids[$j]) != -1)
+						$finale = str_replace($sostegno, 'style="display: none;"', $finale);
+				}
+			}
+			
 			if(isset($_COOKIE["login"]))
 				$finale .= '<hr><button onclick="ricercaSicura();" class="btn btn-danger" type="button" >
 					Prenotazione sicura
