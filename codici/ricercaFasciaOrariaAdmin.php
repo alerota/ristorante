@@ -21,7 +21,6 @@
 	$giornoSettimana = date('N', strtotime($data)) - 1;
 	$anno = substr($data, 0, 4);
 	$data_supporto = "x" . substr($data, 4);
-	$n = $_GET["numeroPartecipanti"];
 	$faseScelta = $_GET["fase"];
 	
 	// echo $giornoSettimana;
@@ -63,7 +62,6 @@
 			inner join fasceorarie on fasceorarie.orario = prenotazioni.orario and fasceorarie.id_fascia = " . $idFascia . "
 			where giorno = '" . $data . "' and chiusura = 0
 			group by fasceorarie.fase, sale.id_sala
-			having (sum(prenotazioni.num_partecipanti) + " . $n . " <= sale.Numero_posti_prenotabili)
 
 			UNION
 
@@ -74,7 +72,7 @@
 			left join (select prenotazioni.*, fasceorarie.fase from prenotazioni inner join fasceorarie
 			on fasceorarie.orario = prenotazioni.orario where prenotazioni.giorno = '" . $data . "') As sostegno 
 			on (sostegno.id_sala = sale.id_sala and sostegno.fase = supporto.fase)
-			where sostegno.id_sala is null and " . $n . " <= sale.Numero_posti_prenotabili
+			where sostegno.id_sala is null
 
 		) as tentativo on tentativo.id_sala = stagioni_sale.id_sala and id_stagione = " . $stagione . "
 		where fase = " . $faseScelta . "
@@ -84,9 +82,6 @@
 		
 		$result = mysqli_query($connessione, $sql);
 		$saleLibereInGiornata = mysqli_num_rows($result);
-		
-		if($saleLibereInGiornata === false)
-			$saleLibereInGiornata = 0;
 		
 		if($saleLibereInGiornata == 0)
 			echo "Non sono disponibili sale nella data selezionata...";
@@ -109,15 +104,14 @@
 					and sale.id_sala = " . $idSala . " and fasceorarie.fase = " . $fase . ") as sostegno
 					left join (select * from prenotazioni where prenotazioni.giorno = '" . $data . "') as aiuto
 					on aiuto.id_sala = sostegno.id_sala and sostegno.orario = aiuto.orario
-					group by sostegno.orario
-					having sum(aiuto.num_partecipanti) < 20 or sum(aiuto.num_partecipanti) is null";
+					group by sostegno.orario";
 				
 				// echo $sql2 . "<br>";
 				
 				$resultOrariDisponibili = mysqli_query($connessione, $sql2);
 				$num_orariDisponibili = mysqli_num_rows($resultOrariDisponibili);
 				
-				$risultato = "<label style='margin-top: 10px;'>" . $nome . " [" . $fasiNomi[$fase] . "]</label><br>";
+				$risultato = "<div class='row'><div class='col-xs-12'><label style='margin-top: 10px;'>" . $nome . " [" . $fasiNomi[$fase] . "]</label></div>";
 				if(!$resultOrariDisponibili)
 					$risultato .= "Non sono disponibili orari<hr>";
 				else
@@ -130,22 +124,23 @@
 							$posti = 0;
 						else
 							$posti = $row3["sum(aiuto.num_partecipanti)"];
-						$risultato .= '<button onclick="fase3(\'' . $row3["orario"] . '\', \'' . $idSala . '\')" class="btn btn-primary sceltaSala" type="button" >' . $row3["orario"] . '</button>';
+						$risultato .= '<div class="col-xs-4" style="margin-top: 5px;"><button onclick="fase3(\'' . $row3["orario"] . '\', \'' . $idSala . '\')" class="btn btn-primary sceltaSala" type="button" >' . $row3["orario"] . '</button><span> ' . $posti . ' pers.</span></div>';
 						$postiTot += $posti;
 					}
-					$risultato .= "<br>";
+					$risultato .= "<div class='col-xs-12'><label style='margin-top: 10px;'>Totale posti occupati: " . $postiTot . " su " . $row2["Numero_posti_prenotabili"] . "</label></div></div>";
 				}
 				$finale .= $risultato;
 			}
-			if(isset($_COOKIE["login"]))
-				$finale .= '<hr><button onclick="ricercaSicura();" class="btn btn-danger" type="button" >
-					Prenotazione sicura
-				</button>';
 			echo $finale;
 		}
 	}
+
+	
 	
 ?>
+
+
+
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

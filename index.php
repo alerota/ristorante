@@ -31,8 +31,7 @@
 			echo $calendar->show();
 			echo '</div>
 				<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><br></div>
-				<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><br></div>
-				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">';
+				<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">';
 					if(isset($_GET["date"]))
 						include 'check.php';
 				echo '</div>

@@ -1,4 +1,8 @@
 <script>
+function isMobile()
+{
+	return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf("IEMobile") !== -1);
+}
 function controllo()
 {
 	var a = document.getElementById("cognome").value;
@@ -12,27 +16,63 @@ function fase3(a, b)
 {
 	document.getElementById("orario").value = a;
 	document.getElementById("sala").value = b;
-	// alert("Hai scelto l'orario: " + a + "\nHai scelto la sala: " + b);
+	if(document.getElementById("l1").classList.contains("active"))
+		document.getElementById("l1").classList.remove("active");
+	if(document.getElementById("l2").classList.contains("active"))
+		document.getElementById("l2").classList.remove("active");
+	if(!document.getElementById("l3").classList.contains("active"))
+		document.getElementById("l3").classList.add("active");
 	document.getElementById('verify').style.display = 'none';
 	document.getElementById('choice').style.display = 'none';
 	document.getElementById('details').style.display = 'block';
+	if(isMobile())
+		document.getElementById('formPrenotazione').style.height = (140 + document.getElementById('details').offsetHeight) + "px";
+}
+function ricercaSicura()
+{
+	ricercaSaleAdmin();
+	if(document.getElementById("l1").classList.contains("active"))
+		document.getElementById("l1").classList.remove("active");
+	if(!document.getElementById("l2").classList.contains("active"))
+		document.getElementById("l2").classList.add("active");
+	if(document.getElementById("l3").classList.contains("active"))
+		document.getElementById("l3").classList.remove("active");
+	document.getElementById('verify').style.display = 'none';
+	document.getElementById('choice').style.display = 'block';
+	document.getElementById('details').style.display = 'none';
+	if(isMobile())
+		document.getElementById('formPrenotazione').style.height = (70 + document.getElementById('choice').offsetHeight) + "px";
 }
 function fase2()
 {
 	ricercaSaleDisponibili();
+	if(document.getElementById("l1").classList.contains("active"))
+		document.getElementById("l1").classList.remove("active");
+	if(!document.getElementById("l2").classList.contains("active"))
+		document.getElementById("l2").classList.add("active");
+	if(document.getElementById("l3").classList.contains("active"))
+		document.getElementById("l3").classList.remove("active");
 	document.getElementById('verify').style.display = 'none';
 	document.getElementById('choice').style.display = 'block';
 	document.getElementById('details').style.display = 'none';
+	if(isMobile())
+		document.getElementById('formPrenotazione').style.height = (70 + document.getElementById('choice').offsetHeight) + "px";
 }
 function fase1()
 {
+	if(!document.getElementById("l1").classList.contains("active"))
+		document.getElementById("l1").classList.add("active");
+	if(document.getElementById("l2").classList.contains("active"))
+		document.getElementById("l2").classList.remove("active");
+	if(document.getElementById("l3").classList.contains("active"))
+		document.getElementById("l3").classList.remove("active");
 	document.getElementById('details').style.display = 'none';
 	document.getElementById('choice').style.display = 'none';
 	document.getElementById('verify').style.display = 'block';
 }
-
 var req;
-function loadDoc(url, postvalue) {
+function loadDoc(url, postvalue) 
+{
    req = getAjaxControl();
    if(req) {
       req.open("POST", url, false); // sincrono
@@ -40,8 +80,8 @@ function loadDoc(url, postvalue) {
       req.send(postvalue);
    }
 }
-
-function getAjaxControl() {
+function getAjaxControl() 
+{
    req = false;
    // branch for native XMLHttpRequest object
    if(window.XMLHttpRequest && !(window.ActiveXObject)) {
@@ -82,6 +122,19 @@ function ricercaSaleDisponibili()
 	else
 		alert("Inserire il numero di partecipanti!");
 }
+function ricercaSaleAdmin()
+{
+	var numeroPersone = document.getElementById("numero").value;
+	var faseScelta = document.getElementById("fase").value;
+	
+	if(numeroPersone > 0)
+	{
+		loadDoc("codici/ricercaFasciaOrariaAdmin.php?date=<?php echo $_GET["date"]; ?>&fase=" + faseScelta,"");
+		document.getElementById("selezioneSale").innerHTML=req.responseText;
+	}
+	else
+		alert("Inserire il numero di partecipanti!");
+}
 </script>
 <style>
 .sceltaSala { margin: 0px 0px 10px 10px; }
@@ -100,9 +153,9 @@ function ricercaSaleDisponibili()
 	<div class="form-group">
 		<div class="text-center">
 			<ul class="pagination">
-				<li class="active"><a class="dot"></a></li>
-				<li><a class="dot"></a></li>
-				<li><a class="dot"></a></li>
+				<li class="std" id="l1"><a class="dot"></a></li>
+				<li class="std" id="l2"><a class="dot"></a></li>
+				<li class="std" id="l3"><a class="dot"></a></li>
 			</ul>
 		</div>
 		<!-- Fase 1 -->
@@ -113,7 +166,7 @@ function ricercaSaleDisponibili()
 				</div>
 				<div class="col-xs-5">
 					<a data-toggle="tooltip" title="Definisci il numero di partecipanti">
-						<label>Numero</label>
+						<label>Numero persone</label>
 					</a>
 					<input type="number" min="1" onfocus="document.getElementById('verifyButton').disabled = false;" name="num_persone" class="form-control" id="numero" placeholder="Numero">
 					<span class="help-block"></span>
@@ -180,5 +233,6 @@ function ricercaSaleDisponibili()
 	</div>
 </form>
 <script>
+fase1();
 ricercaFasiDisponibili();
 </script>
