@@ -17,6 +17,9 @@ include 'menu.php';
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
         <link rel="stylesheet" type="text/css" href="css/datatable.css"/>
+        <script src="js/confirmation.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -93,7 +96,7 @@ include 'menu.php';
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="utenti.php?msg=<?php echo $row['id']; ?>">
+                                            <a onclick="document.getElementById('idSupporto').value=<?php echo $row['id']; ?>;" class="confirm">
                                                 <span class="glyphicon glyphicon-trash"></span>
                                             </a>
                                         </td>
@@ -113,6 +116,7 @@ include 'menu.php';
                             ?>
                             </tbody>
                         </table>
+                        <input type="hidden" value="" id="idSupporto"/>
                     <?php
                     }
                     ?>
@@ -121,3 +125,25 @@ include 'menu.php';
         </div>
     </body>
 </html>
+<script type="text/javascript">
+    $(".confirm").confirm({
+        content: "",
+        title: "Sei sicuro di voler cancellare?",
+        buttons: {
+            confirm: {
+                action: function () {
+                    var a = document.getElementById("idSupporto").value;
+                    window.location.href = "utenti.php?msg=" + a;
+                },
+                text: 'Si',
+                btnClass: 'btn-danger',
+            },
+            cancel: {
+                action: function () {
+                },
+                text: 'Annulla',
+                btnClass: 'btn-default',
+            }
+        }
+    });
+</script>

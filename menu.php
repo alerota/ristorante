@@ -162,6 +162,15 @@
 							</li>
 							<li>
 								<a href="clienti.php">Clienti/Storico</a>
+							</li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Stagioni<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="stagioni.php">Elenca stagioni</a></li>
+									<li><a href="#">Aggiungi fascia oraria</a></li>
+									<li><a href="#">titolo</a></li>
+									<li><a href="#">titolo</a></li>
+								</ul>
 							</li>';
 							
 						?>
