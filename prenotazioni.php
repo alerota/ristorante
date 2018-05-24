@@ -24,11 +24,22 @@ include 'menu.php';
             $('#table').DataTable();
         });
     </script>
+	<style type="text/css">
+    #warning-message { display: none; }
+    @media only screen and (orientation:portrait){
+        #wrapper { display:none; }
+        #warning-message { display:block; }
+    }
+    @media only screen and (orientation:landscape){
+        #warning-message { display:none; }
+    }
+	</style>
+	
 </head>
 
 <body id="body">
     <div class="container py-5">
-        <div class="card">
+        <div class="card" id="wrapper">
             <div class="card-body">
                 <?php
                 if(isset($_GET['messaggio'])) {
@@ -195,5 +206,11 @@ include 'menu.php';
                 ?>
             </div>
         </div>
+		<div id="warning-message">
+			<br>
+			<div class="alert alert-warning">
+				<h3><strong>Attenzione!</strong> Questa pagina è visualizzabile solo se orienti il cellulare in orizzontale</h3>
+			</div>
+		</div>
     </body>
 </html>

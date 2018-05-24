@@ -118,7 +118,7 @@ class Calendar {
         	$string .= '<div id="li-" class="col-xs-1 text-center" style="visibility:hidden;">'.$cellContent.'</div>';
         else
 		{
-        	if($this->currentDate <= Date('Y-m-d', time()))
+        	if($this->currentDate < Date('Y-m-d', time()))
 				$string .= '<div id="li-'.$this->currentDate.'" class="col-xs-1 text-center" style="background-color: #AAAAAA; ">'.$cellContent.'</div>';
 			else
 			{

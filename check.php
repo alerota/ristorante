@@ -1,4 +1,13 @@
 <script>
+function controllo()
+{
+	var a = document.getElementById("cognome").value;
+	var b = document.getElementById("tel").value;
+	if(a != "" && b != "")
+		document.getElementById('formPrenotazione').submit();
+	else
+		alert("Compila i campi del nome e del numero di telefono!");
+}
 function fase3(a, b)
 {
 	document.getElementById("orario").value = a;
@@ -76,14 +85,24 @@ function ricercaSaleDisponibili()
 </script>
 <style>
 .sceltaSala { margin: 0px 0px 10px 10px; }
+.dot {
+	height: 16px !important;
+	width: 16px !important;
+	padding: 0px !important;
+	background-color: #bbb;
+	border-radius: 50% !important;
+	display: inline-block;
+	margin: 10px;
+	transition-duration: 0.4s;
+}
 </style>
-<form method='POST' class='form' style='background-color: white; height: calc(100% - 52px); '>
+<form method='POST' id="formPrenotazione" class='form' action="codici/insertPrenotazione.php" style='background-color: white; height: calc(100% - 52px); '>
 	<div class="form-group">
 		<div class="text-center">
 			<ul class="pagination">
-				<li style="cursor: pointer;" class="active"><a onclick="fase1();">1</a></li>
-				<li style="cursor: pointer;"><a onclick="fase2();">2</a></li>
-				<li style="cursor: pointer;"><a onclick="fase3();">3</a></li>
+				<li class="active"><a class="dot"></a></li>
+				<li><a class="dot"></a></li>
+				<li><a class="dot"></a></li>
 			</ul>
 		</div>
 		<!-- Fase 1 -->
@@ -96,7 +115,7 @@ function ricercaSaleDisponibili()
 					<a data-toggle="tooltip" title="Definisci il numero di partecipanti">
 						<label>Numero</label>
 					</a>
-					<input type="number" name="num_persone" class="form-control" id="numero" placeholder="Numero">
+					<input type="number" min="1" onfocus="document.getElementById('verifyButton').disabled = false;" name="num_persone" class="form-control" id="numero" placeholder="Numero">
 					<span class="help-block"></span>
 				</div>
 				<div class="col-xs-7">
@@ -107,7 +126,7 @@ function ricercaSaleDisponibili()
 			</fieldset>
 			<br>
 			<div class="col-xs-12">
-				<button onclick="fase2();" class="btn btn-primary" type="button">
+				<button onclick="fase2();" class="btn btn-primary" type="button" id="verifyButton" disabled>
 						Verifica disponibilit&agrave
 				</button>
 			</div>
@@ -135,13 +154,13 @@ function ricercaSaleDisponibili()
 				
 				<div class="col-xs-6">
 					<label>Cognome</label>
-					<input type="text" name="cognome" class="form-control" placeholder="Cognome">
+					<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Cognome" required="true">
 					<span class="help-block"></span>
 				</div>
 				
 				<div class="col-xs-6">
 					<label>Telefono</label>
-					<input type="text" name="tel" class="form-control" placeholder="Telefono">
+					<input type="text" name="tel" id="tel" class="form-control" placeholder="Telefono" required="true">
 					<span class="help-block"></span>
 				</div>
 				
@@ -153,7 +172,7 @@ function ricercaSaleDisponibili()
 			<br>
 			
 			<div class="col-xs-12">
-				<button onclick="fase1();" class="btn btn-primary" type="button">
+				<button onclick="controllo();" class="btn btn-primary" type="button">
 					Invia prenotazione
 				</button>
 			</div>

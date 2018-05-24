@@ -130,7 +130,7 @@
 							$posti = 0;
 						else
 							$posti = $row3["sum(aiuto.num_partecipanti)"];
-						$risultato .= '<button onclick="fase3(\'' . $row3["orario"] . '\', \'' . $nome . '\')" class="btn btn-primary sceltaSala" type="button" >' . $row3["orario"] . '</button>';
+						$risultato .= '<button onclick="fase3(\'' . $row3["orario"] . '\', \'' . $idSala . '\')" class="btn btn-primary sceltaSala" type="button" >' . $row3["orario"] . '</button>';
 						$postiTot += $posti;
 					}
 					$risultato .= "<br>";
