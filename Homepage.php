@@ -12,7 +12,6 @@
 </style>
 
 <div class="container">
-	<hr>
 	<div class="pannelloGestionale row">
 			<?php
 			include 'calendarAdmin.php';
@@ -22,12 +21,12 @@
 				echo '<div class="col-md-5">';
 			else
 				echo '<div class="col-md-5">';
-			echo $calendar->show() . "</div>";
+			echo "<br>" . $calendar->show() . "</div>";
 			
 			echo '<div class="col-md-1"><br></div>';
 		
 			if(!isset($_GET["date"]))
-				echo '<div class="col-md-3">
+				echo '<div class="col-md-3"><br>
 					<button onclick="window.location.href=\'index.php\';" class="btn btn-primary center-block" type="button" style="width: 100%; ">
 							<h4>Nuova prenotazione</h4>
 					</button>
@@ -41,7 +40,7 @@
 					</button>
 					<br>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-3"><br>
 					<button onclick="window.location.href=\'prenotazioni.php\';" class="btn btn-success center-block" type="button" style="width: 100%; ">
 							<h4>Prenotati (oggi)</h4>
 					</button>
