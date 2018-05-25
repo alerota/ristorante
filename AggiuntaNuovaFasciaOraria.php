@@ -42,6 +42,9 @@
 			else
 				echo "<script>alert('Problemi durante il caricamento della fascia, chiedere assistenza...');</script>";
 		}
+
+		include 'menu.php';
+
 	?>
 	<head>   
         <!-- Bootstrap CSS --><!-- Latest compiled and minified CSS -->
@@ -69,11 +72,11 @@
 		
 	</head>
 	<body style="font-family: Arial;">
-		
+    <h1 class="card-title text-center"><?php if($_GET != null) echo "Modifica fascia oraria: ".$name; else echo "Aggiungi nuova fascia oraria";?></h1>
 		<div class="container">
 			<hr>
 			<div class="row">
-				<form method="POST" id="insertFO" action="codici/insertFasciaOraria.php">
+				<form id="insertFO" action="AggiuntaNuovaFasciaOraria.php">
 					<div class="col-md-3">
 						<fieldset>
 							<legend>Dettagli nuova fascia</legend>
@@ -82,17 +85,17 @@
 									<label>Nome identificativo</label>
 								</a>
 								<label></label>
-								<input type="text" name="nomeFascia" class="form-control" 
+								<input type="text" name="nomeFascia" class="form-control"
 								<?php if(isset($name)) echo "value='" . $name . "'"; ?>
 								placeholder="Nome">
 								<span class="help-block">Questo nome verrà visualizzato solo nella parte amministrativa.</span>
 							</div>
 						</fieldset>
 						<hr>
-						<button onclick="vai();" class="btn btn-danger center-block" type="button" style="width: 100%; ">
-						<?php if($_GET != null) echo "Aggiorna"; else echo "Aggiungi"; ?>
-						</button>
+                        <a class="btn btn-primary" onclick="vai();" role="button" style="width: 100%;">Cerca</a>
 					</div>
+                </form>
+                <form method="POST" id="insertFO" action="codici/insertFasciaOraria.php">
 					<div class="col-md-9">
 						<legend>Selezione orari</legend>
 						<div class="row">

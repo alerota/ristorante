@@ -66,6 +66,8 @@
 			else
 				echo "<script>alert('Fase 1: Problemi durante il caricamento della giornata, chiedere assistenza...');</script>";
 		}
+
+    include 'menu.php';
 	?>
 	<head>   
         <!-- Bootstrap CSS --><!-- Latest compiled and minified CSS -->
@@ -90,9 +92,10 @@
 		
 	</head>
 	<body style="font-family: Arial;">
-		
+    <h1 class="card-title text-center"><?php if($_GET != null) echo "Modifica giorno speciale: ".$name; else echo "Aggiungi nuovo giorno speciale";?></h1>
 		<div class="container">
-		<hr>
+
+		    <hr>
 			<form method="POST" action="codici/insertGiornoSpeciale.php" id="insertGS">
 				<div class="row">
 					<div class="col-md-3">

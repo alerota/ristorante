@@ -23,7 +23,7 @@
 			if($num_result == 1)
 			{
 				$row = mysqli_fetch_array($result);
-				if($row["giorno_inizio"] != $row["giorno_fine"])
+				if($row["giorno_inizio"] != $row["giorno_fine"]) //se sono più giorni
 				{
 					$name = $row["nome_stagione"];
 					$start = $row["giorno_inizio"];
@@ -62,12 +62,14 @@
 						echo "<script>alert('Problemi durante il caricamento della stagione, chiedere assistenza...');</script>";
 				}
 				else
-					echo "<script>alert('Problemi durante il caricamento della stagione, chiedere assistenza...');</script>";
+                    echo "<script>alert('Problemi durante il caricamento della stagione, chiedere assistenza...');</script>";
 				
 			}
 			else
 				echo "<script>alert('Problemi durante il caricamento della stagione, chiedere assistenza...');</script>";
 		}
+
+		include 'menu.php';
 
 	?>
 	<head>   
@@ -90,7 +92,7 @@
 		
 	</head>
 	<body style="font-family: Arial;">
-		
+    <h1 class="card-title text-center"><?php if($_GET != null) echo "Modifica stagione: ".$name; else echo "Aggiungi nuova stagione";?></h1>
 		<div class="container">
 		<hr>
 			<form method="POST" action="codici/insertStagione.php" id="formAddStagione">
