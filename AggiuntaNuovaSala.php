@@ -9,6 +9,7 @@
 		$dbname = "ristorante";
 		$connessione = mysqli_connect($host, $user, $pass);
 		$db_selected=mysqli_select_db($connessione, $dbname);
+		include 'menu.php';
 		
 		if($_GET != null)
 		{
@@ -89,6 +90,9 @@
 							</button>
 						</form>
 						<br>
+					</div>
+					<div class="col-md-6"><br></div>
+					<div class="col-md-3">
 						<style>
 						.infoBoxSpecial { min-height: 30px; line-height: 30px; transition-duration: 0.2s; padding: 0px 15px; width: 100%; border: 1px solid #CCCCCC; border-radius: 15px; margin: auto;margin-bottom: 10px; }
 						.infoBoxSpecial:hover { background-color: #EEEEEE; }
@@ -110,7 +114,11 @@
 									$leTueSale .= '<div class="row infoBoxSpecial">' . $row["Nome_sala"] . ' - ' . $row["Numero_posti_prenotabili"] . ' posti</div>';
 								}
 								$leTueSale .= '';
-								echo $leTueSale;
+								
+								if($leTueSale == "")
+									echo "Nessuna sala inserita.";
+								else
+									echo $leTueSale;
 							?>
 						</fieldset>
 						<hr>

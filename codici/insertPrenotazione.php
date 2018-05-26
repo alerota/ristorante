@@ -22,10 +22,16 @@
 	$sql = "INSERT INTO prenotazioni (`cliente`, `tel`, `num_partecipanti`, `giorno`, `orario`, `id_sala`, `note_prenotazione`, `scadenza`, `arrivo`, `chiusura`) 
 	VALUES ('" . $nome . "', '" . $tel . "', '" . $n . "', '" . $data . "', '" . $orario . "', '" . $sala . "', '" . $note . "', 0, 0, 0);";
 	
+	
     if (mysqli_query($connessione, $sql))
-        header("Location: ../index.php?messaggio=La sala è stata inserita correttamente");
-    else
-        header("Location: ../index.php?alert=Errore nel inserimento");
+	{
+		$sql2 = "INSERT INTO storico ('nome_cliente', 'tel_cliente') VALUES ('" . $nome . "', '" . $tel . "');";
+		$result = mysqli_query($connessione, $sql2);
+		
+        header("Location: ../index.php?messaggio=Ricordiamo che la prenotazione verrà annullata per ritardo maggiore di 20 minuti.");
+    }
+	else
+        header("Location: ../index.php?alert=Si sono verificati problemi durante l'invio della prenotazione, si prega di contattare il ristorante.");
 
 	mysqli_close($connessione);
 
