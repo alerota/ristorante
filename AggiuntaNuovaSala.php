@@ -57,7 +57,7 @@
 
 				<div class="row">
 					<div class="col-md-3">
-						<form method="POST" id="insertSL" action="<?php if($_GET != null) echo "codici/modificaSala.php?id=" .$idImportante; else echo "/codici/insertSala.php"; ?>" >
+						<form method="POST" id="insertSL" action="<?php if($_GET != null) echo "codici/updateSala.php"; else echo "codici/insertSala.php"; ?>" >
 							<fieldset>
 								<legend>Dettagli nuova sala</legend>
 								<div class="form-group">
@@ -78,6 +78,10 @@
 									<?php if(isset($number)) echo "value='" . $number . "'"; ?>
 									placeholder="Numero">
 									<span class="help-block"></span>
+									<?php
+									if(isset($idImportante))
+										echo "<input type='hidden' value='" . $idImportante . "' name='idSala' />";
+									?>
 								</div>
 							</fieldset>
 							<button onclick="document.getElementById('insertSL').submit();" class="btn btn-primary center-block" type="button" style="width: 100%; ">
