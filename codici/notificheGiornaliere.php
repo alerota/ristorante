@@ -83,19 +83,19 @@
 	
 	echo "<hr><h3 style='text-align: center;'>Dati odierni</h3><br>";
 	
-	echo '<div class="info col-md-6"><button onclick="window.location.href=\'prenotazioni.php?date=' . $today . '\';" class="btn btn-primary center-block" type="button" style="width: 100%; ">
+	echo '<div class="info col-md-6"><button onclick="window.location.href=\'elenchi/prenotazioni.php?date=' . $today . '\';" class="btn btn-primary center-block" type="button" style="width: 100%; ">
 				<h4><div class="glyphicon glyphicon-user"></div> Totale: <strong>' . $a1 . '</strong></h4>
 		</button></div>';
-	echo '<div class="info col-md-6"><button onclick="window.location.href=\'prenotazioni.php?date=' . $today . '\';" class="btn btn-primary center-block" type="button" style="width: 100%; ">
+	echo '<div class="info col-md-6"><button onclick="window.location.href=\'elenchi/prenotazioni.php?date=' . $today . '\';" class="btn btn-primary center-block" type="button" style="width: 100%; ">
 				<h4><div class="glyphicon glyphicon-cutlery"></div> A tavola: <strong>' . $a3 . '</strong></h4>
 		</button></div>';
-	echo '<div class="info col-md-6"><button onclick="window.location.href=\'prenotazioni.php?date=' . $today . '\';" class="btn btn-primary center-block" type="button" style="width: 100%; ">
-				<h4><div class="glyphicon glyphicon-time"></div> Prenotazioni aperte: <strong>' . $a2 . '</strong></h4>
+	echo '<div class="info col-md-6"><button onclick="window.location.href=\'elenchi/prenotazioni.php?date=' . $today . '\';" class="btn btn-primary center-block" type="button" style="width: 100%; ">
+				<h4><div class="glyphicon glyphicon-time"></div> Pren. aperte: <strong>' . $a2 . '</strong></h4>
 		</button></div>';
-	echo '<div class="info col-md-6"><button onclick="window.location.href=\'prenotazioni.php?date=' . $today . '\';" class="btn btn-warning center-block" type="button" style="width: 100%; ">
+	echo '<div class="info col-md-6"><button onclick="window.location.href=\'elenchi/prenotazioni.php?date=' . $today . '\';" class="btn btn-warning center-block" type="button" style="width: 100%; ">
 				<h4><div class="glyphicon glyphicon-alert"></div> Scaduti: <strong>' . $a4 . '</strong></h4>
 		</button></div>';
-	echo '<div class="info col-md-6"><button onclick="window.location.href=\'revisionare.php\';" class="btn btn-danger center-block" type="button" style="width: 100%; ">
+	echo '<div class="info col-md-6"><button onclick="window.location.href=\'elenchi/revisionare.php\';" class="btn btn-danger center-block" type="button" style="width: 100%; ">
 				<h4><div class="glyphicon glyphicon-remove"></div> Revisioni: <strong>' . $a5 . '</strong></h4>
 		</button></div>';
 	

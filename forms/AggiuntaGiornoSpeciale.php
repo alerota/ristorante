@@ -67,7 +67,7 @@
 				echo "<script>alert('Fase 1: Problemi durante il caricamento della giornata, chiedere assistenza...');</script>";
 		}
 
-    include 'menu.php';
+    include '../menu.php';
 	?>
 	<head>   
         <!-- Bootstrap CSS --><!-- Latest compiled and minified CSS -->
@@ -96,7 +96,7 @@
 		<div class="container">
 
 		    <hr>
-			<form method="POST" action="codici/insertGiornoSpeciale.php" id="insertGS">
+			<form method="POST" action="../codici/insertGiornoSpeciale.php" id="insertGS">
 				<div class="row">
 					<div class="col-md-3">
 						<fieldset>

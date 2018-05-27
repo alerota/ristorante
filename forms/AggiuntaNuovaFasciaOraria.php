@@ -43,7 +43,7 @@
 				echo "<script>alert('Problemi durante il caricamento della fascia, chiedere assistenza...');</script>";
 		}
 
-		include 'menu.php';
+		include '../menu.php';
 
 	?>
 	<head>   
@@ -76,7 +76,7 @@
 		<div class="container">
 			<hr>
 			<div class="row">
-				<form id="insertFO" action="AggiuntaNuovaFasciaOraria.php">
+				<form id="insertFO" action="../codici/insertFasciaOraria.php">
 					<div class="col-md-3">
 						<fieldset>
 							<legend>Dettagli nuova fascia</legend>

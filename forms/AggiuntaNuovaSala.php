@@ -9,7 +9,7 @@
 		$dbname = "ristorante";
 		$connessione = mysqli_connect($host, $user, $pass);
 		$db_selected=mysqli_select_db($connessione, $dbname);
-		include 'menu.php';
+		include '../menu.php';
 		
 		if($_GET != null)
 		{
@@ -58,7 +58,7 @@
 
 				<div class="row">
 					<div class="col-md-3">
-						<form method="POST" id="insertSL" action="<?php if($_GET != null) echo "codici/updateSala.php"; else echo "codici/insertSala.php"; ?>" >
+						<form method="POST" id="insertSL" action="<?php if($_GET != null) echo "../codici/updateSala.php"; else echo "../codici/insertSala.php"; ?>" >
 							<fieldset>
 								<legend>Dettagli nuova sala</legend>
 								<div class="form-group">

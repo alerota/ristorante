@@ -69,7 +69,7 @@
 				echo "<script>alert('Problemi durante il caricamento della stagione, chiedere assistenza...');</script>";
 		}
 
-		include 'menu.php';
+		include '../menu.php';
 
 	?>
 	<head>   
@@ -95,7 +95,7 @@
     <h1 class="card-title text-center"><?php if($_GET != null) echo "Modifica stagione: ".$name; else echo "Aggiungi nuova stagione";?></h1>
 		<div class="container">
 		<hr>
-			<form method="POST" action="codici/insertStagione.php" id="formAddStagione">
+			<form method="POST" action="../codici/insertStagione.php" id="formAddStagione">
 				<div class="row">
 					<div class="col-md-3">
 						<fieldset>

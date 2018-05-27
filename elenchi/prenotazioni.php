@@ -10,33 +10,39 @@ $connessione = new mysqli($host, $user, $pass, $dbname);
 if ($connessione->connect_errno) {
     echo "Errore in connessione al DBMS: " . $connessione->error;
 }
-include 'menu.php';
+include '../menu.php';
 ?>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-    <script src="js/confirmation.js"></script>
+    <script src="../js/confirmation.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/datatable.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/datatable.css"/>
 	
     <script type="text/javascript">
         $(document).ready(function () {
             $('#table').DataTable();
         });
     </script>
-	<style type="text/css">
-    #warning-message { display: none; }
-    @media only screen and (orientation:portrait){
-        #wrapper { display:none; }
-        #warning-message { display:block; }
-    }
-    @media only screen and (orientation:landscape){
-        #warning-message { display:none; }
-    }
-	</style>
-	
+	<?php
+	if(!isset($_GET['msg']))
+	{
+		echo '<style type="text/css">
+		#warning-message { display: none; }
+		@media only screen and (orientation:portrait){
+			#wrapper { display:none; }
+			#warning-message { display:block; }
+		}
+		@media only screen and (orientation:landscape){
+			#warning-message { display:none; }
+		}
+		</style>';
+	}
+	else
+		echo '<style> #warning-message { display:none; } </style>';
+	?>
 </head>
 
 <body id="body">
@@ -65,65 +71,73 @@ include 'menu.php';
                     if($numrows2) {
                         while ($row2 = $result2->fetch_assoc()) {
                         ?>
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="disabledTextInput">Cliente</label>
-                                        <?php
-                                        echo "<input type='text' class='form-control' placeholder='" . $row2['cliente'] . "' disabled>";
-                                        ?>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="disabledTextInput">Telefono</label>
-                                        <?php
-                                        echo "<input type='text' class='form-control' placeholder='" . $row2['tel'] . "' disabled>";
-                                        ?>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-2">
-                                        <label for="disabledTextInput">Numero persone</label>
-                                        <?php
-                                        echo "<input type='text' class='form-control' placeholder='" . $row2['num_partecipanti'] . "' disabled>";
-                                        ?>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="disabledTextInput">Giorno</label>
-                                        <?php
-                                        echo "<input type='text' class='form-control' placeholder='" . $row2['giorno'] . "' disabled>";
-                                        ?>
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <label for="disabledTextInput">Ora</label>
-                                        <?php
-                                        echo "<input type='text' class='form-control' placeholder='" . $row2['orario'] . "' disabled>";
-                                        ?>
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <label for="disabledTextInput">Sala</label>
+                            <div class='container'>
+								<form>
+									<div class="form-row row">
+										<div class='col-md-2'><br></div>
+										<div class="form-group col-md-4">
+											<label for="disabledTextInput">Cliente</label>
+											<?php
+											echo "<input type='text' class='form-control' placeholder='" . $row2['cliente'] . "' disabled>";
+											?>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="disabledTextInput">Telefono</label>
+											<?php
+											echo "<input type='text' class='form-control' placeholder='" . $row2['tel'] . "' disabled>";
+											?>
+										</div>
+										<div class='col-md-2'><br></div>
+									</div>
+									<div class="form-row row">
+										<div class='col-md-2'><br></div>
+										<div class="form-group col-md-2">
+											<label for="disabledTextInput">Numero persone</label>
+											<?php
+											echo "<input type='text' class='form-control' placeholder='" . $row2['num_partecipanti'] . "' disabled>";
+											?>
+										</div>
+										<div class="form-group col-md-2">
+											<label for="disabledTextInput">Giorno</label>
+											<?php
+											echo "<input type='text' class='form-control' placeholder='" . $row2['giorno'] . "' disabled>";
+											?>
+										</div>
+										<div class="form-group col-md-2">
+											<label for="disabledTextInput">Ora</label>
+											<?php
+											echo "<input type='text' class='form-control' placeholder='" . $row2['orario'] . "' disabled>";
+											?>
+										</div>
+										<div class="form-group col-md-2">
+											<label for="disabledTextInput">Sala</label>
 
-                                        <?php
-                                        $idsala = $row2['id_sala'];
-                                        $query3 = "SELECT * FROM sale WHERE id_sala='$idsala'";
-                                        $result3 = $connessione->query($query3);
-                                        $numrows3 = $result3->num_rows;
+											<?php
+											$idsala = $row2['id_sala'];
+											$query3 = "SELECT * FROM sale WHERE id_sala='$idsala'";
+											$result3 = $connessione->query($query3);
+											$numrows3 = $result3->num_rows;
 
-                                        if ($numrows3) {
-                                            while ($row3 = $result3->fetch_assoc())
-                                                    echo "<input type='text' class='form-control' placeholder='" . $row3['id_sala'] ." - ". $row3['Nome_sala'] . "' disabled>";
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-10">
-                                        <label for="comment">Note</label>
-                                        <?php
-                                            echo "<textarea class='form-control' rows='5' disabled>" .$row2['note_prenotazione'] ."</textarea>";
-                                        ?>
-                                    </div>
-                                </div>
-                            </form>
+											if ($numrows3) {
+												while ($row3 = $result3->fetch_assoc())
+														echo "<input type='text' class='form-control' placeholder='" . $row3['id_sala'] ." - ". $row3['Nome_sala'] . "' disabled>";
+											}
+											?>
+										</div>
+										<div class='col-md-2'><br></div>
+									</div>
+									<div class="form-row row">
+										<div class='col-md-2'><br></div>
+										<div class="form-group col-md-8">
+											<label for="comment">Note</label>
+											<?php
+												echo "<textarea class='form-control' rows='10' disabled>" .$row2['note_prenotazione'] ."</textarea>";
+											?>
+										</div>
+										<div class='col-md-2'><br></div>
+									</div>
+								</form>
+							</div>
                         <?php
                         }
                     }
@@ -149,7 +163,7 @@ include 'menu.php';
                         <th>Giorno</th>
                         <th>Orario</th>
                         <th>Sala</th>
-                        <th>Modify</th>
+                        <th>Edit</th>
                         <th>Arrive</th>
                         <th>Delay</th>
                         <th>Close</th>
@@ -170,6 +184,7 @@ include 'menu.php';
                     $numrows = $result->num_rows;
 
                     if ($numrows) {
+						$nascondi = false;
                         while ($row = $result->fetch_assoc()) {
                             ?>
                             <tr>
@@ -195,17 +210,17 @@ include 'menu.php';
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="aggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] ?>">
+                                    <a href="../codici/AggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] ?>">
                                         <span class="glyphicon glyphicon-ok"></span>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="aggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] ?>">
+                                    <a href="../codici/AggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] ?>">
                                         <span class="glyphicon glyphicon-remove"></span>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="aggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] ?>">
+                                    <a href="../codici/AggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] ?>">
                                         <span class="glyphicon glyphicon-ban-circle"></span>
                                     </a>
                                 </td>
@@ -218,9 +233,18 @@ include 'menu.php';
                             <?php
                         }
                     }
+					else
+						$nascondi = true;
                     ?>
                     </tbody>
                 </table>
+				<?php
+				if($nascondi)
+				{
+					echo "<script> document.getElementById('table').style.display = 'none'; </script>";
+					echo "<p style='text-align: center;'>Non sono presenti records.</p>";
+				}
+				?>
                 <input type="hidden" value="" id="idSupporto"/>
                 <?php
                 }

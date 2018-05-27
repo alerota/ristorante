@@ -10,17 +10,17 @@ $connessione = new mysqli($host, $user, $pass, $dbname);
 if ($connessione->connect_errno) {
     echo "Errore in connessione al DBMS: " . $connessione->error;
 }
-include 'menu.php';
+include '../menu.php';
 ?>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-    <script src="js/confirmation.js"></script>
+    <script src="../js/confirmation.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/datatable.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/datatable.css"/>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -157,6 +157,7 @@ include 'menu.php';
                     $numrows = $result->num_rows;
 
                     if ($numrows) {
+						$nascondi = false;
                         while ($row = $result->fetch_assoc()) {
                             ?>
                             <tr>
@@ -178,7 +179,7 @@ include 'menu.php';
                                 ?>
                                 <td>
                                     <a href="revisionare.php?msg=<?php echo $row['id_prenotazione'] ?>">
-                                        <span class="glyphicon glyphicon-expand"></span>
+                                        <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
                                 </td>
                                 <td>
@@ -190,9 +191,18 @@ include 'menu.php';
                             <?php
                         }
                     }
+					else
+						$nascondi = true;
                     ?>
                     </tbody>
                 </table>
+				<?php
+				if($nascondi)
+				{
+					echo "<script> document.getElementById('table').style.display = 'none'; </script>";
+					echo "<p style='text-align: center;'>Non sono presenti records.</p>";
+				}
+				?>
 				<input type="hidden" value="" id="idSupporto"/>
                 <?php
             }

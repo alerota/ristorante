@@ -10,16 +10,16 @@ $connessione = new mysqli($host, $user, $pass, $dbname);
 if ($connessione->connect_errno) {
     echo "Errore in connessione al DBMS: " . $connessione->error;
 }
-include 'menu.php';
+include '../menu.php';
 ?>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-    <script src="js/confirmation.js"></script>
+    <script src="../js/confirmation.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/datatable.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/datatable.css"/>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -67,7 +67,7 @@ include 'menu.php';
             ?>
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
 
                     <h1 class="card-title text-center">Lista stagioni <a href="AggiuntaNuovaStagione.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
                     <br><br>
@@ -78,8 +78,8 @@ include 'menu.php';
                             <th>Giorno inizio</th>
                             <th>Giorno fine</th>
                             <th>Priorità</th>
-                            <th></th>
-                            <th></th>
+                            <th>Edit</th>
+                            <th>Canc</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -91,6 +91,7 @@ include 'menu.php';
                         $numrows = $result->num_rows;
 
                         if ($numrows) {
+							$nascondi1 = false;
                             while ($row = $result->fetch_assoc()) {
                                 ?>
                                 <tr>
@@ -117,8 +118,8 @@ include 'menu.php';
                                     ?>
                                     <td>
 
-                                        <a href="aggiuntaNuovaStagione.php?id=<?php echo $row['id_stagione'] ?>">
-                                            <span class="glyphicon glyphicon-expand"></span>
+                                        <a href="../forms/AggiuntaNuovaStagione.php?id=<?php echo $row['id_stagione'] ?>">
+                                            <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
                                     </td>
                                     <td>
@@ -130,13 +131,22 @@ include 'menu.php';
                                 <?php
                             }
                         }
+						else
+							$nascondi1 = true;
                         ?>
                         </tbody>
                     </table>
+					<?php
+					if($nascondi1)
+					{
+						echo "<script> document.getElementById('table').style.display = 'none'; </script>";
+						echo "<p style='text-align: center;'>Non sono presenti records.</p>";
+					}
+					?>
                 </div>
 
 
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <h1 class="card-title text-center">Lista giorni speciali <a href="AggiuntaGiornoSpeciale.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
                     <br><br>
                     <table id="table1">
@@ -144,8 +154,8 @@ include 'menu.php';
                         <tr>
                             <th>Nome</th>
                             <th>Giorno</th>
-                            <th></th>
-                            <th></th>
+                            <th>Edit</th>
+                            <th>Canc</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -157,6 +167,7 @@ include 'menu.php';
                         $numrows = $result->num_rows;
 
                         if ($numrows) {
+							$nascondi2 = false;
                             while ($row = $result->fetch_assoc()) {
                                 ?>
                                 <tr>
@@ -173,8 +184,8 @@ include 'menu.php';
                                     ?>
                                     <td>
 
-                                        <a href="aggiuntaGiornoSpeciale.php?id=<?php echo $row['id_stagione'] ?>">
-                                            <span class="glyphicon glyphicon-expand"></span>
+                                        <a href="../forms/AggiuntaGiornoSpeciale.php?id=<?php echo $row['id_stagione'] ?>">
+                                            <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
                                     </td>
                                     <td>
@@ -186,9 +197,18 @@ include 'menu.php';
                                 <?php
                             }
                         }
+						else
+							$nascondi2 = true;
                         ?>
                         </tbody>
                     </table>
+					<?php
+					if($nascondi2)
+					{
+						echo "<script> document.getElementById('table1').style.display = 'none'; </script>";
+						echo "<p style='text-align: center;'>Non sono presenti records.</p>";
+					}
+					?>
                     <?php
                     //}
                     ?>

@@ -10,14 +10,14 @@ $connessione = new mysqli($host, $user, $pass, $dbname);
 if ($connessione->connect_errno) {
     echo "Errore in connessione al DBMS: " . $connessione->error;
 }
-include 'menu.php';
+include '../menu.php';
 ?>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/datatable.css"/>
-        <script src="js/confirmation.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://localhost/ristorante/ristorante/css/datatable.css"/>
+        <script src="http://localhost/ristorante/ristorante/js/confirmation.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 
@@ -69,8 +69,8 @@ include 'menu.php';
                             <tr>
                                 <th>Id</th>
                                 <th>Username</th>
-                                <th></th>
-                                <th></th>
+                                <th>Edit</th>
+                                <th>Canc</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -81,6 +81,7 @@ include 'menu.php';
                             $numrows = $result->num_rows;
 
                             if ($numrows) {
+								$nascondi = false;
                                 while ($row = $result->fetch_assoc()) {
                                     ?>
                                     <tr>
@@ -91,8 +92,8 @@ include 'menu.php';
                                         if($_COOKIE['login'] != $row['username']) {
                                         ?>
                                         <td>
-                                            <a href="AggiuntaNuovoUtente.php?msg=<?php echo $row['id']; ?>">
-                                                <span class="glyphicon glyphicon-edit"></span>
+                                            <a href="../forms/AggiuntaNuovoUtente.php?msg=<?php echo $row['id']; ?>">
+                                                <span class="glyphicon glyphicon-pencil"></span>
                                             </a>
                                         </td>
                                         <td>
@@ -113,9 +114,18 @@ include 'menu.php';
                                     <?php
                                 }
                             }
+							else
+								$nascondi = true;
                             ?>
                             </tbody>
                         </table>
+						<?php
+						if($nascondi)
+						{
+							echo "<script> document.getElementById('table').style.display = 'none'; </script>";
+							echo "<p style='text-align: center;'>Non sono presenti records.</p>";
+						}
+						?>
                         <input type="hidden" value="" id="idSupporto"/>
                     <?php
                     }
