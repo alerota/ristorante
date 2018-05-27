@@ -149,8 +149,11 @@ include 'menu.php';
                         <th>Giorno</th>
                         <th>Orario</th>
                         <th>Sala</th>
-                        <th></th>
-                        <th></th>
+                        <th>Modify</th>
+                        <th>Arrive</th>
+                        <th>Delay</th>
+                        <th>Close</th>
+                        <th>Canc</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -188,7 +191,22 @@ include 'menu.php';
                                 ?>
                                 <td>
                                     <a href="prenotazioni.php?msg=<?php echo $row['id_prenotazione'] ?>">
-                                        <span class="glyphicon glyphicon-expand"></span>
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="aggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] ?>">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="aggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] ?>">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="aggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] ?>">
+                                        <span class="glyphicon glyphicon-ban-circle"></span>
                                     </a>
                                 </td>
                                 <td>
