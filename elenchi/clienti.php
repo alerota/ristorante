@@ -16,7 +16,7 @@ include '../menu.php';
     <head>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-        <link rel="stylesheet" type="text/css" href="http://localhost/ristorante/ristorante/css/datatable.css"/>
+        <link rel="stylesheet" type="text/css" href="http://localhost/ristorante/css/datatable.css"/>
 
         <script type="text/javascript">
             $(document).ready(function () {

@@ -32,13 +32,13 @@
 		<title>Ristorante Al molo 13</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="http://localhost/ristorante/ristorante/vendor\bootstrap\css\bootstrap.min.css">
-		<link href="http://localhost/ristorante/ristorante/style/calendar.css" type="text/css" rel="stylesheet" />
-		<link href="http://localhost/ristorante/ristorante/css\stiliLogin.css" rel="stylesheet">
+		<link rel="stylesheet" href="http://localhost/ristorante/vendor\bootstrap\css\bootstrap.min.css">
+		<link href="http://localhost/ristorante/style/calendar.css" type="text/css" rel="stylesheet" />
+		<link href="http://localhost/ristorante/css\stiliLogin.css" rel="stylesheet">
 
 		<script src="vendor/jquery/jquery-3.3.1.min.js"></script>
-		<script src="http://localhost/ristorante/ristorante/vendor\bootstrap\js\bootstrap.min.js"></script>
-		<script src="http://localhost/ristorante/ristorante/js\codiciLogin.js"></script>
+		<script src="http://localhost/ristorante/vendor\bootstrap\js\bootstrap.min.js"></script>
+		<script src="http://localhost/ristorante/js\codiciLogin.js"></script>
 		<style>
 		 
 			.dropdown-menu > li.kopie > a {
@@ -135,7 +135,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>                        
 					</button>
-					<a class="navbar-brand" href="http://localhost/ristorante/ristorante/index.php">Al molo 13</a>
+					<a class="navbar-brand" href="http://localhost/ristorante/index.php">Al molo 13</a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
@@ -148,35 +148,35 @@
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Sale<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="http://localhost/ristorante/ristorante/forms/AggiuntaNuovaSala.php">Aggiungi Sala</a></li>
-									<li><a href="http://localhost/ristorante/ristorante/elenchi/sale.php">Elenca Sale</a></li>
+									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovaSala.php">Aggiungi Sala</a></li>
+									<li><a href="http://localhost/ristorante/elenchi/sale.php">Elenca Sale</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Prenotazioni<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="http://localhost/ristorante/ristorante/index.php">Aggiungi prenotazione</a></li>
+									<li><a href="http://localhost/ristorante/index.php">Aggiungi prenotazione</a></li>
 									<li><a href="#">Aggiungi festa</a></li>
-									<li><a href="http://localhost/ristorante/ristorante/elenchi/prenotazioni.php?date=' . $today . '">Elenca prenotati (oggi)</a></li>
-									<li><a href="http://localhost/ristorante/ristorante/elenchi/prenotazioni.php">Elenca prenotati</a></li>
-									<li><a href="http://localhost/ristorante/ristorante/elenchi/revisionare.php">Da revisionare</a></li>
-									<li><a href="http://localhost/ristorante/ristorante/elenchi/clienti.php">Storico</a></li>
+									<li><a href="http://localhost/ristorante/elenchi/prenotazioni.php?date=' . $today . '">Elenca prenotati (oggi)</a></li>
+									<li><a href="http://localhost/ristorante/elenchi/prenotazioni.php">Elenca prenotati</a></li>
+									<li><a href="http://localhost/ristorante/elenchi/revisionare.php">Da revisionare</a></li>
+									<li><a href="http://localhost/ristorante/elenchi/clienti.php">Storico</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Stagioni<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="http://localhost/ristorante/ristorante/forms/AggiuntaNuovaStagione.php">Aggiungi stagione</a></li>
-									<li><a href="http://localhost/ristorante/ristorante/forms/AggiuntaGiornoSpeciale.php">Aggiungi giorno speciale</a></li>
-									<li><a href="http://localhost/ristorante/ristorante/elenchi/stagioni_giorniSpeciali.php">Elenca stagioni</a></li>
-									<li><a href="http://localhost/ristorante/ristorante/forms/AggiuntaNuovaFasciaOraria.php">Aggiungi fascia oraria</a></li>
+									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovaStagione.php">Aggiungi stagione</a></li>
+									<li><a href="http://localhost/ristorante/forms/AggiuntaGiornoSpeciale.php">Aggiungi giorno speciale</a></li>
+									<li><a href="http://localhost/ristorante/elenchi/stagioni_giorniSpeciali.php">Elenca stagioni</a></li>
+									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovaFasciaOraria.php">Aggiungi fascia oraria</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Utenti<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="http://localhost/ristorante/ristorante/forms/AggiuntaNuovoUtente.php">Aggiunti utente</a></li>
-									<li><a href="http://localhost/ristorante/ristorante/elenchi/utenti.php">Elenca utenti</a></li>
+									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovoUtente.php">Aggiunti utente</a></li>
+									<li><a href="http://localhost/ristorante/elenchi/utenti.php">Elenca utenti</a></li>
 								</ul>
 							</li>';
 							
@@ -187,7 +187,7 @@
 						<li>
 							<?php
 							if(isset($_COOKIE['login']))
-								echo '<a class="nav-link" href="http://localhost/ristorante/ristorante/logout.php"><span class="glyphicon glyphicon-user"></span> Bentornato ' . $_COOKIE['login'] . ', Logout</a>';
+								echo '<a class="nav-link" href="http://localhost/ristorante/logout.php"><span class="glyphicon glyphicon-user"></span> Bentornato ' . $_COOKIE['login'] . ', Logout</a>';
 							else
 								echo '<a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a>';
 							?>
