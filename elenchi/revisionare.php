@@ -14,13 +14,6 @@ include '../menu.php';
 ?>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-    <script src="../js/confirmation.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="../css/datatable.css"/>
 
     <script type="text/javascript">
         $(document).ready(function () {

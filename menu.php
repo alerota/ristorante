@@ -35,8 +35,17 @@
 		<link rel="stylesheet" href="http://localhost/ristorante/vendor\bootstrap\css\bootstrap.min.css">
 		<link href="http://localhost/ristorante/style/calendar.css" type="text/css" rel="stylesheet" />
 		<link href="http://localhost/ristorante/css\stiliLogin.css" rel="stylesheet">
+		
+		
+		<script src="http://localhost/ristorante/vendor/jquery/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://localhost/ristorante/vendor/dataTable/css/jquery.dataTables.min.css">
+        <script type="text/javascript" charset="utf8" src="http://localhost/ristorante/vendor/dataTable/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://localhost/ristorante/css/datatable.css"/>
+		
+        <link rel="stylesheet" type="text/css" href="http://localhost/ristorante/vendor/confirm/css/jquery-confirm.min.css">
+        <script type="text/javascript" charset="utf8" src="http://localhost/ristorante/vendor/confirm/js/jquery-confirm.min.js"></script>
 
-		<script src="vendor/jquery/jquery-3.3.1.min.js"></script>
+		
 		<script src="http://localhost/ristorante/vendor\bootstrap\js\bootstrap.min.js"></script>
 		<script src="http://localhost/ristorante/js\codiciLogin.js"></script>
 		<style>
