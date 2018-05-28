@@ -1,34 +1,33 @@
 <?php
-
 	// Connessione al DB
-
 	$host = "localhost";
 	$user = "root";
 	$pass = "";
 	$dbname = "ristorante";
-	
+
+    $connessione = new mysqli($host, $user, $pass, $dbname);
+
+    if ($connessione->connect_errno) {
+        echo "Errore in connessione al DBMS: " . $connessione->error;
+    }
+
 	$nome = $_POST["nomeStagione"];
 	$priorita = $_POST["prioritaStagione"];
 	$inizio = $_POST["inizioStagione"];
 	$fine = $_POST["fineStagione"];
 	$giorni = $_POST["giorni"];
 	$sale = $_POST['sala'];
-	
-	$connessione = mysqli_connect($host, $user, $pass);
-	$db_selected=mysqli_select_db($connessione, $dbname);
+
 	
 	// Fase 1: inserimento della stagione effettiva
-
-	$sql = "INSERT INTO stagioni (nome_stagione, giorno_inizio, giorno_fine, priorita)
+	$query = "INSERT INTO stagioni (nome_stagione, giorno_inizio, giorno_fine, priorita)
 	VALUES ('" . $nome . "', '" . $inizio . "', '" . $fine . "', '" . $priorita . "');";
 
-	if (mysqli_query($connessione, $sql))
-		echo "La giornata è stata inserita correttamente<br>";
-	else
-		echo "Errore nella fase 1: " . $sql . "<br>" . mysqli_error($connessione);
-	
+    if (!($connessione->query($query)))
+        echo "<script> window.location.href = '../elenchi/stagioni_giornoSpeciale.php?error=Errore nel inserimento della stagione!';</script>";
+
+
 	// Fase 2: inserimento degli orari
-	
 	$idStagione = mysqli_insert_id($connessione);
 	
 	$supporto = "INSERT INTO stagioni_orari (id_stagione, giorno_settimana, id_fascia) VALUES ";
@@ -40,14 +39,12 @@
 		else
 			$supporto .= ", ";
 	}
-	
-	if (mysqli_query($connessione, $supporto))
-		echo "L'orario è stato caricato con successo<br>";
-	else
-		echo "Errore nella fase 2: " . $sql . "<br>" . mysqli_error($connessione);
-	
+
+    if (!($connessione->query($supporto)))
+        echo "<script> window.location.href = '../elenchi/stagioni_giornoSpeciale.php?error=Errore nel inserimento della stagione!';</script>";
+
+
 	// Fase 3: inserimento delle sale
-	
 	$supporto = "INSERT INTO stagioni_sale (id_stagione, id_sala) VALUES ";
 	
 	$n = count($sale);
@@ -62,12 +59,11 @@
 				$supporto .= ", ";
 		}
 	}
-	
-	if (mysqli_query($connessione, $supporto))
-		echo "Le sale sono state inserite con successo<br>";
-	else
-		echo "Errore nella fase 3: " . $sql . "<br>" . mysqli_error($connessione);
+
+    if (!($connessione->query($supporto)))
+        echo "<script> window.location.href = '../elenchi/stagioni_giornoSpeciale.php?error=Errore nel inserimento della stagione!';</script>";
+
+    echo "<script> window.location.href = '../elenchi/stagioni_giornoSpeciale.php?messaggio=Stagione inserita correttamente!';</script>";
 	
 	mysqli_close($connessione);
-	
 ?>

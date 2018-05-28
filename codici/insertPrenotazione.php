@@ -1,4 +1,15 @@
 <?php
+    // Connessione al DB
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = "ristorante";
+
+    $connessione = new mysqli($host, $user, $pass, $dbname);
+
+    if ($connessione->connect_errno) {
+        echo "Errore in connessione al DBMS: " . $connessione->error;
+    }
 	
 	$data = $_POST["giornata"];
 	$n = $_POST["num_persone"];
@@ -7,32 +18,22 @@
 	$nome = $_POST["cognome"];
 	$tel = $_POST["tel"];
 	$note = $_POST["note"];
-	
-	// Connessione al DB
-
-	$host = "localhost";
-	$user = "root";
-	$pass = "";
-	$dbname = "ristorante";
-
-	$connessione = mysqli_connect($host, $user, $pass);
-	$db_selected=mysqli_select_db($connessione, $dbname);
 
 
-	$sql = "INSERT INTO prenotazioni (`cliente`, `tel`, `num_partecipanti`, `giorno`, `orario`, `id_sala`, `note_prenotazione`, `scadenza`, `arrivo`, `chiusura`) 
+	$query = "INSERT INTO prenotazioni (`cliente`, `tel`, `num_partecipanti`, `giorno`, `orario`, `id_sala`, `note_prenotazione`, `scadenza`, `arrivo`, `chiusura`) 
 	VALUES ('" . $nome . "', '" . $tel . "', '" . $n . "', '" . $data . "', '" . $orario . "', '" . $sala . "', '" . $note . "', 0, 0, 0);";
 	
 	
-    if (mysqli_query($connessione, $sql))
-	{
-		$sql2 = "INSERT INTO storico ('nome_cliente', 'tel_cliente') VALUES ('" . $nome . "', '" . $tel . "');";
-		$result = mysqli_query($connessione, $sql2);
-		
-        header("Location: ../index.php?messaggio=Ricordiamo che la prenotazione verrà annullata per ritardo maggiore di 20 minuti.");
+    if(!($connessione->query($query)))
+        echo "<script> window.location.href = '../index.php?alert=Si sono verificati problemi durante la prenotazione, si prega di contattare il ristorante.';</script>";
+    else {
+        $query2 = "INSERT INTO storico ('nome_cliente', 'tel_cliente') VALUES ('" . $nome . "', '" . $tel . "');";
+
+        if(!($connessione->query($query2)))
+            echo "<script> window.location.href = '../index.php?alert=Si sono verificati problemi durante la prenotazione, si prega di contattare il ristorante.';</script>";
+        else
+            echo "<script> window.location.href = '../index.php?messaggio=Prenotazione effettuata con successa! (Ricordiamo che la prenotazione verrà annullata per ritardo maggiore di 20 minuti).';</script>";
     }
-	else
-        header("Location: ../index.php?alert=Si sono verificati problemi durante l'invio della prenotazione, si prega di contattare il ristorante.");
 
 	mysqli_close($connessione);
-
 ?>

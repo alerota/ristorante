@@ -1,4 +1,5 @@
 <?php
+    // Connessione al DB
 	$host = "localhost";
 	$user = "root";
 	$pass = "";
@@ -23,7 +24,7 @@
 			while ($row = $result->fetch_assoc()) {
 				$s .= $row['nome_stagione'];
 			}
-			echo "<script> window.location.href = '../elenchi/fasce.php?alert=Fascia usata nelle stagioni '" .$s. "'; </script>";
+			echo "<script> window.location.href = '../elenchi/fasce.php?alert=Fascia usata nelle stagioni '" .$s.  "'; </script>";
 		}
 		else {
 			$query = "DELETE FROM fasceorarie WHERE id_fascia = '$idFascia'"; 
@@ -36,6 +37,4 @@
 	}
 	
 	mysqli_close($connessione);
-	
-
 ?>

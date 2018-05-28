@@ -1,27 +1,26 @@
 <?php
+    // Connessione al DB
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = "ristorante";
+
+    $connessione = new mysqli($host, $user, $pass, $dbname);
+
+    if ($connessione->connect_errno) {
+        echo "Errore in connessione al DBMS: " . $connessione->error;
+    }
 
 	$nome = $_POST["nomeSala"];
 	$n = $_POST["numeroPosti"];
 
-	// Connessione al DB
-
-	$host = "localhost";
-	$user = "root";
-	$pass = "";
-	$dbname = "ristorante";
-
-	$connessione = mysqli_connect($host, $user, $pass);
-	$db_selected=mysqli_select_db($connessione, $dbname);
-
-
-	$sql = "INSERT INTO sale (Nome_sala, Numero_posti_prenotabili)
+	$query = "INSERT INTO sale (Nome_sala, Numero_posti_prenotabili)
 	VALUES ('" . $nome . "', '" . $n . "');";
 
-    if (mysqli_query($connessione, $sql))
-        header("Location: ../sale.php?messaggio=La sala è stata inserita correttamente");
+    if($connessione->query($query))
+        echo "<script> window.location.href = '../elenchi/sale.php?messaggio=Sala inserita correttamente!';</script>";
     else
-        header("Location: ../sale.php?alert=Errore nel inserimento");
+        echo "<script> window.location.href = '../elenchi/sale.php?alert=Errore nel inserimento della sala!';</script>";
 
 	mysqli_close($connessione);
-
 ?>

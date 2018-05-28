@@ -1,35 +1,30 @@
 <?php
+    // Connessione al DB
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = "ristorante";
 
-$username = $_POST["username"];
-$password = md5($_POST["password"]);
+    $connessione = new mysqli($host, $user, $pass, $dbname);
 
+    if ($connessione->connect_errno) {
+        echo "Errore in connessione al DBMS: " . $connessione->error;
+    }
 
-//gestire prenotazioni-sale
+    $username = $_POST["username"];
+    $password = md5($_POST["password"]);
 
-// Connessione al DB
+    if(isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $query = "UPDATE utenti SET username='$username', password='$password' WHERE id='$id'";
 
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "ristorante";
-
-$connessione = mysqli_connect($host, $user, $pass);
-$db_selected = mysqli_select_db($connessione, $dbname);
-
-if(isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $sql = "UPDATE utenti SET username='$username', password='$password' WHERE id='$id'";
-
-    if (mysqli_query($connessione, $sql))
-        header("Location: ../utenti.php?messaggio=L'utente è stato aggiornato correttamente");
+        if ($connessione->query($query))
+            echo "<script> window.location.href = '../elenchi/utenti.php?messaggio=Utente aggiornato correttamente!';</script>";
+        else
+            echo "<script> window.location.href = '../elenchi/utenti.php?error=Errore nella modifica del utente!';</script>";
+    }
     else
-        header("Location: ../utenti.php?alert=Errore nella modifica");
+        echo "<script> window.location.href = '../elenchi/utenti.php?error=Errore nella modifica del utente!';</script>";
 
     mysqli_close($connessione);
-}
-else
-    header("Location: ../utenti.php?alert=Errore nella modifica");
-
-
-
 ?>

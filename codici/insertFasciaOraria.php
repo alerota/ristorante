@@ -1,61 +1,57 @@
 <?php
+    // Connessione al DB
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = "ristorante";
+
+    $connessione = new mysqli($host, $user, $pass, $dbname);
+
+    if ($connessione->connect_errno) {
+        echo "Errore in connessione al DBMS: " . $connessione->error;
+    }
 
 	$nome = $_POST["nomeFascia"];
 	
 	$orari = array();
-	for($i=0; $i < 6; $i++)
-	{
+	for($i=0; $i < 6; $i++) {
 		if(isset($_POST["orarioFase" . $i]))
 			$orari[$i] = $_POST["orarioFase" . $i];
 		else
 			$orari[$i] = null;
 	}
 	
-	// Connessione al DB
-	
-	$host = "localhost";
-	$user = "root";
-	$pass = "";
-	$dbname = "ristorante";
+	$query = "SELECT MAX(id_fascia) As massimo FROM gestionefasceorarie";
+    $result = $connessione->query($query);
 
-	$connessione = mysqli_connect($host, $user, $pass);
-	$db_selected=mysqli_select_db($connessione, $dbname);
-	
-	$sql = "SELECT MAX(id_fascia) As massimo FROM gestionefasceorarie;";
-	$result = mysqli_query($connessione, $sql);
-	if ($result)
-	{
-		$row = mysqli_fetch_array($result);
+	if ($result) {
+        $row = $result->fetch_assoc();
 		$id = $row["massimo"] + 1;
 	}
 	else
 		$id = 1;
 
-	$sql = "INSERT INTO gestionefasceorarie (nome, id_fascia) VALUES ('" . $nome . "', '" . $id . "');";
+	$query = "INSERT INTO gestionefasceorarie (nome, id_fascia) VALUES ('" . $nome . "', '" . $id . "')";
 
-	if (mysqli_query($connessione, $sql))
-	{
-		echo "La fascia è stata inserita correttamente<br>";
-		
-		$sql = "INSERT INTO fasceorarie (id_fascia, orario, fase) VALUES ";
+	if ($connessione->query($query)) {
+	    $query = "INSERT INTO fasceorarie (id_fascia, orario, fase) VALUES ";
 		for($i=0; $i < 6; $i++)
 		{
 			if(sizeof($orari[$i]) > 0)
 				for($j=0; $j < sizeof($orari[$i]); $j++)
-					$sql .= "('" . $id . "', '" . $orari[$i][$j] . "', '" . $i . "'),";
-		}		
-		$sql = substr($sql, 0, strlen($sql) - 1) . ";";
+                    $query .= "('" . $id . "', '" . $orari[$i][$j] . "', '" . $i . "'),";
+		}
+        $query = substr($query, 0, strlen($query) - 1) . ";";
 		
 		
-		if (mysqli_query($connessione, $sql))
-			echo "L'orario è stato inserito correttamente<br>";
+		if ($connessione->query($query))
+            echo "<script> window.location.href = '../elenchi/fasce.php?messaggio=La fascia è stata inserita correttamente!';</script>";
 		else
-			echo "Errore: " . $sql . "<br>" . mysqli_error($connessione);
+            echo "<script> window.location.href = '../elenchi/fasce.php?error=Errore nel inserimento della fascia!';</script>";
 
 	}
 	else
-		echo "Errore: " . $sql . "<br>" . mysqli_error($connessione);
-	mysqli_close($connessione);
-	
+        echo "<script> window.location.href = '../elenchi/fasce.php?error=Errore nel inserimento della fascia!';</script>";
 
+	mysqli_close($connessione);
 ?>

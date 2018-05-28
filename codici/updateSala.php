@@ -1,85 +1,83 @@
 <?php
+    // Connessione al DB
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = "ristorante";
+
+    $connessione = new mysqli($host, $user, $pass, $dbname);
+
+    if ($connessione->connect_errno) {
+        echo "Errore in connessione al DBMS: " . $connessione->error;
+    }
 
 	$nome = $_POST["nomeSala"];
 	$n = $_POST["numeroPosti"];
 	$id = $_POST["idSala"];
 	
-	// Connessione al DB
-
-	$host = "localhost";
-	$user = "root";
-	$pass = "";
-	$dbname = "ristorante";
-
-	$connessione = mysqli_connect($host, $user, $pass);
-	$db_selected=mysqli_select_db($connessione, $dbname);
+	$query = "SELECT * FROM sale WHERE id_sala = " . $id . ";";
+    $result = $connessione->query($query);
+    $num = $result->num_rows;
 	
-	$sql = "SELECT * FROM sale WHERE id_sala = " . $id . ";";
-	$result = mysqli_query($connessione, $sql);
-	$num = mysqli_num_rows($result);
-	
-	if($num == 1)
-	{
-		$row = mysqli_fetch_array($result);
+	if($num == 1) {
+        $row = $result->fetch_assoc();
+
 		$oldNumber = $row["Numero_posti_prenotabili"];
 		$oldName =$row["Nome_sala"];
 		
-		if($oldNumber <= $n)
-		{
-			$sql = "UPDATE sale SET Nome_sala = '" . $nome . "', Numero_posti_prenotabili = " . $n . " WHERE id_sala = " . $id . ";";
-			$result2 = mysqli_query($connessione, $sql);
+		if($oldNumber <= $n) {
+			$query = "UPDATE sale SET Nome_sala = '" . $nome . "', Numero_posti_prenotabili = " . $n . " WHERE id_sala = " . $id . ";";
+			$result2 = $connessione->query($query);
 			
 			if($result2)
 				echo "Aggiornamento avvenuto con successo!";
 			else
 				echo "Aggiornamento fallito...";
 		}
-		else
-		{
-			$sql1 = "SELECT prenotazioni.giorno, sostegno.fase FROM `prenotazioni`
-				inner join (select distinct orario, fase from fasceorarie) as sostegno 
-				on prenotazioni.orario = sostegno.orario
+		else {
+			$query1 = "SELECT prenotazioni.giorno, sostegno.fase FROM `prenotazioni`
+				INNER JOIN (SELECT DISTINCT orario, fase FROM fasceorarie) AS sostegno 
+				ON prenotazioni.orario = sostegno.orario
 
-				WHERE prenotazioni.id_sala = " . $id . " and chiusura = 0
+				WHERE prenotazioni.id_sala = " . $id . " AND chiusura = 0
 
 				GROUP BY prenotazioni.giorno, sostegno.fase
-				HAVING sum(num_partecipanti) > " . $n . ";";
+				HAVING SUM(num_partecipanti) > " . $n . ";";
 				
-			$result1 = mysqli_query($connessione, $sql1);
+			$result1 = $connessione->query($query1);
 			
-			if($result1)
-			{
-				$numResult1 = mysqli_num_rows($result1);
+			if($result1) {
+				$numResult1 = $result1->num_rows;
 				$idDaCancellare = "(";
 				
-				for($i=0; $i < $numResult1; $i++)
-				{
-					$row1 = mysqli_fetch_array($result1);
-					$sql2 = 'SELECT * FROM `prenotazioni`
-						inner join (select distinct orario, fase from fasceorarie) as sostegno 
-						on prenotazioni.orario = sostegno.orario
+				for($i=0; $i < $numResult1; $i++) {
+                    $row1 = $result->fetch_assoc();
+					$query2 = 'SELECT * FROM `prenotazioni`
+						INNER JOIN (SELECT DISTINCT orario, fase FROM fasceorarie) AS sostegno 
+						ON prenotazioni.orario = sostegno.orario
 
-						WHERE prenotazioni.id_sala = ' . $id . ' and sostegno.fase = ' . $row1["fase"] . ' and prenotazioni.giorno = "' . $row1["giorno"] . '";';
+						WHERE prenotazioni.id_sala = ' . $id . ' AND sostegno.fase = ' . $row1["fase"] . ' AND prenotazioni.giorno = "' . $row1["giorno"] . '";';
 					
-					$result2 = mysqli_query($connessione, $sql2);
+					$result2 = $connessione->query($query2);
 					
-					if($result2)
-					{
-						$numResult2 = mysqli_num_rows($result2);
+					if($result2) {
+						$numResult2 = $result2->num_rows;
 						
 						$inserimento = "INSERT INTO prenotazionidarevisionare (id_prenotazione, cliente, tel, num_partecipanti, giorno, orario, id_sala, note_prenotazione)
 							VALUES ";
 						
-						for($j=0; $j < $numResult2; $j++)
-						{
-							$row = mysqli_fetch_array($result2);
+						for($j=0; $j < $numResult2; $j++) {
+							$row = $result2->fetch_assoc();
+
 							$inserimento .= "(" . $row["id_prenotazione"] . ", '" . $row["cliente"] . "', '" . $row["tel"] . "', " . $row["num_partecipanti"] . ", '" . $row["giorno"] . "', '" . $row["orario"] . "', " . $row["id_sala"] . ", '" . $row["note_prenotazione"] . "')";
 							$idDaCancellare .= $row["id_prenotazione"] . ", ";
+
 							if($j + 1 < $numResult2)
 								$inserimento .= ", ";
 							else
 								$inserimento .= ";";
 						}
+
 						// echo $inserimento . "<br>" . mysqli_errno($connessione) . " - " . mysqli_error($connessione);
 						$resultIntermedio = mysqli_query($connessione, $inserimento);
 						
@@ -89,17 +87,16 @@
 							echo "Errore<br>";
 					}
 				}
-				if($idDaCancellare != "(")
-				{
+				if($idDaCancellare != "(") {
 					$idDaCancellare = substr($idDaCancellare, 0, strlen($idDaCancellare) - 2) . ")";
 					
-					$sql3 = "DELETE FROM prenotazioni WHERE id_prenotazione IN " . $idDaCancellare . ";";
+					$query3 = "DELETE FROM prenotazioni WHERE id_prenotazione IN " . $idDaCancellare . ";";
 					
-					$resultIntermedio = mysqli_query($connessione, $sql3);
+					$resultIntermedio = $connessione->query($query3);
 				}
 				
-				$sql = "UPDATE sale SET Nome_sala = '" . $nome . "', Numero_posti_prenotabili = " . $n . " WHERE id_sala = " . $id . ";";
-				$result2 = mysqli_query($connessione, $sql);
+				$query = "UPDATE sale SET Nome_sala = '" . $nome . "', Numero_posti_prenotabili = " . $n . " WHERE id_sala = " . $id . ";";
+				$result2 = $connessione->query($query);
 				
 				if($result2)
 					echo "Aggiornamento avvenuto con successo!";
@@ -113,7 +110,8 @@
 	}
 	else
 		echo "Errore: conflitto di id";
+
+    echo "<script> window.location.href = '../elenca/sale.php'; </script>";
 	
 	mysqli_close($connessione);
-	echo "<script> window.location.href = '../sale.php'; </script>";
 ?>
