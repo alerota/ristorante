@@ -34,7 +34,7 @@
 	else {
 		// Prendo il primo risultato
         $row1 = $result->fetch_assoc();
-
+		$idStagione = $row1["id_stagione"];
 		$idFascia = $row1["id_fascia"];
 		
 		// Ricerca 
@@ -54,7 +54,7 @@
 				
 				$finale .= "<option value='" . $row2["fase"] . "'>" . $fasiNomi[$row2["fase"]] . "</option>";
 			}
-			echo $finale . "</select>";
+			echo $finale . "</select>" . "<input type='hidden' name='stagione' value='" . $idStagione . "'/>";
 		}
 	}
 

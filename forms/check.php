@@ -46,6 +46,8 @@ function ricercaSicura()
 function fase2()
 {
 	ricercaSaleDisponibili();
+	document.getElementById("fase123").value = document.getElementById("fase").value;
+	
 	if(document.getElementById("l1").classList.contains("active"))
 		document.getElementById("l1").classList.remove("active");
 	if(!document.getElementById("l2").classList.contains("active"))
@@ -175,6 +177,7 @@ function ricercaSaleAdmin()
 					<label for="fase">Fase</label>
 					<div id="selezioneFasi" onload="ricercaFasiDisponibili();"></div>
 				</div>
+				<input type="hidden" name="fase123" id="fase123"/>
 				<input type="hidden" name="giornata" id="giornata" value="<?php echo $_GET["date"]; ?>" />
 			</fieldset>
 			<br>

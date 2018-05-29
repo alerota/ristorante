@@ -121,7 +121,9 @@ class Calendar {
         	if($this->currentDate < Date('Y-m-d', time()))
 				$string .= '<div id="li-'.$this->currentDate.'" class="col-xs-1 text-center" style="background-color: #AAAAAA; ">'.$cellContent.'</div>';
         	else if($this->_isClosed($this->currentDate))
-                $string .= '<div id="li-'.$this->currentDate.'" class="col-xs-1 text-center" style="background-color: #FF0000; ">'.$cellContent.'</div>';
+                $string .= '<div id="li-'.$this->currentDate.'" class="col-xs-1 text-center" style="background-color: rgb(255, 128, 0); ">'.$cellContent.'</div>';
+			else if($this->_hasNoStagione($this->currentDate))
+                $string .= '<div id="li-'.$this->currentDate.'" class="col-xs-1 text-center" style="background-color: rgb(64, 134, 51); ">'.$cellContent.'</div>';
 			else
 			{
 				$string .= '<a href="index.php?date='.$this->currentDate.'"><div id="li-'.$this->currentDate.'" class="';
@@ -143,7 +145,7 @@ class Calendar {
     */
     private function _createNavi()
     {
-         
+        $mesi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
         $nextMonth = $this->currentMonth==12?1:intval($this->currentMonth)+1;
         $nextYear = $this->currentMonth==12?intval($this->currentYear)+1:$this->currentYear;
         $preMonth = $this->currentMonth==1?12:intval($this->currentMonth)-1;
@@ -156,7 +158,7 @@ class Calendar {
         return
             '<div class="header row">'.
                 '<a class="prev col-xs-2 text-center" href="'.$sostegno.'month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Prev</a>'.
-                    '<span class="title col-xs-8 text-center">'.date('Y F',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
+                    '<span class="title col-xs-8 text-center">'.date('Y',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')) . " " . $mesi[date('n',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')) - 1] . '</span>'.
                 '<a class="next col-xs-2 text-center" href="'.$sostegno.'month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Next</a>'.
             '</div>';
 			
@@ -221,7 +223,6 @@ class Calendar {
         return date('t',strtotime($year.'-'.$month.'-01'));
     }
 
-
     private function _isClosed($day)
     {
         // Connessione al DB
@@ -235,8 +236,8 @@ class Calendar {
         if ($connessione->connect_errno) {
             echo "Errore in connessione al DBMS: " . $connessione->error;
         }
-
-        $query = "SELECT * FROM stagioni NATURAL JOIN stagioni_orari WHERE priorita = 10 and id_fascia = -1 AND '$day' >= giorno_inizio and '$day' <= giorno_fine AND giorno_settimana = " . (date("w", strtotime(str_replace('-','/', $day))+1 ));
+		$day_support = "x" . substr($day, strpos($day, "-"));
+        $query = "SELECT * FROM stagioni NATURAL JOIN stagioni_orari WHERE id_fascia = -1 AND (('$day' >= giorno_inizio and '$day' <= giorno_fine) or (giorno_inizio = '$day_support')) AND giorno_settimana = " . (date("w", strtotime(str_replace('-','/', $day))-1) % 7);
         $result = $connessione->query($query);
 
        if($result->num_rows != 0) {
@@ -244,5 +245,29 @@ class Calendar {
         }
 
         return false;
+    }
+
+    private function _hasNoStagione($day)
+    {
+        // Connessione al DB
+        $host = "localhost";
+        $user = "root";
+        $pass = "";
+        $dbname = "ristorante";
+
+        $connessione = new mysqli($host, $user, $pass, $dbname);
+
+        if ($connessione->connect_errno) {
+            echo "Errore in connessione al DBMS: " . $connessione->error;
+        }
+		$day_support = "x" . substr($day, strpos($day, "-"));
+        $query = "SELECT * FROM stagioni WHERE ('$day' >= giorno_inizio and '$day' <= giorno_fine) or (giorno_inizio = '$day_support');";
+        $result = $connessione->query($query);
+
+       if($result->num_rows != 0) {
+            return false;
+        }
+
+        return true;
     }
 }
