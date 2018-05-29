@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d4f1bd17-3233-491a-8e4b-c4f4366622cb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/classi/calendar.php" afterPath="$PROJECT_DIR$/classi/calendar.php" />
+      <change beforePath="$PROJECT_DIR$/classi/calendarAdmin.php" afterPath="$PROJECT_DIR$/classi/calendarAdmin.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,87 +27,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="insertUtente.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/codici/insertUtente.php">
+      <file leaf-file-name="calendar.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classi/calendar.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="128" />
+            <state relative-caret-position="362">
+              <caret line="122" column="12" lean-forward="false" selection-start-line="122" selection-start-column="12" selection-end-line="123" selection-end-column="153" />
               <folding>
-                <marker date="1527524722616" expanded="true" signature="398:441" ph="SELECT * FRO... utenti" />
-                <marker date="1527524722616" expanded="true" signature="684:752" ph="INSERT INTO utenti... " />
+                <marker date="1527615331863" expanded="true" signature="1475:1771" ph="..." />
+                <marker date="1527615331863" expanded="true" signature="1652:1771" ph="..." />
+                <marker date="1527615331863" expanded="true" signature="1698:1771" ph="..." />
+                <marker date="1527615331863" expanded="true" signature="3370:3388" ph="..." />
+                <marker date="1527615331863" expanded="true" signature="5663:5682" ph="..." />
+                <marker date="1527615331863" expanded="true" signature="7292:7349" ph="SELECT * FRO... stagioni" />
+                <marker date="1527615331863" expanded="true" signature="7292:7409" ph="SELECT * FRO... stagioni" />
+                <marker date="1527615331863" expanded="true" signature="7292:7420" ph="SELECT * FRO... stagioni" />
+                <marker date="1527615331863" expanded="true" signature="7292:7458" ph="SELECT * FRO... stagioni" />
+                <marker date="1527615331863" expanded="true" signature="7292:7459" ph="SELECT * FRO... stagioni" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="insertFasciaOraria.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/codici/insertFasciaOraria.php">
+      <file leaf-file-name="calendarAdmin.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/classi/calendarAdmin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="55" column="4" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="31" />
+            <state relative-caret-position="226">
+              <caret line="155" column="153" lean-forward="false" selection-start-line="155" selection-start-column="153" selection-end-line="155" selection-end-column="153" />
               <folding>
-                <marker date="1527522660040" expanded="true" signature="505:562" ph="SELECT MAX(i... gestionefasceorarie" />
-                <marker date="1527522660040" expanded="true" signature="725:814" ph="INSERT INTO gestionefasceorarie... " />
-                <marker date="1527522660040" expanded="true" signature="869:925" ph="INSERT INTO fasceorarie... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AggiuntaNuovaFasciaOraria.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/forms/AggiuntaNuovaFasciaOraria.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#fieldset#0;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1527581538239" expanded="true" signature="322:374" ph="select * fro... gestionefasceorarie" />
-                <marker date="1527581538239" expanded="true" signature="606:687" ph="select * fro... fasceorarie" />
-                <marker date="1527581538239" expanded="true" signature="1981:1989" ph="..." />
-                <marker date="1527581538239" expanded="true" signature="4314:4366" ph="select * fro... gestionefasceorarie" />
-                <marker date="1527581538239" expanded="true" signature="4567:4710" ph="..." />
-                <marker date="1527581538239" expanded="true" signature="5485:5516" ph="..." />
-                <marker date="1527581538239" expanded="true" signature="6914:6962" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ricercaFasciaOrariaAdmin.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/codici/ricercaFasciaOrariaAdmin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-26">
-              <caret line="81" column="16" lean-forward="true" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="47" />
-              <folding>
-                <marker date="1527525249415" expanded="true" signature="521:889" ph="SELECT * FRO... Stagioni" />
-                <marker date="1527525249415" expanded="true" signature="1386:2785" ph="select stagi... stagioni_sale" />
-                <marker date="1527525249415" expanded="true" signature="1546:2007" ph="select sale.... sale" />
-                <marker date="1527525249415" expanded="true" signature="2022:2600" ph="select disti... sale" />
-                <marker date="1527525249415" expanded="true" signature="2191:2262" ph="select fasce... fasceorarie" />
-                <marker date="1527525249415" expanded="true" signature="2307:2478" ph="select preno... prenotazioni" />
-                <marker date="1527525249415" expanded="true" signature="3336:4027" ph="select soste... id_sala" />
-                <marker date="1527525249415" expanded="true" signature="3435:3798" ph="select sale.... sale" />
-                <marker date="1527525249415" expanded="true" signature="3841:3911" ph="select * fro... prenotazioni" />
-                <marker date="1527525249415" expanded="true" signature="4288:4305" ph="..." />
-                <marker date="1527525249415" expanded="true" signature="4795:4811" ph="..." />
-                <marker date="1527525249415" expanded="true" signature="5103:5120" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ricercaFasi.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/codici/ricercaFasi.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="8" lean-forward="true" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="39" />
-              <folding>
-                <marker date="1527525249480" expanded="true" signature="490:858" ph="SELECT * FRO... Stagioni" />
-                <marker date="1527525249480" expanded="true" signature="980:1012" ph="..." />
-                <marker date="1527525249480" expanded="true" signature="1189:1245" ph="SELECT DISTI... fasceorarie" />
-                <marker date="1527525249480" expanded="true" signature="1204:1245" ph="select disti... fasceorarie" />
-                <marker date="1527525249480" expanded="true" signature="1388:1420" ph="..." />
+                <marker date="1527615390587" expanded="true" signature="1557:1853" ph="..." />
+                <marker date="1527615390587" expanded="true" signature="1734:1853" ph="..." />
+                <marker date="1527615390587" expanded="true" signature="1780:1853" ph="..." />
+                <marker date="1527615390587" expanded="true" signature="2861:2948" ph="SELECT SUM(n... prenotazioni" />
+                <marker date="1527615390587" expanded="true" signature="3737:3770" ph="..." />
+                <marker date="1527615390587" expanded="true" signature="4157:4175" ph="..." />
+                <marker date="1527615390587" expanded="true" signature="6453:6472" ph="..." />
+                <marker date="1527615390587" expanded="true" signature="8081:8248" ph="SELECT * FRO... stagioni" />
               </folding>
             </state>
           </provider>
@@ -114,8 +70,8 @@
       <file leaf-file-name="updateSala.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/codici/updateSala.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1904">
-              <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+            <state relative-caret-position="-7">
+              <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding>
                 <marker date="1527525307891" expanded="true" signature="395:430" ph="SELECT * FRO... sale" />
                 <marker date="1527525307891" expanded="true" signature="698:797" ph="UPDATE sale... " />
@@ -127,6 +83,29 @@
                 <marker date="1527525307891" expanded="true" signature="3127:3177" ph="DELETE FROM prenotazioni... " />
                 <marker date="1527525307891" expanded="true" signature="3290:3389" ph="UPDATE sale... " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clienti.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/elenchi/clienti.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-7">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1527520640936" expanded="true" signature="1047:1068" ph="SELECT * FRO... storico" />
+                <marker date="1527520640936" expanded="true" signature="2046:2065" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ricercaFasciaOraria.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/codici/ricercaFasciaOraria.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-7">
+              <caret line="164" column="4" lean-forward="false" selection-start-line="164" selection-start-column="4" selection-end-line="164" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -195,6 +174,8 @@
         <option value="$PROJECT_DIR$/codici/ricercaFasciaOrariaAdmin.php" />
         <option value="$PROJECT_DIR$/codici/ricercaFasi.php" />
         <option value="$PROJECT_DIR$/codici/updateSala.php" />
+        <option value="$PROJECT_DIR$/classi/calendar.php" />
+        <option value="$PROJECT_DIR$/classi/calendarAdmin.php" />
       </list>
     </option>
   </component>
@@ -208,7 +189,7 @@
     <packageJsonPaths />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -240,7 +221,22 @@
             <path>
               <item name="ristorante" type="b2602c69:ProjectViewProjectNode" />
               <item name="ristorante" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="forms" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="classi" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ristorante" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ristorante" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="codici" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ristorante" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ristorante" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="elenchi" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ristorante" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ristorante" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="style" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -329,18 +325,19 @@
       <workItem from="1527253290696" duration="7742000" />
       <workItem from="1527265169656" duration="525000" />
       <workItem from="1527521567062" duration="4302000" />
-      <workItem from="1527580449695" duration="924000" />
+      <workItem from="1527580449695" duration="1757000" />
+      <workItem from="1527607301573" duration="6731000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71520000" />
+    <option name="totallyTimeSpent" value="79084000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16204691" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07569297" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -371,16 +368,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/menu.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="82" lean-forward="false" selection-start-line="16" selection-start-column="82" selection-end-line="16" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login.php" />
-    <entry file="file://$PROJECT_DIR$/insertUtente.php" />
-    <entry file="file://$PROJECT_DIR$/utenti.php" />
     <entry file="file://$PROJECT_DIR$/menu.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -533,56 +520,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="128" />
-          <folding>
-            <marker date="1527524722616" expanded="true" signature="398:441" ph="SELECT * FRO... utenti" />
-            <marker date="1527524722616" expanded="true" signature="684:752" ph="INSERT INTO utenti... " />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/codici/ricercaFasciaOraria.php">
+    <entry file="file://$PROJECT_DIR$/codici/insertFasciaOraria.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="164" column="4" lean-forward="false" selection-start-line="164" selection-start-column="4" selection-end-line="164" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/codici/updateSala.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1904">
-          <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-          <folding>
-            <marker date="1527525307891" expanded="true" signature="395:430" ph="SELECT * FRO... sale" />
-            <marker date="1527525307891" expanded="true" signature="698:797" ph="UPDATE sale... " />
-            <marker date="1527525307891" expanded="true" signature="996:1326" ph="SELECT preno... prenotazioni" />
-            <marker date="1527525307891" expanded="true" signature="1074:1119" ph="SELECT DISTI... fasceorarie" />
-            <marker date="1527525307891" expanded="true" signature="1589:1884" ph="SELECT * FRO... prenotazioni" />
-            <marker date="1527525307891" expanded="true" signature="1636:1681" ph="SELECT DISTI... fasceorarie" />
-            <marker date="1527525307891" expanded="true" signature="2035:2180" ph="INSERT INTO prenotazionidarevisionare... " />
-            <marker date="1527525307891" expanded="true" signature="3127:3177" ph="DELETE FROM prenotazioni... " />
-            <marker date="1527525307891" expanded="true" signature="3290:3389" ph="UPDATE sale... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/codici/ricercaFasi.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="8" lean-forward="true" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="39" />
-          <folding>
-            <marker date="1527525249480" expanded="true" signature="490:858" ph="SELECT * FRO... Stagioni" />
-            <marker date="1527525249480" expanded="true" signature="980:1012" ph="..." />
-            <marker date="1527525249480" expanded="true" signature="1189:1245" ph="SELECT DISTI... fasceorarie" />
-            <marker date="1527525249480" expanded="true" signature="1204:1245" ph="select disti... fasceorarie" />
-            <marker date="1527525249480" expanded="true" signature="1388:1420" ph="..." />
-          </folding>
+        <state relative-caret-position="935">
+          <caret line="55" column="4" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/codici/ricercaFasciaOrariaAdmin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="81" column="16" lean-forward="true" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="47" />
+        <state relative-caret-position="17">
+          <caret line="1" column="4" lean-forward="true" selection-start-line="1" selection-start-column="4" selection-end-line="11" selection-end-column="5" />
           <folding>
             <marker date="1527525249415" expanded="true" signature="521:889" ph="SELECT * FRO... Stagioni" />
             <marker date="1527525249415" expanded="true" signature="1386:2785" ph="select stagi... stagioni_sale" />
@@ -600,25 +551,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/codici/insertFasciaOraria.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="4" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="31" />
-          <folding>
-            <marker date="1527522660040" expanded="true" signature="505:562" ph="SELECT MAX(i... gestionefasceorarie" />
-            <marker date="1527522660040" expanded="true" signature="725:814" ph="INSERT INTO gestionefasceorarie... " />
-            <marker date="1527522660040" expanded="true" signature="869:925" ph="INSERT INTO fasceorarie... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/forms/AggiuntaNuovaFasciaOraria.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
           <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#fieldset#0;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <marker date="1527581538239" expanded="true" signature="322:374" ph="select * fro... gestionefasceorarie" />
             <marker date="1527581538239" expanded="true" signature="606:687" ph="select * fro... fasceorarie" />
             <marker date="1527581538239" expanded="true" signature="1981:1989" ph="..." />
@@ -626,6 +563,101 @@
             <marker date="1527581538239" expanded="true" signature="4567:4710" ph="..." />
             <marker date="1527581538239" expanded="true" signature="5485:5516" ph="..." />
             <marker date="1527581538239" expanded="true" signature="6914:6962" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/calendar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="66" column="24" lean-forward="false" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codici/ricercaFasciaOraria.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="164" column="4" lean-forward="false" selection-start-line="164" selection-start-column="4" selection-end-line="164" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elenchi/clienti.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1527520640936" expanded="true" signature="1047:1068" ph="SELECT * FRO... storico" />
+            <marker date="1527520640936" expanded="true" signature="2046:2065" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codici/ricercaFasi.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="26" column="49" lean-forward="true" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+          <folding>
+            <marker date="1527525249480" expanded="true" signature="490:858" ph="SELECT * FRO... Stagioni" />
+            <marker date="1527525249480" expanded="true" signature="980:1012" ph="..." />
+            <marker date="1527525249480" expanded="true" signature="1189:1245" ph="SELECT DISTI... fasceorarie" />
+            <marker date="1527525249480" expanded="true" signature="1204:1245" ph="select disti... fasceorarie" />
+            <marker date="1527525249480" expanded="true" signature="1388:1420" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codici/updateSala.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding>
+            <marker date="1527525307891" expanded="true" signature="395:430" ph="SELECT * FRO... sale" />
+            <marker date="1527525307891" expanded="true" signature="698:797" ph="UPDATE sale... " />
+            <marker date="1527525307891" expanded="true" signature="996:1326" ph="SELECT preno... prenotazioni" />
+            <marker date="1527525307891" expanded="true" signature="1074:1119" ph="SELECT DISTI... fasceorarie" />
+            <marker date="1527525307891" expanded="true" signature="1589:1884" ph="SELECT * FRO... prenotazioni" />
+            <marker date="1527525307891" expanded="true" signature="1636:1681" ph="SELECT DISTI... fasceorarie" />
+            <marker date="1527525307891" expanded="true" signature="2035:2180" ph="INSERT INTO prenotazionidarevisionare... " />
+            <marker date="1527525307891" expanded="true" signature="3127:3177" ph="DELETE FROM prenotazioni... " />
+            <marker date="1527525307891" expanded="true" signature="3290:3389" ph="UPDATE sale... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classi/calendar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="122" column="12" lean-forward="false" selection-start-line="122" selection-start-column="12" selection-end-line="123" selection-end-column="153" />
+          <folding>
+            <marker date="1527615331863" expanded="true" signature="1475:1771" ph="..." />
+            <marker date="1527615331863" expanded="true" signature="1652:1771" ph="..." />
+            <marker date="1527615331863" expanded="true" signature="1698:1771" ph="..." />
+            <marker date="1527615331863" expanded="true" signature="3370:3388" ph="..." />
+            <marker date="1527615331863" expanded="true" signature="5663:5682" ph="..." />
+            <marker date="1527615331863" expanded="true" signature="7292:7349" ph="SELECT * FRO... stagioni" />
+            <marker date="1527615331863" expanded="true" signature="7292:7409" ph="SELECT * FRO... stagioni" />
+            <marker date="1527615331863" expanded="true" signature="7292:7420" ph="SELECT * FRO... stagioni" />
+            <marker date="1527615331863" expanded="true" signature="7292:7458" ph="SELECT * FRO... stagioni" />
+            <marker date="1527615331863" expanded="true" signature="7292:7459" ph="SELECT * FRO... stagioni" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classi/calendarAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="155" column="153" lean-forward="false" selection-start-line="155" selection-start-column="153" selection-end-line="155" selection-end-column="153" />
+          <folding>
+            <marker date="1527615390587" expanded="true" signature="1557:1853" ph="..." />
+            <marker date="1527615390587" expanded="true" signature="1734:1853" ph="..." />
+            <marker date="1527615390587" expanded="true" signature="1780:1853" ph="..." />
+            <marker date="1527615390587" expanded="true" signature="2861:2948" ph="SELECT SUM(n... prenotazioni" />
+            <marker date="1527615390587" expanded="true" signature="3737:3770" ph="..." />
+            <marker date="1527615390587" expanded="true" signature="4157:4175" ph="..." />
+            <marker date="1527615390587" expanded="true" signature="6453:6472" ph="..." />
+            <marker date="1527615390587" expanded="true" signature="8081:8248" ph="SELECT * FRO... stagioni" />
           </folding>
         </state>
       </provider>

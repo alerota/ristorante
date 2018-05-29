@@ -120,6 +120,8 @@ class Calendar {
 		{
         	if($this->currentDate < Date('Y-m-d', time()))
 				$string .= '<div id="li-'.$this->currentDate.'" class="col-xs-1 text-center" style="background-color: #AAAAAA; ">'.$cellContent.'</div>';
+        	else if($this->_isClosed($this->currentDate))
+                $string .= '<div id="li-'.$this->currentDate.'" class="col-xs-1 text-center" style="background-color: #FF0000; ">'.$cellContent.'</div>';
 			else
 			{
 				$string .= '<a href="index.php?date='.$this->currentDate.'"><div id="li-'.$this->currentDate.'" class="';
@@ -218,5 +220,29 @@ class Calendar {
              
         return date('t',strtotime($year.'-'.$month.'-01'));
     }
-     
-}
+
+
+    private function _isClosed($day)
+    {
+        // Connessione al DB
+        $host = "localhost";
+        $user = "root";
+        $pass = "";
+        $dbname = "ristorante";
+
+        $connessione = new mysqli($host, $user, $pass, $dbname);
+
+        if ($connessione->connect_errno) {
+            echo "Errore in connessione al DBMS: " . $connessione->error;
+        }
+
+        $query = "SELECT * FROM stagioni NATURAL JOIN stagioni_orari WHERE priorita = 10 and id_fascia = -1 AND '$day' >= giorno_inizio and '$day' <= giorno_fine AND giorno_settimana = " . (date("w", strtotime(str_replace('-','/', $day))+1 ));
+        $result = $connessione->query($query);
+
+       if($result->num_rows != 0) {
+            return true;
+        }
+
+        return false;
+    }
+}
