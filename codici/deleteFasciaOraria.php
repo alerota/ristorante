@@ -14,7 +14,7 @@
 	if(isset($_GET['id'])) {
 		$idFascia = $_GET['id'];
 		
-		$query = "SELECT * FROM stagioni_orari NATURAL JOIN stagioni WHERE id_fascia='$idFascia'";
+		$query = "SELECT distinct nome_stagione FROM stagioni_orari NATURAL JOIN stagioni WHERE id_fascia='$idFascia'";
 
 		$result = $connessione->query($query);
 		$numrows = $result->num_rows;
@@ -22,9 +22,10 @@
 		if ($numrows != 0) {
 			$s = "";
 			while ($row = $result->fetch_assoc()) {
-				$s .= $row['nome_stagione'];
+				$s .= $row['nome_stagione'] . ", ";
 			}
-			echo "<script> window.location.href = '../elenchi/fasce.php?alert=Fascia usata nelle stagioni '" .$s.  "'; </script>";
+			$s = substr($s, 0, strlen($s) - 2) . ".";
+			echo "<script> window.location.href = '../elenchi/fasce.php?alert=Fascia in uso: '" .$s.  "'; </script>";
 		}
 		else {
 			$query = "DELETE FROM fasceorarie WHERE id_fascia = '$idFascia'"; 

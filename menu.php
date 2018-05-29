@@ -80,6 +80,11 @@
 				border-left-color:#555;
 			 }
 			  
+			.dropdown-menu li {
+				padding-top: 2.5px;
+				padding-bottom: 2.5px;
+			 }
+			
 			@media (max-width: 767px) {
 			  .navbar-nav  {
 				 display: inline;
@@ -120,7 +125,6 @@
 			   li.dropdown.open {
 				border: 0px solid red;
 			   }
-
 			}
 			 
 			@media (min-width: 768px) {
@@ -166,7 +170,6 @@
 								<ul class="dropdown-menu">
 									<li><a href="http://localhost/ristorante/index.php">Aggiungi prenotazione</a></li>
 									<li><a href="#">Aggiungi festa</a></li>
-									<li><a href="http://localhost/ristorante/elenchi/prenotazioni.php?date=' . $today . '">Elenca prenotati (oggi)</a></li>
 									<li><a href="http://localhost/ristorante/elenchi/prenotazioni.php">Elenca prenotati</a></li>
 									<li><a href="http://localhost/ristorante/elenchi/revisionare.php">Da revisionare</a></li>
 									<li><a href="http://localhost/ristorante/elenchi/clienti.php">Storico</a></li>
@@ -178,13 +181,19 @@
 									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovaStagione.php">Aggiungi stagione</a></li>
 									<li><a href="http://localhost/ristorante/forms/AggiuntaGiornoSpeciale.php">Aggiungi giorno speciale</a></li>
 									<li><a href="http://localhost/ristorante/elenchi/stagioni_giorniSpeciali.php">Elenca stagioni</a></li>
-									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovaFasciaOraria.php">Aggiungi fascia oraria</a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Fasce<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovaFasciaOraria.php">Aggiungi fascia</a></li>
+									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovaFasciaOraria.php?id=-1">Modifica fasce</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Utenti<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovoUtente.php">Aggiunti utente</a></li>
+									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovoUtente.php">Aggiungi utente</a></li>
 									<li><a href="http://localhost/ristorante/elenchi/utenti.php">Elenca utenti</a></li>
 								</ul>
 							</li>';
