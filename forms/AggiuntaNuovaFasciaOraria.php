@@ -59,17 +59,14 @@
 			$('[data-toggle="tooltip"]').tooltip();   
 		});
 		
-		var conteggi = [ 0, 0, 0, 0, 0, 0];
-		
 		function aggiungiOrario(a)
 		{
 			var b = document.getElementById(a).innerHTML;
 			var c = a.substring(4);
 			document.getElementById(a).innerHTML = b.replace("<br>", 
-			'<div class="row" id="Riga' + conteggi[c] + '"><div class="col-md-8"><input type="text" id="Casella' + conteggi[c] + '" name="orario' + a + '[]" class="form-control" placeholder="Orario"><span class="help-block"></span></div><div class="col-xs-4"><button onclick="deleteRow(\'' + conteggi[c] + '\');" class="btn btn-danger center-text" type="button" >&#10006;</button></div></div><br>');
+			'<div class="row" id="Riga' + a + conteggi[c] + '"><div class="col-md-8"><input type="text" id="Casella' + a + conteggi[c] + '" name="orario' + a + '[]" class="form-control" placeholder="Orario"><span class="help-block"></span></div><div class="col-xs-4"><button onclick="deleteRow(\'' + a + conteggi[c] + '\');" class="btn btn-danger center-text" type="button" >&#10006;</button></div></div><br>');
 			
 			conteggi[c]++;
-			// '<input type="text" name="orario' + a + '[]" class="form-control" placeholder="Orario"><span class="help-block"></span><br>');
 		}
 		function refresh()
 		{
@@ -145,7 +142,7 @@
 								$select = '
 									<legend>Scegli la fascia</legend>
 									<div class="form-group">
-										<label for="sel0">Seleziona l\'orario</label>
+										<label for="nomeFascia">Seleziona l\'orario</label>
 										<select class="form-control"  name="nomeFascia" id="nomeFascia" onchange="refresh();">';
 
 								for($i=0; $i < $num_result; $i++)
@@ -182,6 +179,7 @@
 								<?php
 									$fasi = array("Colazione", "Brunch", "Pranzo", "Aperitivo", "Cena", "Serata");
 									$num = count($fasi);
+									$echo = "var conteggi = [ ";
 									
 									for($i=0; $i < $num; $i++)
 									{
@@ -193,19 +191,24 @@
 										<div id="Fase' . $i . '" class="row">';
 										
 										if(isset($orari[$i]))
+										{
+											$echo .= sizeof($orari[$i]) . ", ";
 											for($j = 0; $j < sizeof($orari[$i]); $j++)
-												echo '<div class="row" id="Riga' . $i . $orari[$i][$j] . '">
+												echo '<div class="row" id="RigaFase' . $i . $j . '">
 											<div class="col-md-8">
-												<input type="text" id="Casella' . $i . $orari[$i][$j] . '" name="orario' . $i . '[]" class="form-control" value="' . $orari[$i][$j] . '" placeholder="Orario">
+												<input type="text" id="CasellaFase' . $i . $j . '" name="orario' . $i . '[]" class="form-control" value="' . $orari[$i][$j] . '" placeholder="Orario">
 												<span class="help-block"></span>
 											</div>
 											<div class="col-xs-4">
-												<button onclick="deleteRow(\'' . $i . $orari[$i][$j] . '\');" class="btn btn-danger center-text" type="button" >
+												<button onclick="deleteRow(\'Fase' . $i . $j . '\');" class="btn btn-danger center-text" type="button" >
 													&#10006;
 												</button>
 											</div>
 											</div>
 											';
+										}
+										else
+											$echo .= "0, ";
 										
 										echo '<br>
 											<button onclick="aggiungiOrario(\'Fase' . $i . '\');" class="btn btn-primary" type="button" >
@@ -216,6 +219,9 @@
 										if(($i + 1) % 2 == 0)
 											echo '</div>';
 									}
+									
+									$echo = substr($echo, 0, strlen($echo) - 2) . "];";
+									echo "<script>$echo;</script>";
 								
 								?>
 							
