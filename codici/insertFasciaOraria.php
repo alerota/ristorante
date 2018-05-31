@@ -39,7 +39,8 @@
 		{
 			if(sizeof($orari[$i]) > 0)
 				for($j=0; $j < sizeof($orari[$i]); $j++)
-                    $query .= "('" . $id . "', '" . $orari[$i][$j] . "', '" . $i . "'),";
+					if($orari[$i][$j] != "")
+						$query .= "('" . $id . "', '" . $orari[$i][$j] . "', '" . $i . "'),";
 		}
         $query = substr($query, 0, strlen($query) - 1) . ";";
 		
