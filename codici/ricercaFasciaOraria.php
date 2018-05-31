@@ -81,7 +81,7 @@
 			$saleLibereInGiornata = 0;
 		
 		if($saleLibereInGiornata == 0)
-			echo "Non sono disponibili sale nella data selezionata...";
+			$finale = "Non sono disponibili sale nella data selezionata...";
 		else {
 			$fasiNomi = array("Colazione", "Brunch", "Pranzo", "Aperitivo", "Cena", "Serata");
 			$finale = "";
@@ -153,13 +153,13 @@
 						$finale = str_replace($sostegno, 'style="display: none;"', $finale);
 				}
 			}
-			
-			if(isset($_COOKIE["login"]))
-				$finale .= '<hr><button onclick="ricercaSicura();" class="btn btn-danger" type="button" >
-					Prenotazione sicura
-				</button>';
-			echo $finale;
 		}
+			
+		if(isset($_COOKIE["login"]))
+			$finale .= '<hr><button onclick="ricercaSicura();" class="btn btn-danger" type="button" >
+				Prenotazione sicura
+			</button>';
+		echo $finale;
 	}
 
     mysqli_close($connessione);

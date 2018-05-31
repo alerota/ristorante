@@ -10,7 +10,7 @@ $connessione = new mysqli($host, $user, $pass, $dbname);
 if ($connessione->connect_errno) {
     echo "Errore in connessione al DBMS: " . $connessione->error;
 }
-include '../menu.php';
+require_once '../menu.php';
 ?>
 <html>
 <head>
@@ -172,6 +172,11 @@ include '../menu.php';
                                 ?>
                                 <td>
                                     <a href="revisionare.php?msg=<?php echo $row['id_prenotazione'] ?>">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="../forms/ModificaPrenotazione.php?msg=<?php echo $row['id_prenotazione'] ?>&t=r">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
                                 </td>
@@ -202,6 +207,7 @@ include '../menu.php';
             ?>
         </div>
     </div>
+</div>
 </body>
 </html>
 <script type="text/javascript">
