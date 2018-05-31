@@ -162,11 +162,11 @@
 							?>
 							
 							<hr>
-							<a class="btn btn-primary" onclick="vai();" role="button" style="width: 100%;">
+							<button class="btn btn-primary" onclick="vai();"  style="width: 100%;">
 								<h4>
 									<?php if($_GET != null) echo "Aggiorna"; else echo "Aggiungi"; ?>
 								</h4>
-							</a>
+							</button>
 							
 							<?php 
 							if($_GET != null) 
