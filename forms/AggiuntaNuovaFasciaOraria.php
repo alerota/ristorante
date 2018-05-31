@@ -59,12 +59,12 @@
 			$('[data-toggle="tooltip"]').tooltip();   
 		});
 		
+		
 		function aggiungiOrario(a)
 		{
-			var b = document.getElementById(a).innerHTML;
+			var b = document.getElementById(a);
 			var c = a.substring(4);
-			document.getElementById(a).innerHTML = b.replace("<br>", 
-			'<div class="row" id="Riga' + a + conteggi[c] + '"><div class="col-md-8"><input type="text" id="Casella' + a + conteggi[c] + '" name="orario' + a + '[]" class="form-control" placeholder="Orario"><span class="help-block"></span></div><div class="col-xs-4"><button onclick="deleteRow(\'' + a + conteggi[c] + '\');" class="btn btn-danger center-text" type="button" >&#10006;</button></div></div><br>');
+			b.innerHTML += '<div class="row" id="Riga' + a + conteggi[c] + '"><div class="col-md-8"><input type="text" id="Casella' + a + conteggi[c] + '" name="orario' + a + '[]" class="form-control" placeholder="Orario"><span class="help-block"></span></div><div class="col-xs-4"><button onclick="deleteRow(\'' + a + conteggi[c] + '\');" class="btn btn-danger center-text" type="button" >&#10006;</button></div></div>';
 			
 			conteggi[c]++;
 		}
@@ -210,11 +210,11 @@
 										else
 											$echo .= "0, ";
 										
-										echo '<br>
+										echo '</div>
 											<button onclick="aggiungiOrario(\'Fase' . $i . '\');" class="btn btn-primary" type="button" >
 												Aggiungi riga
 											</button>
-										</div><hr>';
+										<hr>';
 										
 										if(($i + 1) % 2 == 0)
 											echo '</div>';
