@@ -73,7 +73,7 @@
 		}
 		function refresh()
 		{
-			var a = document.getElementById("sel0").value;
+			var a = document.getElementById("nomeFascia").value;
 			window.location.href = "AggiuntaNuovaFasciaOraria.php?id=" + a;
 		}
 		function deleteRow(a)
@@ -83,7 +83,7 @@
 		}
 		function rimozione()
 		{
-			var a = document.getElementById("sel0");
+			var a = document.getElementById("nomeFascia");
 			var b = a.options[a.selectedIndex].value;
 			window.location.href = "../codici/deleteFasciaOraria.php?id=" + b;
 		}
@@ -113,7 +113,7 @@
 		<div class="container">
 			<hr>
 			<div class="row">
-				<form id="insertFO" method="POST" action="<?php if($_GET != null) echo "../codici/updateFasciaOraria.php"; else echo "../codici/insertFasciaOraria.php"; ?>">
+				<form id="insertFO" method="POST" action="<?php if($_GET != null && isset($_GET['id'])) echo "../codici/updateFasciaOraria.php"; else echo "../codici/insertFasciaOraria.php"; ?>">
 					<div class="col-md-3">
 						<fieldset>
 					
@@ -146,7 +146,7 @@
 									<legend>Scegli la fascia</legend>
 									<div class="form-group">
 										<label for="sel0">Seleziona l\'orario</label>
-										<select class="form-control" id="sel0" name="giorno0" onchange="refresh();">';
+										<select class="form-control"  name="nomeFascia" id="nomeFascia" onchange="refresh();">';
 
 								for($i=0; $i < $num_result; $i++)
 								{
@@ -156,7 +156,7 @@
 								$select .= '</select></div>';
 								echo $select;
 								if(isset($_GET["id"]))
-									echo "<script> document.getElementById('sel0').value = " . $_GET["id"] . ";</script>";
+									echo "<script> document.getElementById('nomeFascia').value = " . $_GET["id"] . ";</script>";
 								
 							}
 							?>
