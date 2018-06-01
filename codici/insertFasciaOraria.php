@@ -15,8 +15,8 @@
 	
 	$orari = array();
 	for($i=0; $i < 6; $i++) {
-		if(isset($_POST["orarioFase" . $i]))
-			$orari[$i] = $_POST["orarioFase" . $i];
+		if(isset($_POST["orario" . $i]))
+			$orari[$i] = $_POST["orario" . $i];
 		else
 			$orari[$i] = null;
 	}
@@ -31,10 +31,13 @@
 	else
 		$id = 1;
 
-	$query = "INSERT INTO gestionefasceorarie (nome, id_fascia) VALUES ('" . $nome . "', '" . $id . "')";
-
-	if ($connessione->query($query)) {
-	    $query = "INSERT INTO fasceorarie (id_fascia, orario, fase) VALUES ";
+	$query = "INSERT INTO gestionefasceorarie (`nome`, `id_fascia`) VALUES ('" . $nome . "', '" . $id . "')";
+	$result = $connessione->query($query);
+	
+	// echo mysqli_errno($connessione) . " - " . mysqli_error($connessione);
+	
+	if ($result) {
+	    $query = "INSERT INTO fasceorarie (`id_fascia`, `orario`, `fase`) VALUES ";
 		for($i=0; $i < 6; $i++)
 		{
 			if(sizeof($orari[$i]) > 0)
@@ -44,15 +47,14 @@
 		}
         $query = substr($query, 0, strlen($query) - 1) . ";";
 		
-		
 		if ($connessione->query($query))
-            echo "<script> window.location.href = '../elenchi/fasce.php?messaggio=La fascia è stata inserita correttamente!';</script>";
+            echo "<script> window.location.href = '../elenchi/index.php';</script>";
 		else
-            echo "<script> window.location.href = '../elenchi/fasce.php?error=Errore nel inserimento della fascia!';</script>";
-
+            echo "<script> window.location.href = '../elenchi/index.php';</script>";
+		
 	}
 	else
-        echo "<script> window.location.href = '../elenchi/fasce.php?error=Errore nel inserimento della fascia!';</script>";
-
+        echo "<script> window.location.href = '../elenchi/index.php';</script>";
+	
 	mysqli_close($connessione);
 ?>
