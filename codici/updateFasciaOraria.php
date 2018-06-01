@@ -1,15 +1,5 @@
 <?php
-    // Connessione al DB
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $dbname = "ristorante";
-
-    $connessione = new mysqli($host, $user, $pass, $dbname);
-
-    if ($connessione->connect_errno) {
-        echo "Errore in connessione al DBMS: " . $connessione->error;
-    }
+    $connessione = _conn();
 
     if($_POST != null) {
         $idFascia = $_POST['nomeFascia'];
@@ -21,7 +11,7 @@
             else
                 $orari[$i] = null;
         }
-        print_r($orari);
+        //print_r($orari);
 
         $query = "SELECT * FROM fasceorarie WHERE id_fascia = '$idFascia'";
         $result = $connessione->query($query);
@@ -33,7 +23,8 @@
                 $ris = array_search($orariDB[2], $orari[$orariDB[3]]);
 
                 if ($ris === false) {
-                    $query2 = "SELECT * FROM prenotazioni NATURAL JOIN stagioni_orari WHERE orario='$orariDB[2]' AND id_fascia = '$idFascia'";
+
+                    $query2 = "SELECT DISTINCT * FROM prenotazioni NATURAL JOIN stagioni_orari WHERE orario='$orariDB[2]' AND id_fascia = '$idFascia' GROUP BY id_prenotazione";
                     $result2 = $connessione->query($query2);
                     $num_rows2 = $result2->num_rows;
 
@@ -49,25 +40,65 @@
                     $query5 = "DELETE FROM fasceorarie WHERE orario='$orariDB[2]' AND id_fascia = '$idFascia'";
                     $result5 = $connessione->query($query5);
                     if (!$result5)
-                        echo "errore";
-                    else
-                        echo "<script> window.location.href = '../forms/AggiuntaNuovaFasciaOraria.php?alert=Siamo bravi'</script>";
+                        echo "<script> window.location.href = '../forms/AggiuntaNuovaFasciaOraria.php?alert=Errore nel caricamento della fascia'</script>";
 
                 }
                 else {
                     $orari[$orariDB[3]][$ris] = null;
                 }
             }
+
+            if(count($orari) != 0)
+                _aggiungiNuovi($orari, $idFascia);
+            else
+                echo "<script> window.location.href = '../forms/AggiuntaNuovaFasciaOraria.php?messaggio=Fascia oraria modificata con successo!'</script>";
         }
         else {
-            echo "errore";
+            echo "erroreasdhjkfasdf";
         }
 
         echo "<br>";
-        print_r($orari);
+        //print_r($orari);
     }
     else {
         mysqli_close($connessione);
         echo "<script> window.location.href = '../forms/AggiuntaNuovaFasciaOraria.php?alert=Errore nel caricamento della fascia'</script>";
     }
+
+
+    function _conn() {
+        // Connessione al DB
+        $host = "localhost";
+        $user = "root";
+        $pass = "";
+        $dbname = "ristorante";
+
+        $connessione = new mysqli($host, $user, $pass, $dbname);
+
+        if ($connessione->connect_errno) {
+            echo "Errore in connessione al DBMS: " . $connessione->error;
+        }
+        else
+            return $connessione;
+    }
+
+    function _aggiungiNuovi($orari, $idFascia) {
+        $connessione = _conn();
+
+        for($i = 0; $i < count($orari); $i++) {
+            if($orari[$i] != null) {
+                for($j = 0; $j < count($orari[$i]); $j++) {
+                    if($orari[$i][$j] != null) {
+                        $query = "INSERT INTO fasceorarie(`id_fascia`, `orario`, `fase`) VALUES ('" . $idFascia . "','" . $orari[$i][$j] . "','" . $i . "')";
+                        $result = $connessione->query($query);
+                        if (!$result)
+                            echo "errore" . $i;
+                    }
+                }
+            }
+        }
+
+        echo "<script> window.location.href = '../forms/AggiuntaNuovaFasciaOraria.php?messaggio=Fascia oraria modificata con successo!'</script>";
+    }
 ?>
+

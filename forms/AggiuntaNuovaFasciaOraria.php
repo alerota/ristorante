@@ -200,9 +200,13 @@
 												<span class="help-block"></span>
 											</div>
 											<div class="col-xs-4">
-												<button onclick="deleteRow(\'Fase' . $i . $j . '\');" class="btn btn-danger center-text" type="button" >
+												
+												<a onclick="document.getElementById(\'idSupporto\').value=(\'Fase' . $i . $j . '\');" class="confirm">
+												<button  class="btn btn-danger center-text" type="button" >
 													&#10006;
+													
 												</button>
+												</a>
 											</div>
 											</div>
 											';
@@ -224,7 +228,7 @@
 									echo "<script>$echo;</script>";
 								
 								?>
-							
+                            <input type="hidden" value="" id="idSupporto"/>
 						</div>
 					</div>
 				</form>
@@ -242,4 +246,27 @@
 			alert("Attribuisci un nome alla fascia oraria!");
 	}
 	</script>
+
+    <script type="text/javascript">
+        $(".confirm").confirm({
+            content: "",
+            title: "Sei sicuro di voler cancellare?",
+            buttons: {
+                confirm: {
+                    action: function () {
+                        var a = document.getElementById("idSupporto").value;
+                        deleteRow(a);
+                    },
+                    text: 'Si',
+                    btnClass: 'btn-danger',
+                },
+                cancel: {
+                    action: function () {
+                    },
+                    text: 'Annulla',
+                    btnClass: 'btn-default',
+                }
+            }
+        });
+    </script>
 </html>
