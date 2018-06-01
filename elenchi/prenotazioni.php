@@ -141,8 +141,11 @@ include '../menu.php';
                     $query = "DELETE FROM prenotazioni WHERE id_prenotazione='$id'";
 
                     $result = $connessione->query($query);
-
-                    echo "<script> window.location.href= 'prenotazioni.php?messaggio=Cliente rimasto nella lista clienti!';</script>";
+					
+					if(!$result)
+						echo "<script> window.location.href= 'prenotazioni.php?messaggio=Cliente rimasto nella lista clienti!';</script>";
+					else
+						echo "<script> window.location.href= 'prenotazioni.php';</script>";
                 }
                 else {
                 ?>
@@ -157,6 +160,7 @@ include '../menu.php';
                         <th>Giorno</th>
                         <th>Orario</th>
                         <th>Sala</th>
+                        <th>View</th>
                         <th>Edit</th>
                         <th>Arrive</th>
                         <th>Delay</th>
@@ -206,6 +210,11 @@ include '../menu.php';
                                 ?>
                                 <td>
                                     <a href="prenotazioni.php?msg=<?php echo $row['id_prenotazione'] ?>">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="../forms/ModificaPrenotazione.php?msg=<?php echo $row['id_prenotazione'] ?>&t=n">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
                                 </td>

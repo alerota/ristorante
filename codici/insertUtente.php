@@ -1,4 +1,14 @@
 <?php
+    
+	function gestioneEccezioneVirgolette($testo)
+	{
+		while(strpos($testo, "\"") !== false)
+			$testo = str_replace("\"", "``", $testo);
+		while(strpos($testo, "'") !== false)
+			$testo = str_replace("'", "`", $testo);
+		return $testo;
+	}
+	
     $host = "localhost";
     $user = "root";
     $pass = "";
@@ -11,7 +21,7 @@
     }
 
     if($_POST != null) {
-        $user = $_POST['username'];
+        $user = gestioneEccezioneVirgolette($_POST['username']);
         $password = md5($_POST['password']);
         $query = "SELECT * FROM utenti WHERE username='$user'";
         $result = $connessione->query($query);

@@ -1,4 +1,14 @@
 <?php
+    
+	function gestioneEccezioneVirgolette($testo)
+	{
+		while(strpos($testo, "\"") !== false)
+			$testo = str_replace("\"", "``", $testo);
+		while(strpos($testo, "'") !== false)
+			$testo = str_replace("'", "`", $testo);
+		return $testo;
+	}
+	
     // Connessione al DB
     $host = "localhost";
     $user = "root";
@@ -11,7 +21,7 @@
         echo "Errore in connessione al DBMS: " . $connessione->error;
     }
 
-	$nome = $_POST["nomeSala"];
+	$nome = gestioneEccezioneVirgolette($_POST["nomeSala"]);
 	$n = $_POST["numeroPosti"];
 
 	$query = "INSERT INTO sale (Nome_sala, Numero_posti_prenotabili)

@@ -116,8 +116,11 @@ require_once '../menu.php';
                 $query = "DELETE FROM prenotazionidarevisionare WHERE id_prenotazione='$id'";
 
                 $result = $connessione->query($query);
-
-                echo "<script> window.location.href= 'revisionare.php?messaggio=Cliente rimasto nella lista clienti!';</script>";
+					
+				if(!$result)
+					echo "<script> window.location.href= 'revisionare.php?messaggio=Cliente rimasto nella lista clienti!';</script>";
+				else
+					echo "<script> window.location.href= 'revisionare.php';</script>";
             }
             else {
                 ?>

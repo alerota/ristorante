@@ -16,8 +16,15 @@
             echo "Errore in connessione al DBMS: " . $connessione->error;
         }
 		
-		$query = "SELECT * FROM prenotazionidarevisionare WHERE id_prenotazione = '$idImportante';";
-		
+		if($_GET["t"] == "r")
+			$query = "SELECT * FROM prenotazionidarevisionare NATURAL JOIN sale WHERE id_prenotazione = $idImportante;";
+		else if($_GET["t"] == "n")
+			$query = "SELECT * FROM prenotazioni NATURAL JOIN sale WHERE id_prenotazione = $idImportante;";
+		else
+		{
+			echo "<br>ErrBadTypeEditOrder";
+			exit(-2);
+		}
 		$result = $connessione->query($query);
 		
 		if($result)
@@ -43,12 +50,7 @@ function isMobile()
 }
 function controllo()
 {
-	var a = document.getElementById("cognome").value;
-	var b = document.getElementById("tel").value;
-	if(a != "" && b != "")
-		document.getElementById('formPrenotazione').submit();
-	else
-		alert("Compila i campi del nome e del numero di telefono!");
+	document.getElementById('formPrenotazione').submit();
 }
 function fase3(a, b)
 {
@@ -84,7 +86,6 @@ function ricercaSicura()
 function fase2()
 {
 	ricercaSaleDisponibili();
-	document.getElementById("fase123").value = document.getElementById("fase").value;
 	
 	if(document.getElementById("l1").classList.contains("active"))
 		document.getElementById("l1").classList.remove("active");
@@ -199,7 +200,9 @@ function ricercaSaleAdmin()
 		<div class="col-md-4"> <?php include "listino.php"; ?> </div>
 		<div class="col-md-1"><br></div>
 		<div class="col-md-7">
-			<form method='POST' id="formPrenotazione" class='form' action="../codici/insertPrenotazione.php" style='background-color: white; height: calc(100% - 52px); '>
+			<form method='POST' id="formPrenotazione" class='form' action="../codici/updatePrenotazione.php" style='background-color: white; height: calc(100% - 52px); '>
+				<input type="hidden" name="tipo" value="<?php echo $_GET["t"]; ?>">
+				<input type="hidden" name="id" value="<?php echo $_GET["msg"]; ?>">
 				<div class="form-group">
 					<div class="text-center">
 						<ul class="pagination">
@@ -227,20 +230,26 @@ function ricercaSaleAdmin()
 								<?php if(isset($giornata)) echo "value = '" . $giornata . "' "; ?> >
 								<span class="help-block"></span>
 							</div>
-							<div class="col-xs-5">
+							<div class="col-xs-2">
 								<a data-toggle="tooltip" title="Definisci il numero di partecipanti">
-									<label>Numero persone</label>
+									<label>Prenotati</label>
 								</a>
 								<input type="number" min="1" name="num_persone" class="form-control" id="numero" 
 								<?php echo "value = '" . $partecipanti . "' "; ?> 
 								placeholder="Numero">
 								<span class="help-block"></span>
 							</div>
-							<div class="col-xs-7">
+							<div class="col-xs-5">
+								<label>Telefono</label>
+								<input type="text" name="tel" class="form-control" id="tel" 
+								<?php echo "value = '" . $tel . "' "; ?> 
+								placeholder="Telefono">
+								<span class="help-block"></span>
+							</div>
+							<div class="col-xs-5">
 								<label for="fase">Fase</label>
 								<div id="selezioneFasi" onload="ricercaFasiDisponibili();"></div>
 							</div>
-							<input type="hidden" name="fase123" id="fase123"/>
 						</fieldset>
 						<br>
 						<div class="col-xs-12">
