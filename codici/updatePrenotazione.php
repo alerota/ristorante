@@ -1,4 +1,14 @@
 <?php
+    
+	function gestioneEccezioneVirgolette($testo)
+	{
+		while(strpos($testo, "\"") !== false)
+			$testo = str_replace("\"", "``", $testo);
+		while(strpos($testo, "'") !== false)
+			$testo = str_replace("'", "`", $testo);
+		return $testo;
+	}
+	
     // Connessione al DB
     $host = "localhost";
     $user = "root";
@@ -18,9 +28,9 @@
 	$n = $_POST["num_persone"];
 	$orario = $_POST["orario"];
 	$sala = $_POST["sala"];
-	$nome = $_POST["nome"];
+	$nome = gestioneEccezioneVirgolette($_POST["nome"]);
 	$tel = $_POST["tel"];
-	$note = $_POST["note"];
+	$note = gestioneEccezioneVirgolette($_POST["note"]);
 	$fase = $_POST["fase"];
 	$stagione = $_POST["stagione"];
 

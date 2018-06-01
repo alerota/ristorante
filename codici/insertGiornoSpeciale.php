@@ -1,4 +1,14 @@
 <?php
+    
+	function gestioneEccezioneVirgolette($testo)
+	{
+		while(strpos($testo, "\"") !== false)
+			$testo = str_replace("\"", "``", $testo);
+		while(strpos($testo, "'") !== false)
+			$testo = str_replace("'", "`", $testo);
+		return $testo;
+	}
+	
 	// Connessione al DB
 	$host = "localhost";
 	$user = "root";
@@ -14,7 +24,7 @@
 	$idFascia = $_POST["giorno0"];
 	$ripetizione = $_POST["ripetizioneGiorno"];
 	$nome = $_POST["nomeGiorno"];
-	$giorno = $_POST["giornata"];
+	$giorno = gestioneEccezioneVirgolette($_POST["giornata"]);
 	
 	if($ripetizione == "1")
 		$giorno = "x" . substr($giorno, strpos($giorno, "-"));

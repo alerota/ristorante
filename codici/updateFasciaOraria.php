@@ -1,4 +1,14 @@
 <?php
+    
+	function gestioneEccezioneVirgolette($testo)
+	{
+		while(strpos($testo, "\"") !== false)
+			$testo = str_replace("\"", "``", $testo);
+		while(strpos($testo, "'") !== false)
+			$testo = str_replace("'", "`", $testo);
+		return $testo;
+	}
+	
     // Connessione al DB
     $host = "localhost";
     $user = "root";

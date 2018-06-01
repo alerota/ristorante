@@ -1,4 +1,14 @@
 <?php
+    
+	function gestioneEccezioneVirgolette($testo)
+	{
+		while(strpos($testo, "\"") !== false)
+			$testo = str_replace("\"", "``", $testo);
+		while(strpos($testo, "'") !== false)
+			$testo = str_replace("'", "`", $testo);
+		return $testo;
+	}
+	
     // Connessione al DB
     $host = "localhost";
     $user = "root";
@@ -11,7 +21,7 @@
         echo "Errore in connessione al DBMS: " . $connessione->error;
     }
 
-    $username = $_POST["username"];
+    $username = gestioneEccezioneVirgolette($_POST["username"]);
     $password = md5($_POST["password"]);
 
     if(isset($_GET['id'])) {
