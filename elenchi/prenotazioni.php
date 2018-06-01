@@ -130,6 +130,11 @@ include '../menu.php';
 										</div>
 										<div class='col-md-2'><br></div>
 									</div>
+									<div class="text-center">
+										<button onclick="window.location.href='../forms/ModificaPrenotazione.php?msg=<?php echo $_GET['msg'] ?>&t=n';" class="btn btn-primary" type="button">
+											<h4>Modifica</h4>
+										</button>
+									</div>
 								</form>
 							</div>
                         <?php
@@ -173,16 +178,16 @@ include '../menu.php';
 
                     if(isset($_GET['date'])) {
                         $data = $_GET['date'];
-                        $query = "SELECT * FROM prenotazioni WHERE giorno='$data'";
+                        $query = "SELECT * FROM prenotazioni WHERE giorno='$data' ORDER BY `giorno`, `orario`;";
                     }
 					else if(isset($_GET["strt"]) && isset($_GET["nd"]))
 					{
 						$a1 = $_GET["strt"];
 						$a2 = $_GET["nd"];
-						$query = "SELECT * FROM prenotazioni WHERE giorno >= '" . $a1 . "' and giorno <= '" . $a2 . "';";
+						$query = "SELECT * FROM prenotazioni WHERE giorno >= '" . $a1 . "' and giorno <= '" . $a2 . "' ORDER BY `giorno`, `orario`;";
 					}
                     else
-                        $query = "SELECT * FROM prenotazioni";
+                        $query = "SELECT * FROM prenotazioni ORDER BY `giorno`, `orario`;";
 
                     $result = $connessione->query($query);
                     $numrows = $result->num_rows;

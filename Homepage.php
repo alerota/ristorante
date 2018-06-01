@@ -31,26 +31,44 @@
 						<div class="col-xs-12">
 							<br>
 							<style>
-							.btn-group button { width: 19%; margin: 0px 0.5% !important; }
+							.btn-group .primaRiga { width: 19%; margin: 0px 0.5% !important; }
+							.btn-group .secondaRiga { width: 49%; margin: 0px 0.5% !important; }
 							.btn-group { width: 100%; }
+							.searchByDate { width: 100%; }
 							</style>
 							<div class="btn-group">
-								<button onclick="" class="btn btn-warning" type="button">
+								<button onclick="" class="btn btn-warning primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-gift"></div></h4>
 								</button>
-								<button onclick="window.location.href=\'elenchi/prenotazioni.php?date=' . $today . '\';" class="btn btn-primary" type="button">
+								<button onclick="window.location.href=\'elenchi/prenotazioni.php?date=' . $today . '\';" class="btn btn-primary primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-time"></div></h4>
 								</button>
-								<button onclick="window.location.href=\'elenchi/prenotazioni.php\';" class="btn btn-success" type="button">
+								<button onclick="window.location.href=\'elenchi/prenotazioni.php\';" class="btn btn-success primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-calendar"></div></h4>
 								</button>
-								<button onclick="window.location.href=\'elenchi/revisionare.php\';" class="btn btn-danger" type="button">
+								<button onclick="window.location.href=\'elenchi/revisionare.php\';" class="btn btn-danger primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-remove"></div></h4>
 								</button>
-								<button onclick="window.location.href=\'gestionale.php\';" class="btn btn-fourth" type="button">
+								<button onclick="window.location.href=\'gestionale.php\';" class="btn btn-fourth primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-cog"></div></h4>
 								</button>
 							</div>
+							<hr><h3 style="text-align: center;">Ricerca nel periodo</h3>
+							<form id="searchByDate" action="elenchi/prenotazioni.php">
+								<div class="row">
+									<div class="col-md-4" style="padding-top: 8px; height: 45px; ">
+										<input type="date" class="searchByDate" name="strt" id="inizio" >
+									</div>
+									<div class="col-md-4" style="padding-top: 8px; height: 45px; ">
+										<input type="date" class="searchByDate" name="nd" id="fine">
+									</div>
+									<div class="col-md-4 text-center" style="padding-top: 4px; height: 45px; ">
+										<a onclick="document.getElementById(\'searchByDate\').submit();" class="btn btn-success secondaRiga" type="button" style="width: 100%; ">
+											Ricerca
+										</a>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
 					<div class="row">';

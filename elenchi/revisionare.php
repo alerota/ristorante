@@ -48,65 +48,78 @@ require_once '../menu.php';
                 if($numrows2) {
                     while ($row2 = $result2->fetch_assoc()) {
                         ?>
-                        <form>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="disabledTextInput">Cliente</label>
-                                    <?php
-                                    echo "<input type='text' class='form-control' placeholder='" . $row2['cliente'] . "' disabled>";
-                                    ?>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="disabledTextInput">Telefono</label>
-                                    <?php
-                                    echo "<input type='text' class='form-control' placeholder='" . $row2['tel'] . "' disabled>";
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-2">
-                                    <label for="disabledTextInput">Numero persone</label>
-                                    <?php
-                                    echo "<input type='text' class='form-control' placeholder='" . $row2['num_partecipanti'] . "' disabled>";
-                                    ?>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="disabledTextInput">Giorno</label>
-                                    <?php
-                                    echo "<input type='text' class='form-control' placeholder='" . $row2['giorno'] . "' disabled>";
-                                    ?>
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="disabledTextInput">Ora</label>
-                                    <?php
-                                    echo "<input type='text' class='form-control' placeholder='" . $row2['orario'] . "' disabled>";
-                                    ?>
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="disabledTextInput">Sala</label>
+							<div class="container">
+								<form>
+									<div class="form-row row">
+										<div class='col-md-2'><br></div>
+										<div class="form-group col-md-4">
+											<label for="disabledTextInput">Cliente</label>
+											<?php
+											echo "<input type='text' class='form-control' placeholder='" . $row2['cliente'] . "' disabled>";
+											?>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="disabledTextInput">Telefono</label>
+											<?php
+											echo "<input type='text' class='form-control' placeholder='" . $row2['tel'] . "' disabled>";
+											?>
+										</div>
+										<div class='col-md-2'><br></div>
+									</div>
+									<div class="form-row row">
+										<div class='col-md-2'><br></div>
+										<div class="form-group col-md-2">
+											<label for="disabledTextInput">Numero persone</label>
+											<?php
+											echo "<input type='text' class='form-control' placeholder='" . $row2['num_partecipanti'] . "' disabled>";
+											?>
+										</div>
+										<div class="form-group col-md-2">
+											<label for="disabledTextInput">Giorno</label>
+											<?php
+											echo "<input type='text' class='form-control' placeholder='" . $row2['giorno'] . "' disabled>";
+											?>
+										</div>
+										<div class="form-group col-md-2">
+											<label for="disabledTextInput">Ora</label>
+											<?php
+											echo "<input type='text' class='form-control' placeholder='" . $row2['orario'] . "' disabled>";
+											?>
+										</div>
+										<div class="form-group col-md-2">
+											<label for="disabledTextInput">Sala</label>
 
-                                    <?php
-                                    $idsala = $row2['id_sala'];
-                                    $query3 = "SELECT * FROM sale WHERE id_sala='$idsala'";
-                                    $result3 = $connessione->query($query3);
-                                    $numrows3 = $result3->num_rows;
+											<?php
+											$idsala = $row2['id_sala'];
+											$query3 = "SELECT * FROM sale WHERE id_sala='$idsala'";
+											$result3 = $connessione->query($query3);
+											$numrows3 = $result3->num_rows;
 
-                                    if ($numrows3) {
-                                        while ($row3 = $result3->fetch_assoc())
-                                            echo "<input type='text' class='form-control' placeholder='" . $row3['id_sala'] ." - ". $row3['Nome_sala'] . "' disabled>";
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-10">
-                                    <label for="comment">Note</label>
-                                    <?php
-                                    echo "<textarea class='form-control' rows='5' disabled>" .$row2['note_prenotazione'] ."</textarea>";
-                                    ?>
-                                </div>
-                            </div>
-                        </form>
+											if ($numrows3) {
+												while ($row3 = $result3->fetch_assoc())
+														echo "<input type='text' class='form-control' placeholder='" . $row3['id_sala'] ." - ". $row3['Nome_sala'] . "' disabled>";
+											}
+											?>
+										</div>
+										<div class='col-md-2'><br></div>
+									</div>
+									<div class="form-row row">
+										<div class='col-md-2'><br></div>
+										<div class="form-group col-md-8">
+											<label for="comment">Note</label>
+											<?php
+												echo "<textarea class='form-control' rows='10' disabled>" .$row2['note_prenotazione'] ."</textarea>";
+											?>
+										</div>
+										<div class='col-md-2'><br></div>
+									</div>
+									<div class="text-center">
+										<button onclick="window.location.href='../forms/ModificaPrenotazione.php?msg=<?php echo $_GET['msg'] ?>&t=r';" class="btn btn-primary" type="button">
+											<h4>Modifica</h4>
+										</button>
+									</div>
+								</form>
+							</div>
                         <?php
                     }
                 }
@@ -172,8 +185,6 @@ require_once '../menu.php';
                                     while ($row1 = $result1->fetch_assoc())
                                         echo "<td>" . $row1['Nome_sala'] . "</td>";
                                 }
-                                else
-                                    echo "<td>X</td>";
                                 ?>
                                 <td>
                                     <a href="revisionare.php?msg=<?php echo $row['id_prenotazione'] ?>">
