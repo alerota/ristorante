@@ -40,16 +40,6 @@ include '../menu.php';
                 </div>
                 <?php
             }
-            /*
-             * CONTROLLI SULLE PRENOTAZIONI
-            else if(isset($_GET['msg1'])) {
-                $id = $_GET['msg1'];
-                $query = "DELETE FROM sale WHERE id_sala='$id'";
-
-                $result = $connessione->query($query);
-
-                header("Location: sale.php?messaggio=Sala eliminata con successo");
-            }*/
                 ?>
             <h1 class="card-title text-center">Lista sale <a href="AggiuntaNuovaSala.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
             <br><br>
@@ -85,7 +75,7 @@ include '../menu.php';
                                 </a>
                             </td>
                             <td>
-                                <a href="sale.php?msg1=<?php echo $row['id_sala']; ?>">
+                                <a href="../codici/deleteSala.php?id=<?php echo $row['id_sala']; ?>">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>

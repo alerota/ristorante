@@ -34,7 +34,7 @@
 	VALUES ('" . $nome . "', '" . $inizio . "', '" . $fine . "', '" . $priorita . "');";
 
     if (!($connessione->query($query)))
-        echo "<script> window.location.href = '../elenchi/stagioni_giornoSpeciale.php?error=Errore nel inserimento della stagione!';</script>";
+        echo "<script> window.location.href = '../elenchi/stagioni_giorniSpeciali.php?error=Errore nel inserimento della stagione!';</script>";
 
 
 	// Fase 2: inserimento degli orari
@@ -51,7 +51,7 @@
 	}
 
     if (!($connessione->query($supporto)))
-        echo "<script> window.location.href = '../elenchi/stagioni_giornoSpeciale.php?error=Errore nel inserimento della stagione!';</script>";
+        echo "<script> window.location.href = '../elenchi/stagioni_giorniSpeciali.php?error=Errore nel inserimento della stagione!';</script>";
 
 
 	// Fase 3: inserimento delle sale
@@ -73,10 +73,10 @@
 		}
 		
 		if (!($connessione->query($supporto)))
-			echo "<script> window.location.href = '../elenchi/stagioni_giornoSpeciale.php?error=Errore nel inserimento della stagione!';</script>";
+			echo "<script> window.location.href = '../elenchi/stagioni_giorniSpeciali.php?error=Errore nel inserimento della stagione!';</script>";
 	}
 	
-    echo "<script> window.location.href = '../elenchi/stagioni_giornoSpeciale.php?messaggio=Stagione inserita correttamente!';</script>";
+    echo "<script> window.location.href = '../elenchi/stagioni_giorniSpeciali.php?messaggio=Stagione inserita correttamente!';</script>";
 	
 	mysqli_close($connessione);
 ?>

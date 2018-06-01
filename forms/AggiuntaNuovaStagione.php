@@ -87,6 +87,15 @@
 		
 	</head>
 	<body style="font-family: Arial;">
+    <?php
+    if(isset($_GET['messaggio'])) {
+        ?>
+        <div class="alert alert-success">
+            <strong>Success! </strong> <?php echo $_GET['messaggio']; ?>
+        </div>
+        <?php
+    }
+    ?>
     <h1 class="card-title text-center"><?php if($_GET != null) echo "Modifica stagione: ".$name; else echo "Aggiungi nuova stagione";?></h1>
 		<div class="container">
 		<hr>

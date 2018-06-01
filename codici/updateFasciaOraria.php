@@ -1,7 +1,5 @@
 <?php
-<<<<<<< HEAD
     $connessione = _conn();
-=======
     
 	function gestioneEccezioneVirgolette($testo)
 	{
@@ -11,19 +9,6 @@
 			$testo = str_replace("'", "`", $testo);
 		return $testo;
 	}
-	
-    // Connessione al DB
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $dbname = "ristorante";
-
-    $connessione = new mysqli($host, $user, $pass, $dbname);
-
-    if ($connessione->connect_errno) {
-        echo "Errore in connessione al DBMS: " . $connessione->error;
-    }
->>>>>>> cb7a58971cd90647abb6bb08a48debc9e992e486
 
     if($_POST != null) {
         $idFascia = $_POST['nomeFascia'];

@@ -172,6 +172,8 @@ require_once '../menu.php';
                                     while ($row1 = $result1->fetch_assoc())
                                         echo "<td>" . $row1['Nome_sala'] . "</td>";
                                 }
+                                else
+                                    echo "<td>X</td>";
                                 ?>
                                 <td>
                                     <a href="revisionare.php?msg=<?php echo $row['id_prenotazione'] ?>">
