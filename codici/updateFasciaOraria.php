@@ -20,8 +20,16 @@
             else
                 $orari[$i] = null;
         }
-        //print_r($orari);
-
+		
+        for($i=0; $i < 6; $i++) {
+			if($orari[$i] != null)
+			{
+				for($j=0; $j < sizeof($orari[$i]); $j++)
+					echo $orari[$i][$j] . " - ";
+				echo "<br>";
+			}
+		}
+		
         $query = "SELECT * FROM fasceorarie WHERE id_fascia = '$idFascia'";
         $result = $connessione->query($query);
         $num_rows = $result->num_rows;
@@ -67,7 +75,6 @@
         }
 
         echo "<br>";
-        //print_r($orari);
     }
     else {
         mysqli_close($connessione);

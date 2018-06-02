@@ -59,13 +59,31 @@
 			$('[data-toggle="tooltip"]').tooltip();   
 		});
 		
+		var valori;
+		function memorizza(a)
+		{
+			valori = [];
+			i = 0;
+			while(document.getElementById("Casella" + a + i))
+			{
+				valori.push(document.getElementById("Casella" + a + i).value);
+				i++;
+			}
+		}
+		
+		function turnBackValues(a)
+		{
+			for(i=0; i<valori.length; i++)
+				document.getElementById("Casella" + a + i).value = valori[i];
+		}
 		
 		function aggiungiOrario(a)
 		{
+			memorizza(a);
 			var b = document.getElementById(a);
 			var c = a.substring(4);
 			b.innerHTML += '<div class="row" id="Riga' + a + conteggi[c] + '"><div class="col-md-8"><input type="text" id="Casella' + a + conteggi[c] + '" name="orario' + c + '[]" class="form-control" placeholder="Orario"><span class="help-block"></span></div><div class="col-xs-4"><button onclick="deleteRow(\'' + a + conteggi[c] + '\');" class="btn btn-danger center-text" type="button" >&#10006;</button></div></div>';
-			
+			turnBackValues(a);
 			conteggi[c]++;
 		}
 		function refresh()
@@ -200,13 +218,9 @@
 												<span class="help-block"></span>
 											</div>
 											<div class="col-xs-4">
-												
-												<a onclick="document.getElementById(\'idSupporto\').value=(\'Fase' . $i . $j . '\');" class="confirm">
-												<button  class="btn btn-danger center-text" type="button" >
+												<button onclick="deleteRow(\'Fase' . $i . $j . '\');" class="btn btn-danger center-text" type="button" >
 													&#10006;
-													
 												</button>
-												</a>
 											</div>
 											</div>
 											';
@@ -228,7 +242,6 @@
 									echo "<script>$echo;</script>";
 								
 								?>
-                            <input type="hidden" value="" id="idSupporto"/>
 						</div>
 					</div>
 				</form>
@@ -246,27 +259,4 @@
 			alert("Attribuisci un nome alla fascia oraria!");
 	}
 	</script>
-
-    <script type="text/javascript">
-        $(".confirm").confirm({
-            content: "",
-            title: "Sei sicuro di voler cancellare?",
-            buttons: {
-                confirm: {
-                    action: function () {
-                        var a = document.getElementById("idSupporto").value;
-                        deleteRow(a);
-                    },
-                    text: 'Si',
-                    btnClass: 'btn-danger',
-                },
-                cancel: {
-                    action: function () {
-                    },
-                    text: 'Annulla',
-                    btnClass: 'btn-default',
-                }
-            }
-        });
-    </script>
 </html>
