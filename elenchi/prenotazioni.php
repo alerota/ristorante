@@ -46,7 +46,7 @@ include '../menu.php';
 <body id="body">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" id="wrapper">
                 <?php
                 if(isset($_GET['messaggio'])) {
                     ?>
@@ -272,13 +272,13 @@ include '../menu.php';
 				?>
                 <input type="hidden" value="" id="idSupporto"/>
             </div>
-        </div>
-		<div id="warning-message">
-			<br>
-			<div class="alert alert-warning">
-				<h3><strong>Attenzione!</strong> Questa pagina è visualizzabile solo se orienti il cellulare in orizzontale</h3>
+			<div id="warning-message">
+				<br>
+				<div class="alert alert-warning">
+					<h3><strong>Attenzione!</strong> Questa pagina è visualizzabile solo se orienti il cellulare in orizzontale</h3>
+				</div>
 			</div>
-		</div>
+        </div>
     </body>
 </html>
 <script type="text/javascript">

@@ -263,7 +263,7 @@
 					</div>
 					
 					<div id="div-forms">
-						<form id="formPrenotaFesta" method="POST" action="codici/insert/insertFesta.php">
+						<form id="formPrenotaFesta" method="POST" action="codici/insertFesta.php">
 							<div class="modal-body">
 								<div id="div-formPrenotaFesta-msg">
 									<div id="icon-formPrenotaFesta-msg" class="glyphicon glyphicon-menu-right"></div>

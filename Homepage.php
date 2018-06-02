@@ -49,7 +49,7 @@
 								<button onclick="window.location.href=\'elenchi/revisionare.php\';" class="btn btn-danger primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-remove"></div></h4>
 								</button>
-								<button onclick="window.location.href=\'gestionale.php\';" class="btn btn-fourth primaRiga" type="button">
+								<button onclick="window.location.href=\'Impostazioni.php\';" class="btn btn-fourth primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-cog"></div></h4>
 								</button>
 							</div>
