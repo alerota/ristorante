@@ -19,6 +19,23 @@ include '../menu.php';
                 $('#table').DataTable();
             });
         </script>
+        <?php
+        if(!isset($_GET['msg']))
+        {
+            echo '<style type="text/css">
+		#warning-message { display: none; }
+		@media only screen and (orientation:portrait){
+			#wrapper { display:none; }
+			#warning-message { display:block; }
+		}
+		@media only screen and (orientation:landscape){
+			#warning-message { display:none; }
+		}
+		</style>';
+        }
+        else
+            echo '<style> #warning-message { display:none; } </style>';
+        ?>
     </head>
 
     <body id="body">
@@ -71,5 +88,11 @@ include '../menu.php';
 				<div class="col-md-3"><br></div>
 			</div>
 		</div>
+        <div id="warning-message">
+            <br>
+            <div class="alert alert-warning">
+                <h3><strong>Attenzione!</strong> Questa pagina è visualizzabile solo se orienti il cellulare in orizzontale</h3>
+            </div>
+        </div>
     </body>
 </html>
