@@ -32,9 +32,9 @@
             $query2 = "INSERT INTO utenti(username, password) VALUES ('$user', '$password')";
             $result = $connessione->query($query2);
             if($result)
-                echo "<script> window.location.href= '../elenca/utenti.php?messaggio=Utente inserito correttamente!';</script>";
+                echo "<script> window.location.href= '../../elenchi/utenti.php?messaggio=Utente inserito correttamente!';</script>";
             else
-                echo "<script> window.location.href= '../elenca/utenti.php?error=Errore nel inserimento!';</script>";
+                echo "<script> window.location.href= '../../elenchi/utenti.php?error=Errore nel inserimento!';</script>";
         }
     }
 

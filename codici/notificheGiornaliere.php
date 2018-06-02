@@ -86,10 +86,10 @@
 				<h4><div class="glyphicon glyphicon-remove"></div> Revisioni: <strong>' . $a5 . '</strong></h4>
 		</button></div>';
 	
-	echo '<div class="info col-md-3"><button onclick="" class="btn btn-fourth center-block" type="button" style="width: 100%; ">
+	echo '<div class="info col-md-3"><button onclick="window.location.href=\'codici/creaElencoGiornaliero.php?t=file&data=' . date("Y-m-d") . '\';" class="btn btn-fourth center-block" type="button" style="width: 100%; ">
 				<h4 class="glyphicon glyphicon-save"></h4>
 		</button></div>';
-	echo '<div class="info col-md-3"><button onclick="" class="btn btn-fourth center-block" type="button" style="width: 100%; ">
+	echo '<div class="info col-md-3"><button onclick="window.location.href=\'codici/creaElencoGiornaliero.php?t=mail&data=' . date("Y-m-d") . '\';" class="btn btn-fourth center-block" type="button" style="width: 100%; ">
 				<h4 class="glyphicon glyphicon-send"></h4>
 		</button></div>';
 

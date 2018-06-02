@@ -75,7 +75,7 @@ include '../menu.php';
                                 </a>
                             </td>
                             <td>
-                                <a href="../codici/delete/deleteSala.php?id=<?php echo $row['id_sala']; ?>">
+                                <a onclick="document.getElementById('idSupporto').value=<?php echo $row['id_sala']; ?>" class="confirm">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
@@ -88,6 +88,7 @@ include '../menu.php';
                 ?>
                 </tbody>
             </table>
+            <input type="hidden" value="" id="idSupporto"/>
 			<?php
 			if($nascondi)
 			{
@@ -99,3 +100,25 @@ include '../menu.php';
     </div>
 </body>
 </html>
+<script type="text/javascript">
+    $(".confirm").confirm({
+        content: "",
+        title: "Sei sicuro di voler cancellare?",
+        buttons: {
+            confirm: {
+                action: function () {
+                    var a = document.getElementById("idSupporto").value;
+                    window.location.href = "../codici/delete/deleteSala.php?id=" + a;
+                },
+                text: 'Si',
+                btnClass: 'btn-danger',
+            },
+            cancel: {
+                action: function () {
+                },
+                text: 'Annulla',
+                btnClass: 'btn-default',
+            }
+        }
+    });
+</script>

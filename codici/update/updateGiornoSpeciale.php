@@ -81,7 +81,7 @@ function _updateGiorno($nome, $giorno, $idGiornoSpeciale, $sale, $idFascia)
 
             if ($connessione->query($supporto))
 			{
-                $query = "UPDATE stagioni_orari SET id_fascia = '$idFascia'";
+                $query = "UPDATE stagioni_orari SET id_fascia = '$idFascia' WHERE id_stagione = '$idGiornoSpeciale'";
                 if ($connessione->query($query))
                     echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php?messaggio=Modifica effettuata correttamente!';</script>";
 			}
