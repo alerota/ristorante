@@ -169,7 +169,7 @@
 								</a>
 								<input type="number" name="prioritaStagione" class="form-control" 
 								<?php if(isset($priority)) echo "value='" . $priority . "'"; ?>
-								placeholder="priorita">
+								placeholder="priorita" <?php if(isset($priority)) { ?> disabled <?php }?>>
 								<span class="help-block"></span>
 								
 								<label>Data di inizio</label>

@@ -50,6 +50,13 @@ include '../menu.php';
                 </div>
                 <?php
             }
+            if(isset($_GET['alert'])) {
+                ?>
+            <div class="alert alert-warning">
+                <strong>Warning! </strong> <?php echo $_GET['alert']; ?>
+            </div>
+            <?php
+            }
             /* cancellazione non ancora implementata
             if(isset($_GET['msg1'])) {
                 $id = $_GET['msg1'];

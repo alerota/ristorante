@@ -91,7 +91,7 @@
 		<div class="container">
 
 		    <hr>
-			<form method="POST" action="../codici/insert/insertGiornoSpeciale.php" id="insertGS">
+			<form method="POST" action="<?php if(isset($_GET['id'])) echo "../codici/update/updateGiornoSpeciale.php"; else echo "../codici/insert/insertGiornoSpeciale.php";?>" id="insertGS">
 				<div class="row">
 					<div class="col-md-3">
 						<fieldset>
@@ -234,6 +234,7 @@
 						</fieldset>
 					</div>
 				</div>
+                <input type="hidden" id="id" value="<?php if(isset($_GET['id'])) echo $_GET['id']; ?>" name="id"/>
 			</form>
 			<hr>
 		</div>

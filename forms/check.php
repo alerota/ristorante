@@ -151,7 +151,7 @@ function ricercaSaleAdmin()
 	transition-duration: 0.4s;
 }
 </style>
-<form method='POST' id="formPrenotazione" class='form' action="../codici/insert/insertPrenotazione.php" style='background-color: white; height: calc(100% - 52px); '>
+<form method='POST' id="formPrenotazione" class='form' action="codici/insert/insertPrenotazione.php" style='background-color: white; height: calc(100% - 52px); '>
 	<div class="form-group">
 		<div class="text-center">
 			<ul class="pagination">

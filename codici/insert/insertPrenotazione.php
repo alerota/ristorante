@@ -36,7 +36,7 @@
 	
 	
     if(!($connessione->query($query)))
-        echo "<script> window.location.href = '../../../index.php';</script>";
+        echo "<script> window.location.href = '../../index.php';</script>";
     else {
         
 		$query2 = "INSERT INTO storico (`nome_cliente`, `tel_cliente`) VALUES ('" . $nome . "', '" . $tel . "');";
@@ -46,9 +46,9 @@
 		// echo mysqli_errno($connessione) . " - " . mysqli_error($connessione);	
 		
         if(!$result)
-            echo "<script> window.location.href = '../../../index.php';</script>";
+            echo "<script> window.location.href = '../../index.php';</script>";
         else
-            echo "<script> window.location.href = '../../../index.php';</script>";
+            echo "<script> window.location.href = '../../index.php';</script>";
 		
 	}
 
