@@ -40,7 +40,7 @@ if(isset($_GET['id'])) {
         $query = "DELETE FROM stagioni_sale WHERE id_stagione = '$idStagione'";
         $result = $connessione->query($query);
 
-        echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php'</script>";
+        echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php?messaggio=Cancellazione effettuata con successo!'</script>";
     }
 }
 

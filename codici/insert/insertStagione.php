@@ -28,55 +28,64 @@
 	$giorni = $_POST["giorni"];
 	$sale = $_POST['sala'];
 
-	
-	// Fase 1: inserimento della stagione effettiva
-	$query = "INSERT INTO stagioni (nome_stagione, giorno_inizio, giorno_fine, priorita)
-	VALUES ('" . $nome . "', '" . $inizio . "', '" . $fine . "', '" . $priorita . "');";
+	if(!_isDateCorrette($inizio, $fine))
+        echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php?alert=Giorno di inizio maggiore di quello di fine!';</script>";
 
-    if (!($connessione->query($query)))
-        echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php';</script>";
+	else {
+        // Fase 1: inserimento della stagione effettiva
+        $query = "INSERT INTO stagioni (nome_stagione, giorno_inizio, giorno_fine, priorita)
+        VALUES ('" . $nome . "', '" . $inizio . "', '" . $fine . "', '" . $priorita . "');";
 
-
-	// Fase 2: inserimento degli orari
-	$idStagione = mysqli_insert_id($connessione);
-	
-	$supporto = "INSERT INTO stagioni_orari (id_stagione, giorno_settimana, id_fascia) VALUES ";
-	for($i=0; $i < 7; $i++)
-	{
-		$supporto .= "('" . $idStagione . "', '" . $i . "', '" . $giorni[$i] . "')";
-		if($i + 1 == 7)
-			$supporto .= ";";
-		else
-			$supporto .= ", ";
-	}
-
-    if (!($connessione->query($supporto)))
-        echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php';</script>";
+        if (!($connessione->query($query)))
+            echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php?alert=Errore nel inserimento della stagione!';</script>";
 
 
-	// Fase 3: inserimento delle sale
-	$supporto = "INSERT INTO stagioni_sale (id_stagione, id_sala) VALUES ";
-	
-	if($sale != null)
-	{
-		$n = count($sale);
-		for($i=0; $i < $n; $i++)
-		{
-			if($sale[$i] != null && $sale[$i] != "")
-			{
-				$supporto .= "('" . $idStagione . "', '" . $sale[$i] . "')";
-				if($i + 1 == $n)
-					$supporto .= ";";
-				else
-					$supporto .= ", ";
-			}
-		}
-		
-		if (!($connessione->query($supporto)))
-			echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php';</script>";
-	}
-	
-    echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php';</script>";
-	
-	mysqli_close($connessione);
+        // Fase 2: inserimento degli orari
+        $idStagione = mysqli_insert_id($connessione);
+
+        $supporto = "INSERT INTO stagioni_orari (id_stagione, giorno_settimana, id_fascia) VALUES ";
+        for ($i = 0; $i < 7; $i++) {
+            $supporto .= "('" . $idStagione . "', '" . $i . "', '" . $giorni[$i] . "')";
+            if ($i + 1 == 7)
+                $supporto .= ";";
+            else
+                $supporto .= ", ";
+        }
+
+        if (!($connessione->query($supporto)))
+            echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php?alert=Errore nel inserimento della stagione!';</script>";
+
+
+        // Fase 3: inserimento delle sale
+        $supporto = "INSERT INTO stagioni_sale (id_stagione, id_sala) VALUES ";
+
+        if ($sale != null) {
+            $n = count($sale);
+            for ($i = 0; $i < $n; $i++) {
+                if ($sale[$i] != null && $sale[$i] != "") {
+                    $supporto .= "('" . $idStagione . "', '" . $sale[$i] . "')";
+                    if ($i + 1 == $n)
+                        $supporto .= ";";
+                    else
+                        $supporto .= ", ";
+                }
+            }
+
+            if (!($connessione->query($supporto)))
+                echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php?alert=Errore nel inserimento della stagione!';</script>";
+        }
+
+        echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php?messaggio=Inserimento effettuato con successo!';</script>";
+
+        mysqli_close($connessione);
+    }
+
+
+function _isDateCorrette($inizio, $fine)
+{
+    if ($fine <= $inizio)
+        return false;
+    else
+        return true;
+}
 ?>

@@ -167,4 +167,5 @@ function _oldGiorno($id)
     mysqli_close ($connessione);
     return $result->fetch_assoc();
 }
+
 ?>
