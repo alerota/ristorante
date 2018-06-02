@@ -130,10 +130,10 @@ require_once '../menu.php';
 
                 $result = $connessione->query($query);
 					
-				if(!$result)
+				if($result)
 					echo "<script> window.location.href= 'revisionare.php?messaggio=Cliente rimasto nella lista clienti!';</script>";
 				else
-					echo "<script> window.location.href= 'revisionare.php';</script>";
+                    echo "<script> window.location.href= 'revisionare.php?messaggio=Errore nella cancellazione della prenotazione da revisionare!';</script>";
             }
             else {
                 ?>

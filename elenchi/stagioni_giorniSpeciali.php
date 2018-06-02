@@ -62,7 +62,7 @@ include '../menu.php';
             else {*/
             ?>
 
-            <h1 class="card-title text-center">Lista stagioni <a href="AggiuntaNuovaStagione.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
+            <h1 class="card-title text-center">Lista stagioni <a href="../forms/AggiuntaNuovaStagione.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
             <br>
             <table id="table">
                 <thead>
@@ -136,7 +136,7 @@ include '../menu.php';
                 echo "<p style='text-align: center;'>Non sono presenti records.</p>";
             }
             ?>
-            <h1 class="card-title text-center">Lista giorni speciali <a href="AggiuntaGiornoSpeciale.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
+            <h1 class="card-title text-center">Lista giorni speciali <a href="../forms/AggiuntaGiornoSpeciale.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
             <br>
             <table id="table1">
                 <thead>
@@ -221,7 +221,7 @@ include '../menu.php';
             confirm: {
                 action: function () {
                     var a = document.getElementById("idSupporto").value;
-                    window.location.href = "../codici/deleteStagione.php?id=" + a;
+                    window.location.href = "../codici/deleteStagioneGiornoSpeciale.php?id=" + a;
                 },
                 text: 'Si',
                 btnClass: 'btn-danger',
