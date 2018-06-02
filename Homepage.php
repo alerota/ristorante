@@ -39,18 +39,23 @@
 							<div class="btn-group">
 								<button data-toggle="modal" data-target="#prenotaFesta" class="btn btn-warning primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-gift"></div></h4>
+										<h6>Prenota Festa</h6>
 								</button>
 								<button onclick="window.location.href=\'elenchi/prenotazioni.php?date=' . $today . '\';" class="btn btn-primary primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-time"></div></h4>
+										<h6>Prenotati Oggi</h6>
 								</button>
 								<button onclick="window.location.href=\'elenchi/prenotazioni.php\';" class="btn btn-success primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-calendar"></div></h4>
+										<h6>Prenotazioni</h6>
 								</button>
 								<button onclick="window.location.href=\'elenchi/revisionare.php\';" class="btn btn-danger primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-remove"></div></h4>
+										<h6>Da Revisionare</h6>
 								</button>
 								<button onclick="window.location.href=\'Impostazioni.php\';" class="btn btn-fourth primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-cog"></div></h4>
+										<h6>Impostazioni</h6>
 								</button>
 							</div>
 							<hr><h3 style="text-align: center;">Ricerca nel periodo</h3>
