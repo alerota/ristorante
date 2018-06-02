@@ -116,8 +116,8 @@ include '../menu.php';
 										$numrows3 = $result3->num_rows;
 
 										if ($numrows3) {
-											while ($row3 = $result3->fetch_assoc())
-													echo "<input type='text' class='form-control' placeholder='" . $row3['id_sala'] ." - ". $row3['Nome_sala'] . "' disabled>";
+											$row3 = $result3->fetch_assoc();
+											echo "<input type='text' class='form-control' placeholder='" . $row3['id_sala'] ." - ". $row3['Nome_sala'] . "' disabled>";
 										}
 										?>
 									</div>
@@ -223,8 +223,12 @@ include '../menu.php';
 									$numrows1 = $result1->num_rows;
 									if ($numrows1) {
 										while ($row1 = $result1->fetch_assoc())
+										{
 											echo "<td>" . $row1['Nome_sala'] . "</td>";
+										}
 									}
+									else
+										echo "<td>x</td>";
 									?>
 									<td>
 										<a href="prenotazioni.php?msg=<?php echo $row['id_prenotazione']; ?>">

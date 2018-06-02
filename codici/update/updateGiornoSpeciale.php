@@ -28,8 +28,9 @@ if($_POST != null) {
 
 
     if(!_isUguali($id, $old, $nome, $idFascia, $sale, $giorno)) {
+		
         //controllo se ci sono prenotazioni nel giorno vecchio
-        $query = "SELECT * FROM prenotazioni WHERE giorno = '" . $old["giorno_inizio"] . "' AND id_stagione = '$id'";
+        $query = "SELECT * FROM prenotazioni WHERE id_stagione = '$id'";
         $result2 = $connessione->query($query);
         $num = mysqli_num_rows($result2);
         if ($num != 0) {
@@ -38,7 +39,7 @@ if($_POST != null) {
                 $query3 = "INSERT INTO prenotazionidarevisionare(`cliente`, `tel`, `num_partecipanti`, `giorno`, `orario`, `id_sala`, `id_stagione`, `id_fase`, `note_prenotazione`) VALUES ('" . $pren["cliente"] . "','" . $pren["tel"] . "','" . $pren["num_partecipanti"] . "','" . $pren["giorno"] . "','" . $pren["orario"] . "','" . $pren["id_sala"] . "','" . $pren["id_stagione"] . "','" . $pren["id_fase"] . "','" . $pren["note_prenotazione"] . "')";
                 $result3 = $connessione->query($query3);
             }
-            $query4 = "DELETE FROM prenotazioni WHERE giorno = '" . $old["giorno_inizio"] . "' AND id_stagione ='$id'";
+            $query4 = "DELETE FROM prenotazioni WHERE id_stagione ='$id'";
             $result4 = $connessione->query($query4);
 
             echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php?messaggio=Modifica effettuata correttamente!';</script>";
@@ -47,7 +48,6 @@ if($_POST != null) {
             _updateGiorno($nome, $giorno, $old["id_stagione"], $sale, $idFascia);
         }
     }
-
     else
         echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php?alert=Rispetto a prima non è stato modificato nulla!';</script>";
 }
@@ -64,7 +64,7 @@ function _updateGiorno($nome, $giorno, $idGiornoSpeciale, $sale, $idFascia)
     if ($connessione->query($query)) {
         $query = "DELETE FROM stagioni_sale WHERE id_stagione = '$idGiornoSpeciale'";
 
-        if (!($connessione->query($query))) {
+        if ($connessione->query($query)) {
 
             $supporto = "INSERT INTO stagioni_sale (id_stagione, id_sala) VALUES ";
 
@@ -80,10 +80,12 @@ function _updateGiorno($nome, $giorno, $idGiornoSpeciale, $sale, $idFascia)
             }
 
             if ($connessione->query($supporto))
+			{
                 $query = "UPDATE stagioni_orari SET id_fascia = '$idFascia'";
                 if ($connessione->query($query))
                     echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php?messaggio=Modifica effettuata correttamente!';</script>";
-        }
+			}
+		}
 
     }
     else

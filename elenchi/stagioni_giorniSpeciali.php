@@ -42,6 +42,7 @@ include '../menu.php';
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+			<br>
             <?php
             if(isset($_GET['messaggio'])) {
                 ?>
