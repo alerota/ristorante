@@ -148,8 +148,9 @@ require_once '../menu.php';
                         <th>Giorno</th>
                         <th>Orario</th>
                         <th>Sala</th>
-                        <th></th>
-                        <th></th>
+                        <th>View</th>
+                        <th>Edit</th>
+                        <th>Canc</th>
                     </tr>
                     </thead>
                     <tbody>

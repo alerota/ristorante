@@ -11,7 +11,7 @@
         echo "Errore in connessione al DBMS: " . $connessione->error;
     }
 
-    $today = date("Y-n-j");
+    $today = date("Y-m-d");
 
 
 	// Prenotazioni giornaliere totali
