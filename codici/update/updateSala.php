@@ -121,7 +121,7 @@
 	else
 		echo "Errore: conflitto di id";
 
-    echo "<script> window.location.href = '../elenca/sale.php'; </script>";
+    echo "<script> window.location.href = '../../elenchi/sale.php'; </script>";
 	
 	mysqli_close($connessione);
 ?>

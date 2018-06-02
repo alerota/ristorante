@@ -45,10 +45,10 @@
     }
 
     if (!($connessione->query($supporto)))
-        echo "<script> window.location.href = '../../../index.php'inserimento della festa!';</script>";
+        echo "<script> window.location.href = '../../index.php'inserimento della festa!';</script>";
 	
 	mysqli_close($connessione);
 	
-    echo "<script> window.location.href = '../../../index.php';</script>";
+    echo "<script> window.location.href = '../../index.php';</script>";
 	
 ?>
