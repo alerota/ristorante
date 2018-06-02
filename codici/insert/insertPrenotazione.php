@@ -9,7 +9,7 @@
 		return $testo;
 	}
 	
-    // Connessione al DB
+	// Connessione al DB
     $host = "localhost";
     $user = "root";
     $pass = "";
@@ -21,41 +21,34 @@
         echo "Errore in connessione al DBMS: " . $connessione->error;
     }
 	
-	$idOld = $_POST["id"];
-	$tipo = $_POST["tipo"];
-	
-	$data = $_POST["data"];
+	$data = $_POST["giornata"];
 	$n = $_POST["num_persone"];
 	$orario = $_POST["orario"];
 	$sala = $_POST["sala"];
-	$nome = gestioneEccezioneVirgolette($_POST["nome"]);
+	$nome = gestioneEccezioneVirgolette($_POST["cognome"]);
 	$tel = $_POST["tel"];
 	$note = gestioneEccezioneVirgolette($_POST["note"]);
-	$fase = $_POST["fase"];
+	$fase = $_POST["fase123"];
 	$stagione = $_POST["stagione"];
 
 	$query = "INSERT INTO prenotazioni (`cliente`, `tel`, `num_partecipanti`, `giorno`, `orario`, `id_sala`, `id_stagione`, `id_fase`, `note_prenotazione`, `scadenza`, `arrivo`, `chiusura`) 
 	VALUES ('" . $nome . "', '" . $tel . "', '" . $n . "', '" . $data . "', '" . $orario . "', '" . $sala . "', '" . $stagione . "', '" . $fase . "', '" . $note . "', 0, 0, 0);";
 	
-	$result = $connessione->query($query);
 	
-    if(!$result)
-        echo "<script> window.location.href = '../index.php?alert=Si sono verificati problemi durante la modifica, si prega di contattare il ristorante.';</script>";
-	else
-	{
-        if($tipo == "n")
-			$query2 = "delete from prenotazioni where id_prenotazione = '$idOld';";
-		else if($tipo == "r")
-			$query2 = "delete from prenotazionidarevisionare where id_prenotazione = '$idOld';";
-			
-		$result2 = $connessione->query($query2);
+    if(!($connessione->query($query)))
+        echo "<script> window.location.href = '../../../index.php';</script>";
+    else {
+        
+		$query2 = "INSERT INTO storico (`nome_cliente`, `tel_cliente`) VALUES ('" . $nome . "', '" . $tel . "');";
+		// echo $query2 . "<br>";
+		$result = $connessione->query($query2);
 		
 		// echo mysqli_errno($connessione) . " - " . mysqli_error($connessione);	
 		
-        if(!$result2)
-            echo "<script> window.location.href = '../index.php?alert=Si sono verificati problemi durante la modifica, si prega di chiedere assistenza.';</script>";
+        if(!$result)
+            echo "<script> window.location.href = '../../../index.php';</script>";
         else
-            echo "<script> window.location.href = '../index.php?messaggio=Prenotazione modificata con successo!';</script>";
+            echo "<script> window.location.href = '../../../index.php';</script>";
 		
 	}
 

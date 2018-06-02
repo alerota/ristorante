@@ -33,7 +33,7 @@ if(isset($_GET['id'])) {
     $query = "DELETE FROM sale WHERE id_sala = '$idSala'";
     $result = $connessione->query($query);
 
-    echo "<script> window.location.href = '../elenchi/sale.php?messaggio=Sala cancellata correttamente!'</script>";
+    echo "<script> window.location.href = '../../elenchi/sale.php'</script>";
 }
 
 mysqli_close($connessione);

@@ -57,7 +57,7 @@
                     $query5 = "DELETE FROM fasceorarie WHERE orario='$orariDB[2]' AND id_fascia = '$idFascia'";
                     $result5 = $connessione->query($query5);
                     if (!$result5)
-                        echo "<script> window.location.href = '../forms/AggiuntaNuovaFasciaOraria.php?alert=Errore nel caricamento della fascia'</script>";
+                        echo "<script> window.location.href = '../../forms/AggiuntaNuovaFasciaOraria.php'</script>";
 
                 }
                 else {
@@ -68,7 +68,7 @@
             if(count($orari) != 0)
                 _aggiungiNuovi($orari, $idFascia);
             else
-                echo "<script> window.location.href = '../forms/AggiuntaNuovaFasciaOraria.php?messaggio=Fascia oraria modificata con successo!'</script>";
+                echo "<script> window.location.href = '../../forms/AggiuntaNuovaFasciaOraria.php'</script>";
         }
         else {
             echo "erroreasdhjkfasdf";
@@ -78,7 +78,7 @@
     }
     else {
         mysqli_close($connessione);
-        echo "<script> window.location.href = '../forms/AggiuntaNuovaFasciaOraria.php?alert=Errore nel caricamento della fascia'</script>";
+        echo "<script> window.location.href = '../../forms/AggiuntaNuovaFasciaOraria.php'</script>";
     }
 
 
@@ -114,7 +114,7 @@
             }
         }
 
-        echo "<script> window.location.href = '../forms/AggiuntaNuovaFasciaOraria.php?messaggio=Fascia oraria modificata con successo!'</script>";
+        echo "<script> window.location.href = '../../forms/AggiuntaNuovaFasciaOraria.php'</script>";
     }
 ?>
 

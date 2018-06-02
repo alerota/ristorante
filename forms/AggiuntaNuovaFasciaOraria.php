@@ -100,7 +100,7 @@
 		{
 			var a = document.getElementById("nomeFascia");
 			var b = a.options[a.selectedIndex].value;
-			window.location.href = "../codici/deleteFasciaOraria.php?id=" + b;
+			window.location.href = "../codici/delete/deleteFasciaOraria.php?id=" + b;
 		}
 		</script>
 		
@@ -128,7 +128,7 @@
 		<div class="container">
 			<hr>
 			<div class="row">
-				<form id="insertFO" method="POST" action="<?php if($_GET != null && isset($_GET['id'])) echo "../codici/updateFasciaOraria.php"; else echo "../codici/insertFasciaOraria.php"; ?>">
+				<form id="insertFO" method="POST" action="<?php if($_GET != null && isset($_GET['id'])) echo "../codici/update/updateFasciaOraria.php"; else echo "../codici/insert/insertFasciaOraria.php"; ?>">
 					<div class="col-md-3">
 						<fieldset>
 					

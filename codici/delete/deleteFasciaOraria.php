@@ -25,7 +25,7 @@
 				$s .= $row['nome_stagione'] . ", ";
 			}
 			$s = substr($s, 0, strlen($s) - 2) . ".";
-			echo "<script> window.location.href = '../forms/AggiuntaNuovaFasciaOraria.php?alert=Fascia in uso: '" .$s.  "'; </script>";
+			echo "<script> window.location.href = '../../forms/AggiuntaNuovaFasciaOraria.php '" .$s.  "'; </script>";
 		}
 		else {
 			$query = "DELETE FROM fasceorarie WHERE id_fascia = '$idFascia'"; 
@@ -33,7 +33,7 @@
 			$query = "DELETE FROM gestionefasceorarie WHERE id_fascia = '$idFascia'"; 
 			$result = $connessione->query($query);
 			
-			echo "<script> window.location.href = '../forms/AggiuntaNuovaFasciaOraria.php?messaggio=Fascia oraria cancellata correttamente!'; </script>";
+			echo "<script> window.location.href = '../../forms/AggiuntaNuovaFasciaOraria.php'; </script>";
 		}
 	}
 	

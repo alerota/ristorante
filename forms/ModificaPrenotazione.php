@@ -147,7 +147,7 @@ function getAjaxControl()
 }
 function ricercaFasiDisponibili()
 {
-	loadDoc("../codici/ricercaFasi.php?date=" + document.getElementById("data").value,"");
+	loadDoc("../codici/ricerca/ricercaFasi.php?date=" + document.getElementById("data").value,"");
     document.getElementById("selezioneFasi").innerHTML=req.responseText;
 }
 function ricercaSaleDisponibili()
@@ -158,7 +158,7 @@ function ricercaSaleDisponibili()
 	
 	if(numeroPersone > 0)
 	{
-		loadDoc("../codici/ricercaFasciaOraria.php?date=" + dataScelta + "&numeroPartecipanti=" + numeroPersone + "&fase=" + faseScelta,""); // Rivedi qui
+		loadDoc("../codici/ricerca/ricercaFasciaOraria.php?date=" + dataScelta + "&numeroPartecipanti=" + numeroPersone + "&fase=" + faseScelta,""); // Rivedi qui
 		document.getElementById("selezioneSale").innerHTML=req.responseText;
 	}
 	else
@@ -172,7 +172,7 @@ function ricercaSaleAdmin()
 	
 	if(numeroPersone > 0)
 	{
-		loadDoc("../codici/ricercaFasciaOrariaAdmin.php?date=" + dataScelta + "&fase=" + faseScelta,""); // Rivedi qui
+		loadDoc("../codici/ricerca/ricercaFasciaOrariaAdmin.php?date=" + dataScelta + "&fase=" + faseScelta,""); // Rivedi qui
 		document.getElementById("selezioneSale").innerHTML=req.responseText;
 	}
 	else
@@ -200,7 +200,7 @@ function ricercaSaleAdmin()
 		<div class="col-md-4"> <?php include "listino.php"; ?> </div>
 		<div class="col-md-1"><br></div>
 		<div class="col-md-7">
-			<form method='POST' id="formPrenotazione" class='form' action="../codici/updatePrenotazione.php" style='background-color: white; height: calc(100% - 52px); '>
+			<form method='POST' id="formPrenotazione" class='form' action="../codici/update/updatePrenotazione.php" style='background-color: white; height: calc(100% - 52px); '>
 				<input type="hidden" name="tipo" value="<?php echo $_GET["t"]; ?>">
 				<input type="hidden" name="id" value="<?php echo $_GET["msg"]; ?>">
 				<div class="form-group">

@@ -41,7 +41,7 @@ include '../menu.php';
                 <?php
             }
                 ?>
-            <h1 class="card-title text-center">Lista sale <a href="AggiuntaNuovaSala.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
+            <h1 class="card-title text-center">Lista sale <a href="../forms/AggiuntaNuovaSala.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
             <br><br>
             <table id="table">
                 <thead>
@@ -75,7 +75,7 @@ include '../menu.php';
                                 </a>
                             </td>
                             <td>
-                                <a href="../codici/deleteSala.php?id=<?php echo $row['id_sala']; ?>">
+                                <a href="../codici/delete/deleteSala.php?id=<?php echo $row['id_sala']; ?>">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>

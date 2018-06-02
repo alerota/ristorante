@@ -221,7 +221,7 @@ include '../menu.php';
             confirm: {
                 action: function () {
                     var a = document.getElementById("idSupporto").value;
-                    window.location.href = "../codici/deleteStagioneGiornoSpeciale.php?id=" + a;
+                    window.location.href = "../codici/delete/deleteStagioneGiornoSpeciale.php?id=" + a;
                 },
                 text: 'Si',
                 btnClass: 'btn-danger',

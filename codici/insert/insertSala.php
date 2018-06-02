@@ -28,9 +28,9 @@
 	VALUES ('" . $nome . "', '" . $n . "');";
 
     if($connessione->query($query))
-        echo "<script> window.location.href = '../elenchi/sale.php?messaggio=Sala inserita correttamente!';</script>";
+        echo "<script> window.location.href = '../../elenchi/sale.php';</script>";
     else
-        echo "<script> window.location.href = '../elenchi/sale.php?alert=Errore nel inserimento della sala!';</script>";
+        echo "<script> window.location.href = '../../elenchi/sale.php';</script>";
 
 	mysqli_close($connessione);
 ?>

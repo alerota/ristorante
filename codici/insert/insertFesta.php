@@ -29,7 +29,7 @@
     $query = "INSERT INTO stagioni (nome_stagione, giorno_inizio, giorno_fine, priorita) VALUES ('" . $nome . "', '" . $giorno . "', '" . $giorno . "', 11);";
 
     if (!($connessione->query($query)))
-        echo "<script> window.location.href = '../index.php?alert=Errore nell'inserimento della festa!';</script>";
+        echo "<script> window.location.href = '../../../index.php'inserimento della festa!';</script>";
 
 	
 	// Fase 2: inserimento degli orari
@@ -45,10 +45,10 @@
     }
 
     if (!($connessione->query($supporto)))
-        echo "<script> window.location.href = '../index.php?alert=Errore nell'inserimento della festa!';</script>";
+        echo "<script> window.location.href = '../../../index.php'inserimento della festa!';</script>";
 	
 	mysqli_close($connessione);
 	
-    echo "<script> window.location.href = '../index.php?messaggio=Festa inserita correttamente!';</script>";
+    echo "<script> window.location.href = '../../../index.php';</script>";
 	
 ?>

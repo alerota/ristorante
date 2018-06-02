@@ -29,12 +29,12 @@
         $query = "UPDATE utenti SET username='$username', password='$password' WHERE id='$id'";
 
         if ($connessione->query($query))
-            echo "<script> window.location.href = '../elenchi/utenti.php?messaggio=Utente aggiornato correttamente!';</script>";
+            echo "<script> window.location.href = '../../elenchi/utenti.php';</script>";
         else
-            echo "<script> window.location.href = '../elenchi/utenti.php?error=Errore nella modifica del utente!';</script>";
+            echo "<script> window.location.href = '../../elenchi/utenti.php';</script>";
     }
     else
-        echo "<script> window.location.href = '../elenchi/utenti.php?error=Errore nella modifica del utente!';</script>";
+        echo "<script> window.location.href = '../../elenchi/utenti.php';</script>";
 
     mysqli_close($connessione);
 ?>

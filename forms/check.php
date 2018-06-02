@@ -108,7 +108,7 @@ function getAjaxControl()
 }
 function ricercaFasiDisponibili()
 {
-	loadDoc("codici/ricercaFasi.php?date=" + document.getElementById("giornata").value,"");
+	loadDoc("codici/ricerca/ricercaFasi.php?date=" + document.getElementById("giornata").value,"");
     document.getElementById("selezioneFasi").innerHTML=req.responseText;
 }
 function ricercaSaleDisponibili()
@@ -118,7 +118,7 @@ function ricercaSaleDisponibili()
 	
 	if(numeroPersone > 0)
 	{
-		loadDoc("codici/ricercaFasciaOraria.php?date=<?php echo $_GET["date"]; ?>&numeroPartecipanti=" + numeroPersone + "&fase=" + faseScelta,"");
+		loadDoc("codici/ricerca/ricercaFasciaOraria.php?date=<?php echo $_GET["date"]; ?>&numeroPartecipanti=" + numeroPersone + "&fase=" + faseScelta,"");
 		document.getElementById("selezioneSale").innerHTML=req.responseText;
 	}
 	else
@@ -131,7 +131,7 @@ function ricercaSaleAdmin()
 	
 	if(numeroPersone > 0)
 	{
-		loadDoc("codici/ricercaFasciaOrariaAdmin.php?date=<?php echo $_GET["date"]; ?>&fase=" + faseScelta,"");
+		loadDoc("codici/ricerca/ricercaFasciaOrariaAdmin.php?date=<?php echo $_GET["date"]; ?>&fase=" + faseScelta,"");
 		document.getElementById("selezioneSale").innerHTML=req.responseText;
 	}
 	else
@@ -151,7 +151,7 @@ function ricercaSaleAdmin()
 	transition-duration: 0.4s;
 }
 </style>
-<form method='POST' id="formPrenotazione" class='form' action="codici/insertPrenotazione.php" style='background-color: white; height: calc(100% - 52px); '>
+<form method='POST' id="formPrenotazione" class='form' action="../codici/insert/insertPrenotazione.php" style='background-color: white; height: calc(100% - 52px); '>
 	<div class="form-group">
 		<div class="text-center">
 			<ul class="pagination">

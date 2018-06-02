@@ -58,13 +58,13 @@
         $query = substr($query, 0, strlen($query) - 1) . ";";
 		
 		if ($connessione->query($query))
-            echo "<script> window.location.href = '../elenchi/index.php';</script>";
+            echo "<script> window.location.href = '../../index.php';</script>";
 		else
-            echo "<script> window.location.href = '../elenchi/index.php';</script>";
+            echo "<script> window.location.href = '../../index.php';</script>";
 		
 	}
 	else
-        echo "<script> window.location.href = '../elenchi/index.php';</script>";
+        echo "<script> window.location.href = '../../index.php';</script>";
 	
 	mysqli_close($connessione);
 ?>

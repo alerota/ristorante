@@ -91,7 +91,7 @@
 		<div class="container">
 
 		    <hr>
-			<form method="POST" action="../codici/insertGiornoSpeciale.php" id="insertGS">
+			<form method="POST" action="../codici/insert/insertGiornoSpeciale.php" id="insertGS">
 				<div class="row">
 					<div class="col-md-3">
 						<fieldset>

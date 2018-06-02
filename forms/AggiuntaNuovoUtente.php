@@ -49,7 +49,7 @@ include '../menu.php';
 					<div class="col-md-6">
 						<h1 class="card-title text-center"><?php if($_GET != null) echo "Modifica utente n°". $idImportante; else echo "Inserimento utente"; ?></h1>
 						<hr>
-                            <form class="form-horizontal"  id="utente" method="post" action="<?php if($_GET != null) echo "../codici/modificaUtente.php?id=" .$idImportante; else echo "../codici/insertUtente.php"; ?>">
+                            <form class="form-horizontal"  id="utente" method="post" action="<?php if($_GET != null) echo "../codici/update/updateUtente.php?id=" .$idImportante; else echo "../codici/insert/insertUtente.php"; ?>">
 							<div class="col-lg-10 col-lg-offset-0">
 								<div class="form-group">
 									<label for="firstName" class="col-sm-3 control-label">Username</label>

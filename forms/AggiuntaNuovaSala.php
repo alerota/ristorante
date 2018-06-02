@@ -54,7 +54,7 @@
 
 				<div class="row">
 					<div class="col-md-3">
-						<form method="POST" id="insertSL" action="<?php if($_GET != null) echo "../codici/updateSala.php"; else echo "../codici/insertSala.php"; ?>" >
+						<form method="POST" id="insertSL" action="<?php if($_GET != null) echo "../codici/update/updateSala.php"; else echo "../codici/insert/insertSala.php"; ?>" >
 							<fieldset>
 								<legend>Dettagli nuova sala</legend>
 								<div class="form-group">
