@@ -37,7 +37,7 @@
 							.searchByDate { width: 100%; }
 							</style>
 							<div class="btn-group">
-								<button onclick="" class="btn btn-warning primaRiga" type="button">
+								<button data-toggle="modal" data-target="#prenotaFesta" class="btn btn-warning primaRiga" type="button">
 										<h4><div class="glyphicon glyphicon-gift"></div></h4>
 								</button>
 								<button onclick="window.location.href=\'elenchi/prenotazioni.php?date=' . $today . '\';" class="btn btn-primary primaRiga" type="button">

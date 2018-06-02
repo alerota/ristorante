@@ -13,15 +13,17 @@
 * {
     font-family: 'Roboto', sans-serif;
 }
-
+#prenotaFesta .modal-dialog,
 #login-modal .modal-dialog {
     width: 350px;
 }
 
-#login-modal input[type=text], input[type=password] {
+#prenotaFesta input[type=text], #prenotaFesta input[type=password], #prenotaFesta input[type=date],
+#login-modal input[type=text], #login-modal input[type=password], #login-modal input[type=date] {
 	margin-top: 10px;
 }
 
+#div-formPrenotaFesta-msg,
 #div-login-msg,
 #div-lost-msg,
 #div-register-msg {
@@ -31,6 +33,7 @@
     transition: all ease-in-out 500ms;
 }
 
+#div-formPrenotaFesta-msg.success,
 #div-login-msg.success,
 #div-lost-msg.success,
 #div-register-msg.success {
@@ -38,6 +41,7 @@
     background-color: #c8f7c5;
 }
 
+#div-formPrenotaFesta-msg.error,
 #div-login-msg.error,
 #div-lost-msg.error,
 #div-register-msg.error {
@@ -45,6 +49,7 @@
     background-color: #ffcad1;
 }
 
+#icon-formPrenotaFesta-msg,
 #icon-login-msg,
 #icon-lost-msg,
 #icon-register-msg {
@@ -57,12 +62,14 @@
     transition: all ease-in-out 500ms;
 }
 
+#icon-formPrenotaFesta-msg.success,
 #icon-login-msg.success,
 #icon-lost-msg.success,
 #icon-register-msg.success {
     background-color: #68c3a3 !important;
 }
 
+#icon-formPrenotaFesta-msg.error,
 #icon-login-msg.error,
 #icon-lost-msg.error,
 #icon-register-msg.error {

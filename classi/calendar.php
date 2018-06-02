@@ -120,7 +120,7 @@ class Calendar {
 		{
         	if($this->currentDate < Date('Y-m-d', time()))
 				$string .= '<div id="li-'.$this->currentDate.'" class="col-xs-1 text-center" style="background-color: #AAAAAA; ">'.$cellContent.'</div>';
-        	else if($this->_isClosed($this->currentDate))
+        	else if($this->_isClosed($this->currentDate) < 0)
                 $string .= '<div id="li-'.$this->currentDate.'" class="col-xs-1 text-center" style="background-color: rgb(255, 128, 0); ">'.$cellContent.'</div>';
 			else if($this->_hasNoStagione($this->currentDate))
                 $string .= '<div id="li-'.$this->currentDate.'" class="col-xs-1 text-center" style="background-color: rgb(64, 134, 51); ">'.$cellContent.'</div>';
@@ -237,14 +237,15 @@ class Calendar {
             echo "Errore in connessione al DBMS: " . $connessione->error;
         }
 		$day_support = "x" . substr($day, strpos($day, "-"));
-        $query = "SELECT * FROM stagioni NATURAL JOIN stagioni_orari WHERE id_fascia = -1 AND (('$day' >= giorno_inizio and '$day' <= giorno_fine) or (giorno_inizio = '$day_support')) AND giorno_settimana = " . (date("w", strtotime(str_replace('-','/', $day))-1) % 7);
+        $query = "SELECT id_fascia FROM stagioni NATURAL JOIN stagioni_orari WHERE (('$day' >= giorno_inizio and '$day' <= giorno_fine) or (giorno_inizio = '$day_support')) AND giorno_settimana = " . (date("w", strtotime(str_replace('-','/', $day))-1) % 7) . " order by priorita desc;";
         $result = $connessione->query($query);
-
-       if($result->num_rows != 0) {
-            return true;
+		
+		if($result && $result->num_rows != 0) {
+            $row = mysqli_fetch_row($result);
+			return $row[0];
         }
 
-        return false;
+        return 0;
     }
 
     private function _hasNoStagione($day)

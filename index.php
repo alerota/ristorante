@@ -22,11 +22,11 @@
 			
 			if(isset($_GET['messaggio']))
 				echo '<div class="container"><br><div class="row"><div class="col-xs-12"><div class="alert alert-success">
-						<strong>Prenotazione inviata con successo! </strong> ' . $_GET['messaggio'] . '
+						<strong>Ottimo! </strong> ' . $_GET['messaggio'] . '
 					</div></div></div></div>';
 			else if(isset($_GET['alert']))
 				echo '<div class="container"><br><div class="row"><div class="col-xs-12"><div class="alert alert-warning">
-						<strong>Errore! </strong> ' . $_GET['alert'] . '
+						<strong>Attenzione! </strong> ' . $_GET['alert'] . '
 					</div></div></div></div>';
 			
 			echo '<div class="container-fluid">

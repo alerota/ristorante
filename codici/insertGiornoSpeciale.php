@@ -23,8 +23,8 @@
 	
 	$idFascia = $_POST["giorno0"];
 	$ripetizione = $_POST["ripetizioneGiorno"];
-	$nome = $_POST["nomeGiorno"];
-	$giorno = gestioneEccezioneVirgolette($_POST["giornata"]);
+	$nome = gestioneEccezioneVirgolette($_POST["nomeGiorno"]);
+	$giorno = $_POST["giornata"];
 	
 	if($ripetizione == "1")
 		$giorno = "x" . substr($giorno, strpos($giorno, "-"));

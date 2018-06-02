@@ -169,7 +169,7 @@
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Prenotazioni<span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="http://localhost/ristorante/index.php">Aggiungi prenotazione</a></li>
-									<li><a href="#">Aggiungi festa</a></li>
+									<li><a class="nav-link" href="#" data-toggle="modal" data-target="#prenotaFesta">Aggiungi festa</a></li>
 									<li><a href="http://localhost/ristorante/elenchi/prenotazioni.php">Elenca prenotati</a></li>
 									<li><a href="http://localhost/ristorante/elenchi/revisionare.php">Da revisionare</a></li>
 									<li><a href="http://localhost/ristorante/elenchi/clienti.php">Storico</a></li>
@@ -242,6 +242,43 @@
 								</div>
 								<div>
 									<br><p class="btn btn-link">P&amp;G Management</p>
+								</div>
+							</div>
+						</form>
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="prenotaFesta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; ">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" align="center">
+						<img id="img_logo" src="images\champagne.png">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
+					</div>
+					
+					<div id="div-forms">
+						<form id="formPrenotaFesta" method="POST" action="codici/insertFesta.php">
+							<div class="modal-body">
+								<div id="div-formPrenotaFesta-msg">
+									<div id="icon-formPrenotaFesta-msg" class="glyphicon glyphicon-menu-right"></div>
+									<span id="text-formPrenotaFesta-msg">Scegliere un nome e una data.</span>
+								</div>
+								<input id="nomeFormPrenotaFesta" class="form-control" type="text" name="nome" placeholder="Nome" required>
+								<input id="dataFormPrenotaFesta" class="form-control" type="date" name="data" placeholder="Password" required>
+								
+							</div>
+							<div class="modal-footer">
+								<div>
+									<button type="submit" onclick="document.getElementById('formPrenotaFesta').submit();" class="btn btn-primary btn-lg btn-block">Prenota</button>
+								</div>
+								<div>
+									<br><p class="btn btn-link">Il locale sarà riservato tutto il giorno.</p>
 								</div>
 							</div>
 						</form>
