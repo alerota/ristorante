@@ -54,7 +54,7 @@ include '../menu.php';
             if(isset($_GET['alert'])) {
                 ?>
             <div class="alert alert-warning">
-                <strong>Warning! </strong> <?php echo $_GET['alert']; ?>
+                <strong>Attenzione! </strong> <?php echo $_GET['alert']; ?>
             </div>
             <?php
             }
