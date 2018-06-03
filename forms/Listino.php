@@ -19,9 +19,9 @@
 		if(isset($_GET["t"]))
 		{
 			if($_GET["t"] == "r")
-				$query = "SELECT * FROM prenotazionidarevisionare NATURAL JOIN sale WHERE id_prenotazione = $idImportante;";
+				$query = "SELECT * FROM prenotazionidarevisionare LEFT JOIN sale on prenotazionidarevisionare.id_sala = sale.id_sala WHERE id_prenotazione = $idImportante;";
 			else if($_GET["t"] == "n")
-				$query = "SELECT * FROM prenotazioni NATURAL JOIN sale WHERE id_prenotazione = $idImportante;";
+				$query = "SELECT * FROM prenotazioni LEFT JOIN sale on prenotazioni.id_sala = sale.id_sala WHERE id_prenotazione = $idImportante;";
 			else
 			{
 				echo "<br>ErrBadTypeEditOrder";
@@ -39,7 +39,10 @@
 				$tel1 = $row["tel"];
 				$note1 = $row["note_prenotazione"];
 				$partecipanti1 = $row["num_partecipanti"];
-				$sala1 = $row["Nome_sala"];
+				if(isset($row["Nome_sala"]))
+					$sala1 = $row["Nome_sala"];
+				else
+					$sala1 = "x";
 				$giorno1 = date("d-m-Y", strtotime($row["giorno"]));
 				$orario1 = $row["orario"];
 				
