@@ -219,7 +219,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header" align="center">
-						<img class="img-circle" id="img_logo" src="images\logo.png">
+						<img class="img-circle" id="img_logo" src="http://localhost/ristorante/images\logo.png">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</button>
@@ -256,7 +256,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header" align="center">
-						<img id="img_logo" src="images\champagne.png">
+						<img id="img_logo" src="http://localhost/ristorante/images\champagne.png">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</button>

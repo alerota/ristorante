@@ -18,7 +18,7 @@
 		}
 		else
 		{
-			echo '<style>body { background-image: url("images/pikachu.gif"); }</style>';
+			echo '<style>body { background-image: url("images/pikachu.jpg"); } </style>';
 			
 			if(isset($_GET['messaggio']))
 				echo '<div class="container"><br><div class="row"><div class="col-xs-12"><div class="alert alert-success">
@@ -32,7 +32,7 @@
 			echo '<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><br></div>
-				<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+				<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="opacity:0.9;">
 					<br>';
 			include 'classi/calendar.php';
 			$calendar = new Calendar();
