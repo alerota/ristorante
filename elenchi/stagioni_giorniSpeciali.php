@@ -41,7 +41,7 @@ include '../menu.php';
 <body id="body">
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" id="wrapper">
 			<br>
             <?php
             if(isset($_GET['messaggio'])) {
@@ -58,19 +58,8 @@ include '../menu.php';
             </div>
             <?php
             }
-            /* cancellazione non ancora implementata
-            if(isset($_GET['msg1'])) {
-                $id = $_GET['msg1'];
-                $query = "DELETE FROM prenotazioni WHERE id_prenotazione='$id'";
-
-                $result = $connessione->query($query);
-
-                echo "<script> window.location.href= 'prenotazioni.php?messaggio=Cliente rimasto nella lista clienti!';</script>";
-            }
-            else {*/
             ?>
-
-            <h1 class="card-title text-center">Lista stagioni <a href="../forms/AggiuntaNuovaStagione.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
+            <h1 class="text-center">Lista stagioni <a href="../forms/AggiuntaNuovaStagione.php" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></a></h1>
             <br>
             <table id="table">
                 <thead>
@@ -211,14 +200,15 @@ include '../menu.php';
             //}
             ?>
         </div>
-    </div>
+    
+		<div id="warning-message">
+			<br>
+			<div class="alert alert-warning">
+				<h3><strong>Attenzione!</strong> Questa pagina è visualizzabile solo se orienti il cellulare in orizzontale</h3>
+			</div>
+		</div>
+	</div>
 </div>
-    <div id="warning-message">
-        <br>
-        <div class="alert alert-warning">
-            <h3><strong>Attenzione!</strong> Questa pagina è visualizzabile solo se orienti il cellulare in orizzontale</h3>
-        </div>
-    </div>
 </body>
 </html>
 <script type="text/javascript">

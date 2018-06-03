@@ -23,21 +23,22 @@ require_once '../menu.php';
 </head>
 
 <body id="body">
-<div class="container py-5">
-    <div class="card">
-        <div class="card-body">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+			<hr>
             <?php
             if(isset($_GET['messaggio'])) {
                 ?>
                 <div class="alert alert-warning">
-                    <strong>Warning! </strong> <?php echo $_GET['messaggio']; ?>
+                    <strong>Attenzione! </strong> <?php echo $_GET['messaggio']; ?>
                 </div>
                 <?php
             }
 
             if(isset($_GET['msg'])) {
                 ?>
-                <h1 class="card-title text-center">Prenotazione da revisionare n° <?php echo $_GET['msg']; ?></h1>
+                <h1 class="text-center">Prenotazione da revisionare n° <?php echo $_GET['msg']; ?></h1>
 
                 <?php
                 $id = $_GET['msg'];
@@ -131,14 +132,14 @@ require_once '../menu.php';
                 $result = $connessione->query($query);
 					
 				if($result)
-					echo "<script> window.location.href= 'revisionare.php?messaggio=Cliente rimasto nella lista clienti!';</script>";
+					echo "<script> window.location.href= 'revisionare.php';</script>";
 				else
                     echo "<script> window.location.href= 'revisionare.php?messaggio=Errore nella cancellazione della prenotazione da revisionare!';</script>";
             }
             else {
                 ?>
-                <h1 class="card-title text-center">Lista prenotazioni da revisionare</h1>
-                <br><br>
+                <h1 class="text-center">Lista prenotazioni da revisionare</h1>
+                <br>
                 <table id="table">
                     <thead>
                     <tr>
