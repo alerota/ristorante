@@ -40,7 +40,7 @@
 	$result = $connessione->query($query);
 	
     if(!$result)
-        echo "<script> window.location.href = '../../../index.php';</script>";
+        echo "<script> window.location.href = '../../index.php';</script>";
 	else
 	{
         if($tipo == "n")
@@ -53,9 +53,9 @@
 		// echo mysqli_errno($connessione) . " - " . mysqli_error($connessione);	
 		
         if(!$result2)
-            echo "<script> window.location.href = '../../../index.php';</script>";
+            echo "<script> window.location.href = '../../index.php';</script>";
         else
-            echo "<script> window.location.href = '../../../index.php';</script>";
+            echo "<script> window.location.href = '../../index.php';</script>";
 		
 	}
 
