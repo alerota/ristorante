@@ -8,6 +8,7 @@ $dbname = "ristorante";
 $connessione = mysqli_connect($host, $user, $pass);
 $db_selected=mysqli_select_db($connessione, $dbname);
 
+
 if($_GET != null)
 {
     $idImportante = $_GET["msg"];
@@ -20,11 +21,13 @@ if($_GET != null)
     if($num_result == 1)
     {
         $row = mysqli_fetch_array($result);
-        $username = $row["username"];
         $password = $row["password"];
+        $user = $row["username"];
     }
     else
         echo "<script>alert('Problemi durante il caricamento, chiedere assistenza...');</script>";
+
+
 }
 include '../menu.php';
 ?>
@@ -42,6 +45,7 @@ include '../menu.php';
             <?php
         }
         ?>
+
         <div class="card-body">
             <div class="container">
 				<div class="row">
@@ -54,13 +58,14 @@ include '../menu.php';
 								<div class="form-group">
 									<label for="firstName" class="col-sm-3 control-label">Username</label>
 									<div class="col-sm-9">
-										<input type="text" name="username" placeholder="Username" class="form-control" value="<?php if($_GET != null) echo $username;?>">
+
+										<input type="text" name="username" placeholder="Username" class="form-control" <?php if($_GET != null) echo "value='" . $user . "'"; ?>>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="password" class="col-sm-3 control-label">Password</label>
 									<div class="col-sm-9">
-										<input type="password" name="password" placeholder="Password" class="form-control" value="<?php if($_GET != null) echo $password;?>">
+										<input type="password" name="password" placeholder="Password" class="form-control" <?php if($_GET != null) echo "value='" . $password . "'"; ?>>
 									</div>
 								</div>
 								<hr>
