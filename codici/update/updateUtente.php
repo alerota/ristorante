@@ -22,19 +22,32 @@
     }
 
     $username = gestioneEccezioneVirgolette($_POST["username"]);
-    $password = md5($_POST["password"]);
+    $pass = $_POST["password"];
 
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
-        $query = "UPDATE utenti SET username='$username', password='$password' WHERE id='$id'";
 
-        if ($connessione->query($query))
-            echo "<script> window.location.href = '../../elenchi/utenti.php';</script>";
-        else
-            echo "<script> window.location.href = '../../elenchi/utenti.php';</script>";
+        $query = "SELECT * FROM utenti WHERE id = '$id'";
+        $result = $connessione->query($query);
+
+        if ($result) {
+            $row = $result->fetch_assoc();
+
+            if(strcmp($row["password"], $pass) != 0)
+                $pass = md5($pass);
+
+            $query = "UPDATE utenti SET username='$username', password='$pass' WHERE id='$id'";
+
+            if ($connessione->query($query))
+                echo "<script> window.location.href = '../../elenchi/utenti.php?messaggio=Modifica effuttuata correttamente!';</script>";
+            else
+                echo "<script> window.location.href = '../../elenchi/utenti.php?alert=Errore nella modifica!';</script>";
+
+        }
+
     }
     else
-        echo "<script> window.location.href = '../../elenchi/utenti.php';</script>";
+        echo "<script> window.location.href = '../../elenchi/utenti.php?alert=Errore nella modifica!';</script>";
 
     mysqli_close($connessione);
 ?>
