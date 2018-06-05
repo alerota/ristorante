@@ -8,7 +8,12 @@
 			$testo = str_replace("'", "`", $testo);
 		return $testo;
 	}
-	
+
+if(!isset($_COOKIE["login"])) {
+    echo '<script> window.location.href= "http://localhost/ristorante/index.php";</script>';
+    exit();
+}
+else {
     // Connessione al DB
     $host = "localhost";
     $user = "root";
@@ -21,16 +26,17 @@
         echo "Errore in connessione al DBMS: " . $connessione->error;
     }
 
-	$nome = gestioneEccezioneVirgolette($_POST["nomeSala"]);
-	$n = $_POST["numeroPosti"];
+    $nome = gestioneEccezioneVirgolette($_POST["nomeSala"]);
+    $n = $_POST["numeroPosti"];
 
-	$query = "INSERT INTO sale (Nome_sala, Numero_posti_prenotabili)
+    $query = "INSERT INTO sale (Nome_sala, Numero_posti_prenotabili)
 	VALUES ('" . $nome . "', '" . $n . "');";
 
-    if($connessione->query($query))
+    if ($connessione->query($query))
         echo "<script> window.location.href = '../../elenchi/sale.php';</script>";
     else
         echo "<script> window.location.href = '../../elenchi/sale.php';</script>";
 
-	mysqli_close($connessione);
+    mysqli_close($connessione);
+}
 ?>

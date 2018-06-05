@@ -8,7 +8,14 @@
 			$testo = str_replace("'", "`", $testo);
 		return $testo;
 	}
-	
+
+
+if(!isset($_COOKIE["login"])) {
+    echo '<script> window.location.href= "http://localhost/ristorante/index.php";</script>';
+    exit();
+}
+else {
+
     // Connessione al DB
     $host = "localhost";
     $user = "root";
@@ -24,7 +31,7 @@
     $username = gestioneEccezioneVirgolette($_POST["username"]);
     $pass = $_POST["password"];
 
-    if(isset($_GET['id'])) {
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
         $query = "SELECT * FROM utenti WHERE id = '$id'";
@@ -33,7 +40,7 @@
         if ($result) {
             $row = $result->fetch_assoc();
 
-            if(strcmp($row["password"], $pass) != 0)
+            if (strcmp($row["password"], $pass) != 0)
                 $pass = md5($pass);
 
             $query = "UPDATE utenti SET username='$username', password='$pass' WHERE id='$id'";
@@ -45,9 +52,9 @@
 
         }
 
-    }
-    else
+    } else
         echo "<script> window.location.href = '../../elenchi/utenti.php?alert=Errore nella modifica!';</script>";
 
     mysqli_close($connessione);
+}
 ?>

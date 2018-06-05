@@ -15,8 +15,13 @@
 		fclose($myfile);
 		return $nomeFile;
 	}
-	
-	// Connessione al DB
+
+if(!isset($_COOKIE["login"])) {
+    echo '<script> window.location.href= "http://localhost/ristorante/index.php";</script>';
+    exit();
+}
+else {
+    // Connessione al DB
     $host = "localhost";
     $user = "root";
     $pass = "";
@@ -27,48 +32,42 @@
     if ($connessione->connect_errno) {
         echo "Errore in connessione al DBMS: " . $connessione->error;
     }
-	
-	if(isset($_GET["data"]) && isset($_GET["t"]))
-	{
-		$data = $_GET["data"];
-		
-		$sql = "select * from prenotazioni inner join sale on (prenotazioni.id_sala = sale.id_sala) where giorno = '" . $data . "' order by cliente;";
-		
-		$result = mysqli_query($connessione, $sql);
-		
-		if($result && mysqli_num_rows($result) > 0)
-		{
-			$tipo = $_GET["t"];
-			$testo = "";
-			while($row = mysqli_fetch_assoc($result))
-			{
-				$testo .= "Nome: " . $row["cliente"] . ",   Telefono: " . $row["tel"] . ",   Numero di partecipanti: " . $row["num_partecipanti"] . "\n";
-				$testo .= "Giorno: " . date("d-m-Y", strtotime($row["giorno"])) . ",   Orario: " . $row["orario"] . ",   Sala: " . $row["Nome_sala"] . "\n";
-				$testo .= "Note: " . $row["note"] . "\n-----------------------------------------------\n";
-			}
-			
-			if($tipo == "file")
-			{
-				$nomeFile = creaFile($testo, $data);
-				header('Content-Type: application/octet-stream');
-				header('Content-Disposition: attachment; filename=Documenti/'.basename($nomeFile));
-				header('Expires: 0');
-				header('Cache-Control: must-revalidate');
-				header('Pragma: public');
-				header('Content-Length: ' . filesize("Documenti/" . $nomeFile));
-				
-				header('location: ../Impostazioni.php?messaggio=http://localhost/ristorante/codici/Documenti/' . $nomeFile);
-			}
-			else if($tipo == "mail")
-			{
-				// Multiple recipients
-				$to = 'davidepizzoli1234@gmail.com'; // note the comma
 
-				// Subject
-				$subject = 'Prenotazioni di oggi';
+    if (isset($_GET["data"]) && isset($_GET["t"])) {
+        $data = $_GET["data"];
 
-				// Message
-				$message = '
+        $sql = "select * from prenotazioni inner join sale on (prenotazioni.id_sala = sale.id_sala) where giorno = '" . $data . "' order by cliente;";
+
+        $result = mysqli_query($connessione, $sql);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $tipo = $_GET["t"];
+            $testo = "";
+            while ($row = mysqli_fetch_assoc($result)) {
+                $testo .= "Nome: " . $row["cliente"] . ",   Telefono: " . $row["tel"] . ",   Numero di partecipanti: " . $row["num_partecipanti"] . "\n";
+                $testo .= "Giorno: " . date("d-m-Y", strtotime($row["giorno"])) . ",   Orario: " . $row["orario"] . ",   Sala: " . $row["Nome_sala"] . "\n";
+                $testo .= "Note: " . $row["note"] . "\n-----------------------------------------------\n";
+            }
+
+            if ($tipo == "file") {
+                $nomeFile = creaFile($testo, $data);
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment; filename=Documenti/' . basename($nomeFile));
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+                header('Content-Length: ' . filesize("Documenti/" . $nomeFile));
+
+                header('location: ../Impostazioni.php?messaggio=http://localhost/ristorante/codici/Documenti/' . $nomeFile);
+            } else if ($tipo == "mail") {
+                // Multiple recipients
+                $to = 'davidepizzoli1234@gmail.com'; // note the comma
+
+                // Subject
+                $subject = 'Prenotazioni di oggi';
+
+                // Message
+                $message = '
 				<html>
 				<head>
 				  <title>Prenotazioni di oggi</title>
@@ -79,20 +78,20 @@
 				</html>
 				';
 
-				// To send HTML mail, the Content-type header must be set
-				$headers[] = 'MIME-Version: 1.0';
-				$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+                // To send HTML mail, the Content-type header must be set
+                $headers[] = 'MIME-Version: 1.0';
+                $headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
-				// Additional headers
-				$headers[] = 'To: Davide <davidepizzoli1234@gmail.com>';
-				$headers[] = 'From: RestIT <davidepizzoli1234@gmail.com>';
+                // Additional headers
+                $headers[] = 'To: Davide <davidepizzoli1234@gmail.com>';
+                $headers[] = 'From: RestIT <davidepizzoli1234@gmail.com>';
 
-				// Mail it
-				mail($to, $subject, $message, implode("\r\n", $headers));
-			}
-		}
-		else
-			echo "Nessuna prenotazione oggi...";
-	}
-	mysqli_close($connessione);
+                // Mail it
+                mail($to, $subject, $message, implode("\r\n", $headers));
+            }
+        } else
+            echo "Nessuna prenotazione oggi...";
+    }
+    mysqli_close($connessione);
+}
 ?>

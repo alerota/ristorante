@@ -8,12 +8,17 @@
 			$testo = str_replace("'", "`", $testo);
 		return $testo;
 	}
-	
-	// Connessione al DB
-	$host = "localhost";
-	$user = "root";
-	$pass = "";
-	$dbname = "ristorante";
+
+if(!isset($_COOKIE["login"])) {
+    echo '<script> window.location.href= "http://localhost/ristorante/index.php";</script>';
+    exit();
+}
+else {
+    // Connessione al DB
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = "ristorante";
 
     $connessione = new mysqli($host, $user, $pass, $dbname);
 
@@ -21,17 +26,17 @@
         echo "Errore in connessione al DBMS: " . $connessione->error;
     }
 
-	$nome = gestioneEccezioneVirgolette($_POST["nomeStagione"]);
-	$priorita = $_POST["prioritaStagione"];
-	$inizio = $_POST["inizioStagione"];
-	$fine = $_POST["fineStagione"];
-	$giorni = $_POST["giorni"];
-	$sale = $_POST['sala'];
+    $nome = gestioneEccezioneVirgolette($_POST["nomeStagione"]);
+    $priorita = $_POST["prioritaStagione"];
+    $inizio = $_POST["inizioStagione"];
+    $fine = $_POST["fineStagione"];
+    $giorni = $_POST["giorni"];
+    $sale = $_POST['sala'];
 
-	if(!_isDateCorrette($inizio, $fine))
+    if (!_isDateCorrette($inizio, $fine))
         echo "<script> window.location.href = '../../elenchi/stagioni_giorniSpeciali.php?alert=Giorno di inizio maggiore di quello di fine!';</script>";
 
-	else {
+    else {
         // Fase 1: inserimento della stagione effettiva
         $query = "INSERT INTO stagioni (nome_stagione, giorno_inizio, giorno_fine, priorita)
         VALUES ('" . $nome . "', '" . $inizio . "', '" . $fine . "', '" . $priorita . "');";
@@ -79,6 +84,7 @@
 
         mysqli_close($connessione);
     }
+}
 
 
 function _isDateCorrette($inizio, $fine)
