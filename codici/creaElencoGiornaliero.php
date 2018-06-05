@@ -90,7 +90,7 @@ else {
                 mail($to, $subject, $message, implode("\r\n", $headers));
             }
         } else
-            echo "Nessuna prenotazione oggi...";
+            echo "<script> alert('Nessuna prenotazione oggi...'); window.location.href='../index.php';</script>";
     }
     mysqli_close($connessione);
 }

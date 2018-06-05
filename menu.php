@@ -36,6 +36,17 @@
 		<link href="http://localhost/ristorante/style/calendar.css" type="text/css" rel="stylesheet" />
 		<link href="http://localhost/ristorante/css\stiliLogin.css" rel="stylesheet">
 		
+		<!-- Google Analytics -->
+		<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-XXXXX-Y', 'auto');
+		ga('send', 'pageview');
+		</script>
+		<!-- End Google Analytics -->
 		
 		<script src="http://localhost/ristorante/vendor/jquery/jquery-3.3.1.min.js"></script>
         <link rel="stylesheet" type="text/css" href="http://localhost/ristorante/vendor/dataTable/css/jquery.dataTables.min.css">
@@ -48,7 +59,22 @@
 		
 		<script src="http://localhost/ristorante/vendor\bootstrap\js\bootstrap.min.js"></script>
 		<script src="http://localhost/ristorante/js\codiciLogin.js"></script>
+		
 		<style>
+
+			.btn-fourth {
+				background-color: rgb(180, 180, 180);
+				color: white;
+			}
+
+			.btn-fourth:hover {
+				background-color: rgb(140, 140, 140);
+				color: white;
+			}
+
+			.btn {
+				margin-bottom: 10px;
+			}
 		 
 			.dropdown-menu > li.kopie > a {
 				padding-left:5px;

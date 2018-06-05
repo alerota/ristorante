@@ -51,6 +51,7 @@ else {
     <body id="body">
     <div class="container">
         <div class="row">
+			<div class="col-md-2"><br></div>
             <div class="col-md-8" id="wrapper">
                 <?php
                 if (isset($_GET['messaggio'])) {

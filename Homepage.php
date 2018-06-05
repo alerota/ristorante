@@ -5,22 +5,6 @@ if(!isset($_COOKIE["login"])) {
 }
 else {
     ?>
-    <style>
-
-        .btn-fourth {
-            background-color: rgb(180, 180, 180);
-            color: white;
-        }
-
-        .btn-fourth:hover {
-            background-color: rgb(140, 140, 140);
-            color: white;
-        }
-
-        .btn {
-            margin-bottom: 10px;
-        }
-    </style>
 
     <div class="container">
         <div class="pannelloGestionale row">
