@@ -17,7 +17,7 @@ else {
     }
 
     $data = $_GET["date"];
-    $giornoSettimana = date('N', strtotime($data)) - 1;
+    $giornoSettimana = (date('N', strtotime($data)) - 1) % 7;
     $anno = substr($data, 0, 4);
     $data_supporto = "x" . substr($data, 4);
     $n = $_GET["numeroPartecipanti"];
