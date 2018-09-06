@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-	<?php
+<?php
 	if($_POST != null)
 	{
+	
 		$host = "localhost";
-		$user = "root";
-		$pass = "";
-		$dbname = "ristorante";
+		$user = "ristoran_pren";
+		$pass = "szc[yPA-hIhB";
+		$dbname = "ristoran_prenotazioni";
 
 		$connessione = new mysqli($host, $user, $pass, $dbname);
 
@@ -18,8 +17,9 @@
 		$password = md5($_POST['pass']);
 		$result = $connessione->query("SELECT * FROM utenti WHERE username='$username' AND password='$password'");
 
-		if ($result->num_rows == 1) {
+		if ($result->num_rows > 0) {
 			setcookie('login', $username, time()+2592000);
+			// echo "<script>alert('Ciao');</script>";
 			header("Location: index.php");
 		}
 		else
@@ -28,37 +28,39 @@
 	else
 		$username = "";
 	?>
+<!DOCTYPE html>
+	<html lang="en">
 	<head>
 		<title>Ristorante Al molo 13</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="http://localhost/ristorante/vendor\bootstrap\css\bootstrap.min.css">
-		<link href="http://localhost/ristorante/style/calendar.css" type="text/css" rel="stylesheet" />
-		<link href="http://localhost/ristorante/css\stiliLogin.css" rel="stylesheet">
+		<link rel="stylesheet" href="http://prenotazioni.ristorante-almolo13.com/vendor\bootstrap\css\bootstrap.min.css">
+		<link href="http://prenotazioni.ristorante-almolo13.com/style/calendar.css" type="text/css" rel="stylesheet" />
+		<link href="http://prenotazioni.ristorante-almolo13.com/css\stiliLogin.css" rel="stylesheet">
 		
-		<!-- Google Analytics -->
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113319241-4"></script>
 		<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
 
-		ga('create', 'UA-XXXXX-Y', 'auto');
-		ga('send', 'pageview');
+		  gtag('config', 'UA-113319241-4');
 		</script>
+
 		<!-- End Google Analytics -->
 		
-		<script src="http://localhost/ristorante/vendor/jquery/jquery-3.3.1.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="http://localhost/ristorante/vendor/dataTable/css/jquery.dataTables.min.css">
-        <script type="text/javascript" charset="utf8" src="http://localhost/ristorante/vendor/dataTable/js/jquery.dataTables.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="http://localhost/ristorante/css/datatable.css"/>
+		<script src="http://prenotazioni.ristorante-almolo13.com/vendor/jquery/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://prenotazioni.ristorante-almolo13.com/vendor/dataTable/css/jquery.dataTables.min.css">
+        <script type="text/javascript" charset="utf8" src="http://prenotazioni.ristorante-almolo13.com/vendor/dataTable/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://prenotazioni.ristorante-almolo13.com/css/datatable.css"/>
 		
-        <link rel="stylesheet" type="text/css" href="http://localhost/ristorante/vendor/confirm/css/jquery-confirm.min.css">
-        <script type="text/javascript" charset="utf8" src="http://localhost/ristorante/vendor/confirm/js/jquery-confirm.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://prenotazioni.ristorante-almolo13.com/vendor/confirm/css/jquery-confirm.min.css">
+        <script type="text/javascript" charset="utf8" src="http://prenotazioni.ristorante-almolo13.com/vendor/confirm/js/jquery-confirm.min.js"></script>
 
 		
-		<script src="http://localhost/ristorante/vendor\bootstrap\js\bootstrap.min.js"></script>
-		<script src="http://localhost/ristorante/js\codiciLogin.js"></script>
+		<script src="http://prenotazioni.ristorante-almolo13.com/vendor\bootstrap\js\bootstrap.min.js"></script>
+		<script src="http://prenotazioni.ristorante-almolo13.com/js\codiciLogin.js"></script>
 		
 		<style>
 
@@ -174,7 +176,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>                        
 					</button>
-					<a class="navbar-brand" href="http://localhost/ristorante/index.php">Al molo 13</a>
+					<a class="navbar-brand" href="http://prenotazioni.ristorante-almolo13.com/index.php">Al molo 13</a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
@@ -187,40 +189,40 @@
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Sale<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovaSala.php">Aggiungi Sala</a></li>
-									<li><a href="http://localhost/ristorante/elenchi/sale.php">Elenca Sale</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/forms/AggiuntaNuovaSala.php">Aggiungi Sala</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/elenchi/sale.php">Elenca Sale</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Prenotazioni<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="http://localhost/ristorante/index.php">Aggiungi prenotazione</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/index.php">Aggiungi prenotazione</a></li>
 									<li><a class="nav-link" href="#" data-toggle="modal" data-target="#prenotaFesta">Aggiungi festa</a></li>
-									<li><a href="http://localhost/ristorante/elenchi/prenotazioni.php">Elenca prenotati</a></li>
-									<li><a href="http://localhost/ristorante/elenchi/revisionare.php">Da revisionare</a></li>
-									<li><a href="http://localhost/ristorante/elenchi/clienti.php">Storico</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/elenchi/prenotazioni.php">Elenca prenotati</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/elenchi/revisionare.php">Da revisionare</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/elenchi/clienti.php">Storico</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Stagioni<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovaStagione.php">Aggiungi stagione</a></li>
-									<li><a href="http://localhost/ristorante/forms/AggiuntaGiornoSpeciale.php">Aggiungi giorno speciale</a></li>
-									<li><a href="http://localhost/ristorante/elenchi/stagioni_giorniSpeciali.php">Elenca stagioni</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/forms/AggiuntaNuovaStagione.php">Aggiungi stagione</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/forms/AggiuntaGiornoSpeciale.php">Aggiungi giorno speciale</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/elenchi/stagioni_giorniSpeciali.php">Elenca stagioni</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Fasce<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovaFasciaOraria.php">Aggiungi fascia</a></li>
-									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovaFasciaOraria.php?id=-1">Modifica fasce</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/forms/AggiuntaNuovaFasciaOraria.php">Aggiungi fascia</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/forms/AggiuntaNuovaFasciaOraria.php?id=-1">Modifica fasce</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Utenti<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="http://localhost/ristorante/forms/AggiuntaNuovoUtente.php">Aggiungi utente</a></li>
-									<li><a href="http://localhost/ristorante/elenchi/utenti.php">Elenca utenti</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/forms/AggiuntaNuovoUtente.php">Aggiungi utente</a></li>
+									<li><a href="http://prenotazioni.ristorante-almolo13.com/elenchi/utenti.php">Elenca utenti</a></li>
 								</ul>
 							</li>';
 							
@@ -231,7 +233,7 @@
 						<li>
 							<?php
 							if(isset($_COOKIE['login']))
-								echo '<a class="nav-link" href="http://localhost/ristorante/logout.php"><span class="glyphicon glyphicon-user"></span> Bentornato ' . $_COOKIE['login'] . ', Logout</a>';
+								echo '<a class="nav-link" href="http://prenotazioni.ristorante-almolo13.com/logout.php"><span class="glyphicon glyphicon-user"></span> Bentornato ' . $_COOKIE['login'] . ', Logout</a>';
 							else
 								echo '<a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a>';
 							?>
@@ -245,7 +247,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header" align="center">
-						<img class="img-circle" id="img_logo" src="http://localhost/ristorante/images\logo.png">
+						<img class="img-circle" id="img_logo" src="http://prenotazioni.ristorante-almolo13.com/images\logo.png">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</button>
@@ -282,7 +284,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header" align="center">
-						<img id="img_logo" src="http://localhost/ristorante/images\champagne.png">
+						<img id="img_logo" src="http://prenotazioni.ristorante-almolo13.com/images\champagne.png">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</button>
@@ -314,5 +316,3 @@
 				</div>
 			</div>
 		</div>
-	</body>
-</html>

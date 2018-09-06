@@ -1,14 +1,14 @@
 <?php
 if(!isset($_COOKIE["login"])) {
-    echo '<script> window.location.href= "http://localhost/ristorante/index.php";</script>';
+    echo '<script> window.location.href= "http://prenotazioni.ristorante-almolo13.com/index.php";</script>';
     exit();
 }
 else {
     // Connessione al DB
     $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $dbname = "ristorante";
+    $user = "ristoran_pren";
+    $pass = "szc[yPA-hIhB";
+    $dbname = "ristoran_prenotazioni";
 
     $connessione = new mysqli($host, $user, $pass, $dbname);
 
@@ -24,8 +24,8 @@ else {
 
     // echo $giornoSettimana;
 
-    $query = "SELECT * FROM Stagioni INNER JOIN
-	Stagioni_orari on stagioni.id_stagione = stagioni_orari.id_stagione WHERE 
+    $query = "SELECT * FROM stagioni INNER JOIN
+	stagioni_orari on stagioni.id_stagione = stagioni_orari.id_stagione WHERE 
 	((giorno_inizio <= '" . $data .
         "' AND giorno_fine >= '" . $data .
         "' AND giorno_settimana = " . $giornoSettimana . ") OR

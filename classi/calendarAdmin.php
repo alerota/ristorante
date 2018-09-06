@@ -97,9 +97,9 @@ class CalendarAdmin {
 		// Connessione DB
 
 		$host = "localhost";
-		$user = "root";
-		$pass = "";
-		$dbname = "ristorante";
+		$user = "ristoran_pren";
+		$pass = "szc[yPA-hIhB";
+		$dbname = "ristoran_prenotazioni";
 		
 		$connessione = mysqli_connect($host, $user, $pass);
 		$db_selected=mysqli_select_db($connessione, $dbname);
@@ -132,7 +132,7 @@ class CalendarAdmin {
         if( ($this->currentDay!=0)&&($this->currentDay<=$this->daysInMonth) )
         {
             $this->currentDate = date('Y-m-d',strtotime($this->currentYear.'-'.$this->currentMonth.'-'.($this->currentDay)));
-            $cellContent = $this->currentDay . "<br>" . "<p style='text-align: right; font-size: 12;'>" . $numero . "</p>";
+            $cellContent = $this->currentDay . "<br>" . "<p style='text-align: right; font-size: 12px;'>" . $numero . "</p>";
             $this->currentDay++;   
         } 
         else
@@ -265,9 +265,9 @@ class CalendarAdmin {
     {
         // Connessione al DB
         $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $dbname = "ristorante";
+        $user = "ristoran_pren";
+        $pass = "szc[yPA-hIhB";
+        $dbname = "ristoran_prenotazioni";
 		
 		/* ritorno: 0 = open, -1 = close, -2 = festa */
 		
@@ -292,9 +292,9 @@ class CalendarAdmin {
     {
         // Connessione al DB
         $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $dbname = "ristorante";
+        $user = "ristoran_pren";
+        $pass = "szc[yPA-hIhB";
+        $dbname = "ristoran_prenotazioni";
 
         $connessione = new mysqli($host, $user, $pass, $dbname);
 

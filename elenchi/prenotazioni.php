@@ -1,15 +1,15 @@
 <?php
 
 if(!isset($_COOKIE["login"])) {
-    echo '<script> window.location.href= "http://localhost/ristorante/index.php";</script>';
+    echo '<script> window.location.href= "http://prenotazioni.ristorante-almolo13.com/index.php";</script>';
     exit();
 }
 else {
 
     $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $dbname = "ristorante";
+    $user = "ristoran_pren";
+    $pass = "szc[yPA-hIhB";
+    $dbname = "ristoran_prenotazioni";
 
     $connessione = new mysqli($host, $user, $pass, $dbname);
 
@@ -69,7 +69,7 @@ else {
                     $query2 = "SELECT * FROM prenotazioni WHERE id_prenotazione='$id'";
                     $result2 = $connessione->query($query2);
                     $numrows2 = $result2->num_rows;
-
+					
                     if ($numrows2) {
                         while ($row2 = $result2->fetch_assoc()) {
                             ?>
@@ -165,19 +165,19 @@ else {
                     if (isset($_GET['date'])) {
                         $data = date("Y-m-d", strtotime($_GET['date']));
                         // Prenotazioni aperte (persone non ancora arrivate o scadute)
-                        $query[0] = "SELECT * FROM prenotazioni WHERE (giorno='$data' and chiusura = 0 and arrivo = 0 and scadenza = 0) ORDER BY `giorno`, `orario`;";
+                        $query[0] = "SELECT * FROM prenotazioni WHERE (giorno='$data' and chiusura = 0 and arrivo = 0 and scadenza = 0) ORDER BY giorno, orario;";
                         // Arrivati
-                        $query[1] = "SELECT * FROM prenotazioni WHERE giorno='$data' and arrivo = 1 and chiusura = 0 ORDER BY `giorno`, `orario`;";
+                        $query[1] = "SELECT * FROM prenotazioni WHERE giorno='$data' and arrivo = 1 and chiusura = 0 ORDER BY giorno, orario;";
                         // Scaduti
-                        $query[2] = "SELECT * FROM prenotazioni WHERE giorno='$data' and scadenza = 1 and chiusura = 0 ORDER BY `giorno`, `orario`;";
+                        $query[2] = "SELECT * FROM prenotazioni WHERE giorno='$data' and scadenza = 1 and chiusura = 0 ORDER BY giorno, orario;";
                         // Prenotazioni chiuse
-                        $query[3] = "SELECT * FROM prenotazioni WHERE giorno='$data' and chiusura = 1 ORDER BY `giorno`, `orario`;";
+                        $query[3] = "SELECT * FROM prenotazioni WHERE giorno='$data' and chiusura = 1 ORDER BY giorno, orario;";
                     } else if (isset($_GET["strt"]) && isset($_GET["nd"])) {
                         $a1 = $_GET["strt"];
                         $a2 = $_GET["nd"];
-                        $query[0] = "SELECT * FROM prenotazioni WHERE giorno >= '" . $a1 . "' and giorno <= '" . $a2 . "' ORDER BY `giorno`, `orario`;";
+                        $query[0] = "SELECT * FROM prenotazioni WHERE giorno >= '" . $a1 . "' and giorno <= '" . $a2 . "' ORDER BY giorno, orario;";
                     } else
-                        $query[0] = "SELECT * FROM prenotazioni WHERE chiusura = 0 ORDER BY `giorno`, `orario`;";
+                        $query[0] = "SELECT * FROM prenotazioni WHERE chiusura = 0 ORDER BY giorno, orario;";
 
                     for ($i = 0; $i < sizeof($query); $i++) {
                         $sql = $query[$i];
@@ -186,6 +186,7 @@ else {
                         if ($result && ($result->num_rows) > 0) {
                             $numrows = $result->num_rows;
                             $nascondi = false;
+							$today = date("Y-m-d");
                             echo '
 								<table id="table' . $i . '">
 									<thead>
@@ -237,19 +238,25 @@ else {
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="../codici/aggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] . "&a=a&p=" . $parametri[$i][0]; ?>">
+                                        <?php if($today == $row["giorno"]) { ?>
+										<a href="../codici/aggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] . "&a=a&p=" . $parametri[$i][0]; ?>">
                                             <span class="glyphicon glyphicon-ok"></span>
                                         </a>
+										<?php } else echo " - "; ?>
                                     </td>
                                     <td>
+                                        <?php if($today == $row["giorno"]) { ?>
                                         <a href="../codici/aggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] . "&a=s&p=" . $parametri[$i][1]; ?>">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
+										<?php } else echo " - "; ?>
                                     </td>
                                     <td>
+                                        <?php if($today == $row["giorno"]) { ?>
                                         <a href="../codici/aggiornaPrenotazione.php?id=<?php echo $row['id_prenotazione'] . "&a=c&p=" . $parametri[$i][2]; ?>">
                                             <span class="glyphicon glyphicon-ban-circle"></span>
                                         </a>
+										<?php } else echo " - "; ?>
                                     </td>
                                     <td>
                                         <a onclick="document.getElementById('idSupporto').value=<?php echo $row['id_prenotazione']; ?>;"

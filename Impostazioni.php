@@ -1,6 +1,6 @@
 <?php
 if(!isset($_COOKIE["login"])) {
-    echo '<script> window.location.href= "http://localhost/ristorante/index.php";</script>';
+    echo '<script> window.location.href= "http://prenotazioni.ristorante-almolo13.com/index.php";</script>';
     exit();
 }
 else {
@@ -63,21 +63,21 @@ else {
 				<hr>
 				<h3>Gestione</h3>
 				<div class="btn-group second">
-					<button onclick="window.location.href='http://localhost/ristorante/elenchi/sale.php';" class="btn btn-success" type="button">
+					<button onclick="window.location.href='http://prenotazioni.ristorante-almolo13.com/elenchi/sale.php';" class="btn btn-success" type="button">
 						<h4>Gestisci Sale</h4>
 					</button>
 
-					<button onclick="window.location.href='http://localhost/ristorante/forms/AggiuntaNuovaFasciaOraria.php?id=-1';" class="btn btn-success" type="button">
+					<button onclick="window.location.href='http://prenotazioni.ristorante-almolo13.com/forms/AggiuntaNuovaFasciaOraria.php?id=-1';" class="btn btn-success" type="button">
 						<h4>Gestisci Fasce</h4>
 					</button>
 				</div>
 				
 				<div class="btn-group second">
-					<button onclick="window.location.href='http://localhost/ristorante/elenchi/stagioni_giorniSpeciali.php';" class="btn btn-success" type="button">
+					<button onclick="window.location.href='http://prenotazioni.ristorante-almolo13.com/elenchi/stagioni_giorniSpeciali.php';" class="btn btn-success" type="button">
 						<h4>Gestisci Stagioni</h4>
 					</button>
 
-					<button onclick="window.location.href='http://localhost/ristorante/elenchi/utenti.php';" class="btn btn-success" type="button">
+					<button onclick="window.location.href='http://prenotazioni.ristorante-almolo13.com/elenchi/utenti.php';" class="btn btn-success" type="button">
 						<h4>Gestisci Utenti</h4>
 					</button>
 				</div>

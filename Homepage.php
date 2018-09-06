@@ -1,6 +1,6 @@
 <?php
 if(!isset($_COOKIE["login"])) {
-    echo '<script> window.location.href= "http://localhost/ristorante/index.php";</script>';
+    echo '<script> window.location.href= "http://prenotazioni.ristorante-almolo13.com/index.php";</script>';
     exit();
 }
 else {

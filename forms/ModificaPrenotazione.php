@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($_COOKIE["login"])) {
-    echo '<script> window.location.href= "http://localhost/ristorante/index.php";</script>';
+    echo '<script> window.location.href= "http://prenotazioni.ristorante-almolo13.com/index.php";</script>';
     exit();
 }
 else {
@@ -11,9 +11,9 @@ else {
 
         // Connessione al DB
         $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $dbname = "ristorante";
+        $user = "ristoran_pren";
+        $pass = "szc[yPA-hIhB";
+        $dbname = "ristoran_prenotazioni";
 
         $connessione = new mysqli($host, $user, $pass, $dbname);
 
@@ -203,7 +203,7 @@ else {
     <?php include '../menu.php'; ?>
     <div class="container">
         <div class="row">
-            <div class="col-md-4"> <?php include "listino.php"; ?> </div>
+            <div class="col-md-4"> <?php include "Listino.php"; ?> </div>
             <div class="col-md-1"><br></div>
             <div class="col-md-7">
                 <form method='POST' id="formPrenotazione" class='form' action="../codici/update/updatePrenotazione.php"

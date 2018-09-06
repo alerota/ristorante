@@ -16,15 +16,15 @@
     }
 
 if(!isset($_COOKIE["login"])) {
-    echo '<script> window.location.href= "http://localhost/ristorante/index.php";</script>';
+    echo '<script> window.location.href= "http://prenotazioni.ristorante-almolo13.com/index.php";</script>';
     exit();
 }
 else {
     // Connessione al DB
     $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $dbname = "ristorante";
+    $user = "ristoran_pren";
+    $pass = "szc[yPA-hIhB";
+    $dbname = "ristoran_prenotazioni";
 
     $connessione = new mysqli($host, $user, $pass, $dbname);
 
@@ -66,7 +66,7 @@ else {
                 header('Pragma: public');
                 header('Content-Length: ' . filesize("Documenti/" . $nomeFile));
                 readfile("Documenti/" . $nomeFile);
-                header('location: ../Impostazioni.php?messaggio=http://localhost/ristorante/codici/Documenti/' . $nomeFile);
+                header('location: ../Impostazioni.php?messaggio=http://prenotazioni.ristorante-almolo13.com/codici/Documenti/' . $nomeFile);
             } else if ($tipo == "mail") {
                 // Multiple recipients
                 $to = 'davidepizzoli1234@gmail.com'; // note the comma
@@ -96,6 +96,7 @@ else {
 
                 // Mail it
                 mail($to, $subject, $message, implode("\r\n", $headers));
+				echo "<script>window.location.href = '../Impostazioni.php?messaggio=Email inviata con successo!'; </script>";
             }
         } else
             echo "Nessun record nello storico...";
